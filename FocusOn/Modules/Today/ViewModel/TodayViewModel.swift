@@ -10,36 +10,44 @@ import Foundation
 
 struct TodayViewModel {
     
-    var goal: String = ""
-    var tasks: [Task] = [ Task(description: ""), Task(description: ""), Task(description: "")]
+    var goal: Goal = Goal()
     
     mutating func changeTaskText(_ text: String, withId index: Int) {
-        tasks[index].description = text
+        goal.tasks[index].description = text
+    }
+    
+    mutating func changeGoalText(_ text: String) {
+        goal.fullDescription = text
     }
     
     mutating func changeTaskCompletion(withId index: Int) -> String {
-        let newCompletion: CompletionProgress = tasks[index].completion == .notCompleted ? .completed : .notCompleted
-        tasks[index].completion = newCompletion
+        let newCompletion: CompletionProgress = goal.tasks[index].completion == .notCompleted || goal.tasks[index].completion == .overridden ? .completed : .notCompleted
+        goal.tasks[index].completion = newCompletion
         
-        return newCompletion == .completed ? "completed" : "empty"
+        return goal.tasks[index].completionImageName
     }
     
-    func checkGoalStatus() -> String {
-        var num = 0
-        var imageName = ""
-        tasks.forEach { task in
-            if task.completion == .completed { num += 1 }
+    mutating func changeGoalCompletion() -> [String] {
+        let isCompleted = goal.completion == .completed ? true : false
+        
+        let from: CompletionProgress = isCompleted ? .overridden : .notCompleted
+        let to: CompletionProgress = isCompleted ? .notCompleted : .overridden
+        
+        for i in 0 ..< 3 {
+            if goal.tasks[i].completion == from {
+                goal.tasks[i].completion = to
+            }
         }
-        switch num {
-        case 1:
-            imageName = "120"
-        case 2:
-            imageName = "240"
-        case 3:
-            imageName = "done"
-        default:
-            imageName = "0"
-        }
-        return imageName
+        return getButtonsImageNames()
+    }
+    
+    func getGoalImageName() -> String {
+        return goal.completionImageName
+    }
+    
+    private func getButtonsImageNames() -> [String] {
+        var imageNames = [String]()
+        goal.tasks.forEach { imageNames.append($0.completionImageName) }
+        return imageNames
     }
 }

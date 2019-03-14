@@ -16,6 +16,7 @@
 		0132CDEC222C8FC000457CD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0132CDEA222C8FC000457CD5 /* LaunchScreen.storyboard */; };
 		0132CDF6222C9A8500457CD5 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0132CDF5222C9A8500457CD5 /* CustomTabBarController.swift */; };
 		017E551D223A6BCA00F7E9F6 /* CustomTabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017E551C223A6BCA00F7E9F6 /* CustomTabBarItemView.swift */; };
+		017E5520223A6F5000F7E9F6 /* CustomCheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017E551F223A6F5000F7E9F6 /* CustomCheckButton.swift */; };
 		01E4107F22353F2E00C74766 /* StartFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4107E22353F2E00C74766 /* StartFactory.swift */; };
 		01E41081223543BD00C74766 /* HistoryVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01E41080223543BD00C74766 /* HistoryVC.storyboard */; };
 		01E410832235451B00C74766 /* TodayVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01E410822235451B00C74766 /* TodayVC.storyboard */; };
@@ -41,6 +42,7 @@
 		0132CDED222C8FC000457CD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0132CDF5222C9A8500457CD5 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		017E551C223A6BCA00F7E9F6 /* CustomTabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarItemView.swift; sourceTree = "<group>"; };
+		017E551F223A6F5000F7E9F6 /* CustomCheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCheckButton.swift; sourceTree = "<group>"; };
 		01E4107E22353F2E00C74766 /* StartFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartFactory.swift; sourceTree = "<group>"; };
 		01E41080223543BD00C74766 /* HistoryVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HistoryVC.storyboard; sourceTree = "<group>"; };
 		01E410822235451B00C74766 /* TodayVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TodayVC.storyboard; sourceTree = "<group>"; };
@@ -107,6 +109,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		017E551E223A6F3800F7E9F6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				017E551F223A6F5000F7E9F6 /* CustomCheckButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		01E4107D22353E1F00C74766 /* NavTabController */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +130,9 @@
 			isa = PBXGroup;
 			children = (
 				01E410942235716D00C74766 /* GoalsData.swift */,
+				01E41087223567EE00C74766 /* Goal.swift */,
+				01E41089223567FC00C74766 /* Task.swift */,
+				01E410922235708C00C74766 /* CompletionProgress.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -127,9 +140,6 @@
 		01E4108B223568B500C74766 /* Data Structures & Enums */ = {
 			isa = PBXGroup;
 			children = (
-				01E41087223567EE00C74766 /* Goal.swift */,
-				01E41089223567FC00C74766 /* Task.swift */,
-				01E410922235708C00C74766 /* CompletionProgress.swift */,
 			);
 			path = "Data Structures & Enums";
 			sourceTree = "<group>";
@@ -139,6 +149,7 @@
 			children = (
 				01FFB5B5222E84AB00EAEB59 /* ViewController */,
 				01FFB5B8222E84D600EAEB59 /* ViewModel */,
+				017E551E223A6F3800F7E9F6 /* Views */,
 				01E410822235451B00C74766 /* TodayVC.storyboard */,
 			);
 			path = Today;
@@ -178,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				01E4108B223568B500C74766 /* Data Structures & Enums */,
-				01FFB5B3222E804700EAEB59 /* Templates */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -188,13 +198,6 @@
 			children = (
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		01FFB5B3222E804700EAEB59 /* Templates */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Templates;
 			sourceTree = "<group>";
 		};
 		01FFB5B4222E849900EAEB59 /* ViewController */ = {
@@ -333,6 +336,7 @@
 				0132CDF6222C9A8500457CD5 /* CustomTabBarController.swift in Sources */,
 				012D2365222DD9300073FA57 /* HistoryViewController.swift in Sources */,
 				01E410952235716D00C74766 /* GoalsData.swift in Sources */,
+				017E5520223A6F5000F7E9F6 /* CustomCheckButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

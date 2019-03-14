@@ -10,6 +10,8 @@ import UIKit
 
 class ProgressViewController: UIViewController {
 
+    var progressVM = ProgressViewModel()
+    
     override func awakeFromNib() {
         tabBarItem.image = UIImage(named: "progress")
         title = "Progress"

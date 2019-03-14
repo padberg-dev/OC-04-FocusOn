@@ -13,4 +13,5 @@ enum CompletionProgress {
     case oneThird
     case twoThirds
     case completed
+    case overridden
 }

@@ -14,6 +14,8 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var items: [String] = []
     
+    var historyVM = HistoryViewModel()
+    
     override func awakeFromNib() {
         tabBarItem.image = UIImage(named: "history")
         title = "History"
