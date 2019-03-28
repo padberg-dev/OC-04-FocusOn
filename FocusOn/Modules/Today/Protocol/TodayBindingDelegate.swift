@@ -9,5 +9,7 @@
 import Foundation
 
 protocol TodayBindingDelegate: class {
-    
+    func updateGoalWith(imageName: String)
+    func updateTaskWith(imageName: String, taskId: Int)
+    func updateAllTasksWith(imageNames: [String])
 }

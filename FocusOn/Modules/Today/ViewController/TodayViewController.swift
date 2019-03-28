@@ -50,24 +50,13 @@ class TodayViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    private func checkGoalCompletion() {
-        let imageName = todayVM.getGoalImageName()
-        goalCompletionButton.setImage(UIImage(named: imageName), for: .normal)
-    }
-    
     @IBAction func goalButtonTapped(_ sender: UIButton) {
-        let newImageNames = todayVM.changeGoalCompletion()
-        checkGoalCompletion()
-        for (i, button) in taskCompletionButtons.enumerated() {
-            button.changeImage(to: newImageNames[i])
-        }
+        todayVM.changeGoalCompletion()
     }
     
     @IBAction func taskButtonTapped(_ sender: CustomCheckButton) {
         if taskTextFields[sender.tag].text != "" {
-            let imageName = todayVM.changeTaskCompletion(withId: sender.tag)
-            sender.changeImage(to: imageName)
-            checkGoalCompletion()
+            todayVM.changeTaskCompletion(withId: sender.tag)
         } else {
             print("No text in the TextField")
         }
@@ -80,4 +69,17 @@ class TodayViewController: UIViewController, UITextFieldDelegate {
 
 extension TodayViewController: TodayBindingDelegate {
     
+    func updateGoalWith(imageName: String) {
+        goalCompletionButton.setImage(UIImage(named: imageName), for: .normal)
+    }
+    
+    func updateTaskWith(imageName: String, taskId: Int) {
+        taskCompletionButtons[taskId].changeImage(to: imageName)
+    }
+    
+    func updateAllTasksWith(imageNames: [String]) {
+        for (i, button) in taskCompletionButtons.enumerated() {
+            button.changeImage(to: imageNames[i])
+        }
+    }
 }

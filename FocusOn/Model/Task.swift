@@ -27,7 +27,7 @@ struct Task {
     private mutating func changeImageName() {
         switch completion {
         case .completed: completionImageName = "completed"
-        case .overridden: completionImageName = "overridden"
+        case .overridden: completionImageName = "completed"
         default: completionImageName = "empty"
         }
     }

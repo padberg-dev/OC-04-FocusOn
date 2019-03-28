@@ -21,14 +21,16 @@ struct TodayViewModel {
         goal.fullDescription = text
     }
     
-    mutating func changeTaskCompletion(withId index: Int) -> String {
-        let newCompletion: CompletionProgress = goal.tasks[index].completion == .notCompleted || goal.tasks[index].completion == .overridden ? .completed : .notCompleted
+    mutating func changeTaskCompletion(withId index: Int) {
+        let newCompletion: CompletionProgress = goal.tasks[index].completion == .notCompleted ? .completed : .notCompleted
         goal.tasks[index].completion = newCompletion
         
-        return goal.tasks[index].completionImageName
+        updateGoalImage()
+        cleanOverriddenTasks()
+        bindingDelegate?.updateTaskWith(imageName: goal.tasks[index].completionImageName, taskId: index)
     }
     
-    mutating func changeGoalCompletion() -> [String] {
+    mutating func changeGoalCompletion() {
         let isCompleted = goal.completion == .completed ? true : false
         
         let from: CompletionProgress = isCompleted ? .overridden : .notCompleted
@@ -39,10 +41,23 @@ struct TodayViewModel {
                 goal.tasks[i].completion = to
             }
         }
-        return getButtonsImageNames()
+        updateGoalImage()
+        bindingDelegate?.updateAllTasksWith(imageNames: getButtonsImageNames())
     }
     
-    func getGoalImageName() -> String {
+    private mutating func cleanOverriddenTasks() {
+        for i in 0 ..< 3 {
+            if goal.tasks[i].completion == .overridden {
+                goal.tasks[i].completion = .completed
+            }
+        }
+    }
+    
+    private func updateGoalImage() {
+        bindingDelegate?.updateGoalWith(imageName: getGoalImageName())
+    }
+    
+    private func getGoalImageName() -> String {
         return goal.completionImageName
     }
     
