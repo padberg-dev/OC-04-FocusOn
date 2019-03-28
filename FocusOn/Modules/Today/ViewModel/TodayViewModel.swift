@@ -11,6 +11,7 @@ import Foundation
 struct TodayViewModel {
     
     var goal: Goal = Goal()
+    weak var bindingDelegate: TodayBindingDelegate?
     
     mutating func changeTaskText(_ text: String, withId index: Int) {
         goal.tasks[index].description = text

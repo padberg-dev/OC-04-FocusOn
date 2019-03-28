@@ -26,6 +26,7 @@ class TodayViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        todayVM.bindingDelegate = self
         goalTextField.delegate = self
         taskTextFields.forEach { $0.delegate = self }
     }
@@ -75,4 +76,8 @@ class TodayViewController: UIViewController, UITextFieldDelegate {
     @IBAction func printTapped(_ sender: UIButton) {
         print(todayVM.goal)
     }
+}
+
+extension TodayViewController: TodayBindingDelegate {
+    
 }
