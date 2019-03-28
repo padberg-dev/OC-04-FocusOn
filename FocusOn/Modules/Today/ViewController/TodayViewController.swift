@@ -17,6 +17,11 @@ class TodayViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var taskTextFields: [UITextField]!
     
     var todayVM = TodayViewModel()
+    var isTodayVCFilledOutCompletely: Bool {
+        get {
+            return validateGoal() && validateTasks()
+        }
+    }
     
     override func awakeFromNib() {
         tabBarItem.image = UIImage(named: "today")
@@ -50,15 +55,35 @@ class TodayViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    private func validateGoal() -> Bool {
+        return goalTextField.text != ""
+    }
+    
+    private func validateTasks(onlyOneTask: Int? = nil) -> Bool {
+        if let index = onlyOneTask {
+            return taskTextFields[index].text != ""
+        } else {
+            return (taskTextFields.filter { $0.text == "" }).count == 0
+        }
+    }
+    
     @IBAction func goalButtonTapped(_ sender: UIButton) {
-        todayVM.changeGoalCompletion()
+        if validateTasks() {
+            if validateGoal() {
+                todayVM.changeGoalCompletion()
+            } else {
+                print("No text in Goal-TextField")
+            }
+        } else {
+            print("No text in at least one of the Task-TextField")
+        }
     }
     
     @IBAction func taskButtonTapped(_ sender: CustomCheckButton) {
-        if taskTextFields[sender.tag].text != "" {
+        if validateTasks(onlyOneTask: sender.tag) {
             todayVM.changeTaskCompletion(withId: sender.tag)
         } else {
-            print("No text in the TextField")
+            print("No text in the Task-TextField")
         }
     }
     

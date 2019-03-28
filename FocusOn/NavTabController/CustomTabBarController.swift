@@ -22,18 +22,20 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         tabBar.isTranslucent = false
     }
     
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        let id = tabBar.items?.firstIndex(of: item)
-        selectedTabView.moveToItem(id!)
-    }
-    
     // Fires BEFORE viewController's viewDidLoad()
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if let vc = tabBarController.selectedViewController as? TodayViewController {
+            let validationCheck = vc.isTodayVCFilledOutCompletely
+            if !validationCheck {
+                print("You have to fill out Today VC completely in order to change tabs")
+            }
+            return validationCheck
+        }
         return true
     }
     
     // Fires AFTER viewController's viewDidLoad()
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        
+        selectedTabView.moveToItem(selectedIndex)
     }
 }
