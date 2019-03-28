@@ -14,7 +14,7 @@ struct Goal: CustomStringConvertible {
         print("===")
         print("Goal: '\(fullDescription)' || Completion: \(completion) || Image: \(completionImageName)")
         for task in tasks {
-            print("TASK: '\(task.description)' || completion: \(task.completion) || Image: \(task.completionImageName)")
+            print("TASK: '\(task.fullDescription)' || completion: \(task.completion) || Image: \(task.completionImageName)")
         }
         return "==="
     }
@@ -58,7 +58,7 @@ struct Goal: CustomStringConvertible {
     private func checkIfCanBeSaved() -> Bool {
         if tasks.count == 3 {
             for task in tasks {
-                if task.description == "" {
+                if task.fullDescription == "" {
                     return false
                 }
             }

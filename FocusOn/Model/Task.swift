@@ -10,7 +10,7 @@ import Foundation
 
 struct Task {
     
-    var description: String
+    var fullDescription: String
     var completion: CompletionProgress {
         didSet {
             changeImageName()
@@ -19,7 +19,7 @@ struct Task {
     var completionImageName: String
     
     init() {
-        self.description = ""
+        self.fullDescription = ""
         self.completion = .notCompleted
         self.completionImageName = "empty"
     }

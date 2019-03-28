@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0111C5F4224D602E005E8AF7 /* TodayBindingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0111C5F3224D602E005E8AF7 /* TodayBindingDelegate.swift */; };
 		0111C604224D7636005E8AF7 /* TodayViewModelUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0111C603224D7636005E8AF7 /* TodayViewModelUnitTest.swift */; };
+		0111C607224D7E2F005E8AF7 /* FocusOn.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0111C605224D7E2F005E8AF7 /* FocusOn.xcdatamodeld */; };
 		012D2365222DD9300073FA57 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D2364222DD9300073FA57 /* HistoryViewController.swift */; };
 		012D2367222DD9440073FA57 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D2366222DD9440073FA57 /* TodayViewController.swift */; };
 		012D2369222DD94D0073FA57 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D2368222DD94D0073FA57 /* ProgressViewController.swift */; };
@@ -47,6 +48,7 @@
 		0111C5F9224D7317005E8AF7 /* FocusOnUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FocusOnUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0111C5FD224D7317005E8AF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0111C603224D7636005E8AF7 /* TodayViewModelUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModelUnitTest.swift; sourceTree = "<group>"; };
+		0111C606224D7E2F005E8AF7 /* FocusOn.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FocusOn.xcdatamodel; sourceTree = "<group>"; };
 		012D2364222DD9300073FA57 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		012D2366222DD9440073FA57 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		012D2368222DD94D0073FA57 /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				01E41087223567EE00C74766 /* Goal.swift */,
 				01E41089223567FC00C74766 /* Task.swift */,
 				01E410922235708C00C74766 /* CompletionProgress.swift */,
+				0111C605224D7E2F005E8AF7 /* FocusOn.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0111C607224D7E2F005E8AF7 /* FocusOn.xcdatamodeld in Sources */,
 				01FFB5BF222E898800EAEB59 /* ProgressViewModel.swift in Sources */,
 				0132CDE2222C8FBE00457CD5 /* AppDelegate.swift in Sources */,
 				01FFB5BB222E852000EAEB59 /* TodayViewModel.swift in Sources */,
@@ -675,6 +679,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0111C605224D7E2F005E8AF7 /* FocusOn.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0111C606224D7E2F005E8AF7 /* FocusOn.xcdatamodel */,
+			);
+			currentVersion = 0111C606224D7E2F005E8AF7 /* FocusOn.xcdatamodel */;
+			path = FocusOn.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0132CDD6222C8FBE00457CD5 /* Project object */;
 }

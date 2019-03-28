@@ -8,10 +8,10 @@
 
 import Foundation
 
-enum CompletionProgress {
-    case notCompleted
-    case oneThird
-    case twoThirds
-    case completed
-    case overridden
+enum CompletionProgress: Int {
+    case notCompleted = 0
+    case completed = 1
+    case overridden = 2
+    case oneThird = 3
+    case twoThirds = 4
 }

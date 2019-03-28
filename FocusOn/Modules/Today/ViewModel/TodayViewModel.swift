@@ -14,7 +14,7 @@ struct TodayViewModel {
     weak var bindingDelegate: TodayBindingDelegate?
     
     mutating func changeTaskText(_ text: String, withId index: Int) {
-        goal.tasks[index].description = text
+        goal.tasks[index].fullDescription = text
     }
     
     mutating func changeGoalText(_ text: String) {
