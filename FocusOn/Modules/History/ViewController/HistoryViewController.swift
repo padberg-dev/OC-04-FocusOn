@@ -8,9 +8,9 @@
 
 import UIKit
 
-class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HistoryViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: CustomTableView!
     
     var items: [String] = []
     
@@ -24,26 +24,12 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        for i in 0 ... 100 {
-            items.append("Number \(i)")
-        }
+        tableView.goals = historyVM.loadData()
+        tableView.historyVM = historyVM
     }
     
     override func viewWillAppear(_ animated: Bool) {
         parent?.navigationItem.title = "FocusOn History"
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell")
-        cell?.textLabel?.text = items[indexPath.row]
-        
-        return cell!
+        tableView.reloadRows(at: [IndexPath(item: 0, section: 0)], with: .left)
     }
 }

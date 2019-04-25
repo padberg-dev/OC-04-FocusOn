@@ -14,8 +14,12 @@ class StartFactory {
         
         let navigationController = UINavigationController()
         
+//        GoalData.createYesterdayScenario()
+//        GoalData.createALotOfDataScenario()
+        
         let historyVC = UIStoryboard(name: "HistoryVC", bundle: nil).instantiateInitialViewController() as! HistoryViewController
         let todayVC = UIStoryboard(name: "TodayVC", bundle: nil).instantiateInitialViewController() as! TodayViewController
+        todayVC.todayVM = TodayViewModel.loadFromCoreData()
         let progressVC = UIStoryboard(name: "ProgressVC", bundle: nil).instantiateInitialViewController() as! ProgressViewController
         
         let tabBarController = CustomTabBarController()

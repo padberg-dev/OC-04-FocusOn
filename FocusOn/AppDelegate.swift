@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        saveContext()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -43,9 +44,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        saveContext()
     }
     
     // MARK: - Core Data stack
+    
+    static var container: NSPersistentContainer {
+        get {
+            return (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+        }
+    }
+    
+    static var context: NSManagedObjectContext {
+        get {
+            return AppDelegate.container.viewContext
+        }
+    }
     
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "FocusOn")

@@ -14,20 +14,21 @@
 		012D2367222DD9440073FA57 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D2366222DD9440073FA57 /* TodayViewController.swift */; };
 		012D2369222DD94D0073FA57 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D2368222DD94D0073FA57 /* ProgressViewController.swift */; };
 		0132CDE2222C8FBE00457CD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0132CDE1222C8FBE00457CD5 /* AppDelegate.swift */; };
-		0132CDE7222C8FBF00457CD5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0132CDE5222C8FBF00457CD5 /* Main.storyboard */; };
 		0132CDE9222C8FC000457CD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0132CDE8222C8FC000457CD5 /* Assets.xcassets */; };
 		0132CDEC222C8FC000457CD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0132CDEA222C8FC000457CD5 /* LaunchScreen.storyboard */; };
 		0132CDF6222C9A8500457CD5 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0132CDF5222C9A8500457CD5 /* CustomTabBarController.swift */; };
 		017E551D223A6BCA00F7E9F6 /* CustomTabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017E551C223A6BCA00F7E9F6 /* CustomTabBarItemView.swift */; };
 		017E5520223A6F5000F7E9F6 /* CustomCheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017E551F223A6F5000F7E9F6 /* CustomCheckButton.swift */; };
+		0188CC632269E47D0035E8BB /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0188CC622269E47D0035E8BB /* CustomTableView.swift */; };
+		0188CC652269E4AD0035E8BB /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0188CC642269E4AD0035E8BB /* CustomTableViewCell.swift */; };
+		0193C70C225FD1300068BA4B /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0193C70B225FD1300068BA4B /* Date+Extension.swift */; };
 		01E4107F22353F2E00C74766 /* StartFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4107E22353F2E00C74766 /* StartFactory.swift */; };
 		01E41081223543BD00C74766 /* HistoryVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01E41080223543BD00C74766 /* HistoryVC.storyboard */; };
 		01E410832235451B00C74766 /* TodayVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01E410822235451B00C74766 /* TodayVC.storyboard */; };
 		01E4108522354B0400C74766 /* ProgressVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01E4108422354B0400C74766 /* ProgressVC.storyboard */; };
 		01E41088223567EE00C74766 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E41087223567EE00C74766 /* Goal.swift */; };
 		01E4108A223567FC00C74766 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E41089223567FC00C74766 /* Task.swift */; };
-		01E410932235708C00C74766 /* CompletionProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E410922235708C00C74766 /* CompletionProgress.swift */; };
-		01E410952235716D00C74766 /* GoalsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E410942235716D00C74766 /* GoalsData.swift */; };
+		01E410952235716D00C74766 /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E410942235716D00C74766 /* GoalData.swift */; };
 		01FFB5BB222E852000EAEB59 /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FFB5BA222E852000EAEB59 /* TodayViewModel.swift */; };
 		01FFB5BF222E898800EAEB59 /* ProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FFB5BE222E898800EAEB59 /* ProgressViewModel.swift */; };
 		01FFB5C1222E89A000EAEB59 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FFB5C0222E89A000EAEB59 /* HistoryViewModel.swift */; };
@@ -54,21 +55,22 @@
 		012D2368222DD94D0073FA57 /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		0132CDDE222C8FBE00457CD5 /* FocusOn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusOn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0132CDE1222C8FBE00457CD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0132CDE6222C8FBF00457CD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0132CDE8222C8FC000457CD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0132CDEB222C8FC000457CD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0132CDED222C8FC000457CD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0132CDF5222C9A8500457CD5 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		017E551C223A6BCA00F7E9F6 /* CustomTabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarItemView.swift; sourceTree = "<group>"; };
 		017E551F223A6F5000F7E9F6 /* CustomCheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCheckButton.swift; sourceTree = "<group>"; };
+		0188CC622269E47D0035E8BB /* CustomTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
+		0188CC642269E4AD0035E8BB /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		0193C70B225FD1300068BA4B /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		01E4107E22353F2E00C74766 /* StartFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartFactory.swift; sourceTree = "<group>"; };
 		01E41080223543BD00C74766 /* HistoryVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HistoryVC.storyboard; sourceTree = "<group>"; };
 		01E410822235451B00C74766 /* TodayVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TodayVC.storyboard; sourceTree = "<group>"; };
 		01E4108422354B0400C74766 /* ProgressVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProgressVC.storyboard; sourceTree = "<group>"; };
 		01E41087223567EE00C74766 /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		01E41089223567FC00C74766 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		01E410922235708C00C74766 /* CompletionProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionProgress.swift; sourceTree = "<group>"; };
-		01E410942235716D00C74766 /* GoalsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsData.swift; sourceTree = "<group>"; };
+		01E410942235716D00C74766 /* GoalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
 		01FFB5BA222E852000EAEB59 /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
 		01FFB5BE222E898800EAEB59 /* ProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModel.swift; sourceTree = "<group>"; };
 		01FFB5C0222E89A000EAEB59 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
@@ -130,10 +132,8 @@
 		0132CDE0222C8FBE00457CD5 /* FocusOn */ = {
 			isa = PBXGroup;
 			children = (
-				01FFB5AF222E7F8800EAEB59 /* Extensions */,
-				01FFB5AE222E7F7F00EAEB59 /* Utilities */,
+				0193C70A225FD1230068BA4B /* Extension */,
 				0132CDE1222C8FBE00457CD5 /* AppDelegate.swift */,
-				0132CDE5222C8FBF00457CD5 /* Main.storyboard */,
 				0132CDE8222C8FC000457CD5 /* Assets.xcassets */,
 				0132CDEA222C8FC000457CD5 /* LaunchScreen.storyboard */,
 				0132CDED222C8FC000457CD5 /* Info.plist */,
@@ -161,6 +161,23 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		0188CC612269E4620035E8BB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0188CC622269E47D0035E8BB /* CustomTableView.swift */,
+				0188CC642269E4AD0035E8BB /* CustomTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0193C70A225FD1230068BA4B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0193C70B225FD1300068BA4B /* Date+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		01E4107D22353E1F00C74766 /* NavTabController */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,20 +190,12 @@
 		01E41086223567D800C74766 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				01E410942235716D00C74766 /* GoalsData.swift */,
+				01E410942235716D00C74766 /* GoalData.swift */,
 				01E41087223567EE00C74766 /* Goal.swift */,
 				01E41089223567FC00C74766 /* Task.swift */,
-				01E410922235708C00C74766 /* CompletionProgress.swift */,
 				0111C605224D7E2F005E8AF7 /* FocusOn.xcdatamodeld */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		01E4108B223568B500C74766 /* Data Structures & Enums */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Data Structures & Enums";
 			sourceTree = "<group>";
 		};
 		01FFB5AA222E7E6300EAEB59 /* Today */ = {
@@ -204,6 +213,7 @@
 		01FFB5AB222E7E7600EAEB59 /* History */ = {
 			isa = PBXGroup;
 			children = (
+				0188CC612269E4620035E8BB /* View */,
 				01FFB5B4222E849900EAEB59 /* ViewController */,
 				01FFB5B7222E84C400EAEB59 /* ViewModel */,
 				01E41080223543BD00C74766 /* HistoryVC.storyboard */,
@@ -229,21 +239,6 @@
 				01FFB5AC222E7E8000EAEB59 /* Progress */,
 			);
 			path = Modules;
-			sourceTree = "<group>";
-		};
-		01FFB5AE222E7F7F00EAEB59 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				01E4108B223568B500C74766 /* Data Structures & Enums */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
-		01FFB5AF222E7F8800EAEB59 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		01FFB5B4222E849900EAEB59 /* ViewController */ = {
@@ -387,7 +382,6 @@
 				01E410832235451B00C74766 /* TodayVC.storyboard in Resources */,
 				0132CDE9222C8FC000457CD5 /* Assets.xcassets in Resources */,
 				01E41081223543BD00C74766 /* HistoryVC.storyboard in Resources */,
-				0132CDE7222C8FBF00457CD5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,17 +405,19 @@
 				0132CDE2222C8FBE00457CD5 /* AppDelegate.swift in Sources */,
 				01FFB5BB222E852000EAEB59 /* TodayViewModel.swift in Sources */,
 				017E551D223A6BCA00F7E9F6 /* CustomTabBarItemView.swift in Sources */,
+				0188CC652269E4AD0035E8BB /* CustomTableViewCell.swift in Sources */,
 				012D2367222DD9440073FA57 /* TodayViewController.swift in Sources */,
 				012D2369222DD94D0073FA57 /* ProgressViewController.swift in Sources */,
 				01FFB5C1222E89A000EAEB59 /* HistoryViewModel.swift in Sources */,
 				01E4107F22353F2E00C74766 /* StartFactory.swift in Sources */,
-				01E410932235708C00C74766 /* CompletionProgress.swift in Sources */,
+				0193C70C225FD1300068BA4B /* Date+Extension.swift in Sources */,
 				01E4108A223567FC00C74766 /* Task.swift in Sources */,
 				01E41088223567EE00C74766 /* Goal.swift in Sources */,
 				0132CDF6222C9A8500457CD5 /* CustomTabBarController.swift in Sources */,
 				0111C5F4224D602E005E8AF7 /* TodayBindingDelegate.swift in Sources */,
+				0188CC632269E47D0035E8BB /* CustomTableView.swift in Sources */,
 				012D2365222DD9300073FA57 /* HistoryViewController.swift in Sources */,
-				01E410952235716D00C74766 /* GoalsData.swift in Sources */,
+				01E410952235716D00C74766 /* GoalData.swift in Sources */,
 				017E5520223A6F5000F7E9F6 /* CustomCheckButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,14 +433,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		0132CDE5222C8FBF00457CD5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0132CDE6222C8FBF00457CD5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0132CDEA222C8FC000457CD5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

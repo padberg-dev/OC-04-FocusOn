@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Goal" representedClassName="Goal" syncable="YES">
-        <attribute name="completion" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="completionImageName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="fullDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="goal" inverseEntity="Task" syncable="YES"/>
-    </entity>
-    <entity name="Task" representedClassName="Task" syncable="YES">
-        <attribute name="completion" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="completionImageName" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="fullDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="goal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Goal" inverseName="tasks" inverseEntity="Goal" syncable="YES"/>
+    <entity name="GoalData" representedClassName=".GoalData" syncable="YES" codeGenerationType="category">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="goalCompletion" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="goalText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="taskCompletion1" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="taskCompletion2" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="taskCompletion3" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="taskText1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="taskText2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="taskText3" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Task" positionX="-5487.46875" positionY="3948.6171875" width="128" height="103"/>
-        <element name="Goal" positionX="-5895.34375" positionY="3970.46875" width="128" height="103"/>
+        <element name="GoalData" positionX="-45" positionY="0" width="128" height="180"/>
     </elements>
 </model>
