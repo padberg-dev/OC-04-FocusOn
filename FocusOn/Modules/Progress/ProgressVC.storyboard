@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0dy-d7-b7S">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0dy-d7-b7S">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,16 +15,46 @@
             <objects>
                 <viewController id="0dy-d7-b7S" customClass="ProgressViewController" customModule="FocusOn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vx1-dP-Ejv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QKU-iP-vVe">
+                                <rect key="frame" x="16" y="30" width="288" height="397.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="A1K-TB-HbE">
+                                <rect key="frame" x="10" y="452.5" width="300" height="29"/>
+                                <segments>
+                                    <segment title="Week"/>
+                                    <segment title="Month"/>
+                                    <segment title="Year"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlChanged:" destination="0dy-d7-b7S" eventType="valueChanged" id="EUo-1L-1g5"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
                         <color key="backgroundColor" red="0.53333333329999999" green="0.83137254900000002" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="0cM-6p-7PE" firstAttribute="trailing" secondItem="A1K-TB-HbE" secondAttribute="trailing" constant="10" id="4lz-yB-aP7"/>
+                            <constraint firstItem="QKU-iP-vVe" firstAttribute="centerX" secondItem="vx1-dP-Ejv" secondAttribute="centerX" id="6Kr-17-7e5"/>
+                            <constraint firstItem="QKU-iP-vVe" firstAttribute="top" secondItem="0cM-6p-7PE" secondAttribute="top" constant="10" id="EoX-Vw-xHn"/>
+                            <constraint firstItem="QKU-iP-vVe" firstAttribute="height" secondItem="vx1-dP-Ejv" secondAttribute="height" multiplier="0.7" id="Has-so-uN4"/>
+                            <constraint firstItem="QKU-iP-vVe" firstAttribute="width" secondItem="vx1-dP-Ejv" secondAttribute="width" multiplier="0.9" id="LcW-r3-Esf"/>
+                            <constraint firstItem="A1K-TB-HbE" firstAttribute="top" secondItem="QKU-iP-vVe" secondAttribute="bottom" constant="25" id="WJL-3W-9Ok"/>
+                            <constraint firstItem="A1K-TB-HbE" firstAttribute="leading" secondItem="0cM-6p-7PE" secondAttribute="leading" constant="10" id="f46-nB-crG"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="0cM-6p-7PE"/>
                     </view>
                     <navigationItem key="navigationItem" title="FocusOn Progress" id="QND-xb-Zdh"/>
+                    <connections>
+                        <outlet property="graphView" destination="QKU-iP-vVe" id="CCS-ag-r8B"/>
+                        <outlet property="segmentedControl" destination="A1K-TB-HbE" id="UNm-gc-0im"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MbD-Og-mFE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1944" y="618"/>
+            <point key="canvasLocation" x="1943.2" y="617.54122938530736"/>
         </scene>
     </scenes>
 </document>

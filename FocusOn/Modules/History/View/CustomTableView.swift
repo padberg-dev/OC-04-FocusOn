@@ -11,7 +11,7 @@ import UIKit
 class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     var goals: [[GoalData]] = []
-    var indexes = ["04"]
+    var indexes: [String] = []
     var stopUpdating = false
     
     var historyVM: HistoryViewModel!
@@ -21,10 +21,6 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     override func awakeFromNib() {
         delegate = self
         dataSource = self
-        
-        self.rowHeight = 55.0
-        
-        print("SCREEN: \(UIScreen.main.bounds.height)")
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -37,13 +33,19 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func loadNextPart() {
+        
         stopUpdating = true
         
         let count = goals.count
         let newGoals = historyVM.loadNextData(fromMonth: count, toMonth: count + 1)
         if newGoals.count > 0 {
             goals.append(newGoals)
-            indexes.append("03")
+            if indexes.count == 0 {
+                indexes.append("01")
+                indexes.append("02")
+            } else {
+                indexes.append("0\(goals.count)")
+            }
             self.insertSections([goals.count - 1], with: .none)
             stopUpdating = false
         }
@@ -57,9 +59,23 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         return goals[section].count
     }
     
-//    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-//        return indexes
-//    }
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return indexes
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = SectionHeaderView()
+        let sectionGoals = goals[section]
+        let done = sectionGoals.filter { $0.goalCompletion == 3 }
+        
+        headerView.configureHeader(sectionText: "Section \(section + 1)", completedGoals: done.count, allGoals: sectionGoals.count)
+        
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 80
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -88,10 +104,6 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
             selectedCell = indexPath
         }
         tableView.reloadRows(at: [indexPath], with: .automatic)
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "SECTION \(section + 1)"
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
