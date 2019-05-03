@@ -25,6 +25,7 @@ class HistoryViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.goals = historyVM.loadData()
+        tableView.setIndex()
         tableView.historyVM = historyVM
     }
     

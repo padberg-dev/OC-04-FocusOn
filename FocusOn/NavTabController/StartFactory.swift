@@ -15,7 +15,7 @@ class StartFactory {
         let navigationController = UINavigationController()
         
 //        GoalData.createYesterdayScenario()
-//        GoalData.createALotOfDataScenario()
+//        GoalData.createALotOfDataScenario(numberOfDays: 1200)
         
         let historyVC = UIStoryboard(name: "HistoryVC", bundle: nil).instantiateInitialViewController() as! HistoryViewController
         let todayVC = UIStoryboard(name: "TodayVC", bundle: nil).instantiateInitialViewController() as! TodayViewController

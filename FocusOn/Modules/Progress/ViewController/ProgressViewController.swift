@@ -8,12 +8,35 @@
 
 import UIKit
 
-class ProgressViewController: UIViewController {
+class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
     
+    @IBOutlet weak var customCollectionView: CustomCollectionView!
     @IBOutlet weak var graphView: UIView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    var activeCVIndex = 0 {
+        didSet {
+            if activeMonth {
+                feedDataToMonthsGraph(withIndex: activeCVIndex, first: false)
+            } else {
+                feedDataToYearsGraph(withIndex: activeCVIndex, first: false)
+            }
+        }
+    }
+    var activeTask = true
+    var activeMonth = true
 
     var progressVM = ProgressViewModel()
+    
+    var data: [GoalData] = []
+    var months: [[GoalData]] = []
+    var years: [[GoalData]] = []
+    
+    var monthsGraph: AAChartView = AAChartView()
+    var monthsModel: AAChartModel = AAChartModel()
+    var yearsGraph: AAChartView = AAChartView()
+    var yearsModel: AAChartModel = AAChartModel()
     
     override func awakeFromNib() {
         tabBarItem.image = UIImage(named: "progress")
@@ -23,134 +46,283 @@ class ProgressViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        createWeekGraph()
+        customCollectionView.customDelegate = self
+        
+        print("START")
+        data = progressVM.loadData()
+        print("DONE")
+        print(data.count)
+        
+        prepareData()
+        
+        setCollectionViewData()
+        
+        setUpGraphs()
     }
     
-    func createWeekGraph() {
-        graphView.subviews.last?.removeFromSuperview()
+    func setCollectionViewData() {
+        if activeMonth {
+            var collectionMonths: [String] = []
+            months.forEach { (month) in
+                let date = month.first?.date
+                let formatter = DateFormatter()
+                formatter.dateFormat = "YYYY MMM"
+                
+                collectionMonths.append(formatter.string(from: date!))
+            }
+            
+            customCollectionView.data = collectionMonths
+        } else {
+            var collectionYears: [String] = []
+            years.forEach { (year) in
+                let date = year.first?.date
+                let formatter = DateFormatter()
+                formatter.dateFormat = "YYYY"
+                
+                collectionYears.append(formatter.string(from: date!))
+            }
+            
+            customCollectionView.data = collectionYears
+        }
         
-        let aaChartView = AAChartView()
-        aaChartView.frame = graphView.bounds
-        // set the content height of aachartView
-        // aaChartView?.contentHeight = self.view.frame.size.height
-        graphView.addSubview(aaChartView)
-        
-        let aaChartModel = AAChartModel()
-            .chartType(.area)//Can be any of the chart types listed under `AAChartType`
-            .stacking(.normal)
-            .animationType(.easeInBack)
-            .title("Week 27")//The chart title
-            .subtitle("23.03 - 30.03")//The chart subtitle
-            .dataLabelEnabled(false) //Enable or disable the data labels. Defaults to false
-            .tooltipValueSuffix("")//the value suffix of the chart tooltip
-            .categories(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat",
-                         "Sun", ""])
-            .colorsTheme(["#fe117c","#ffc069"])
-            .series([
-                AASeriesElement()
-                    .name("Goals")
-                    .data([1, 0, 0, 0, 1, 0, 1, 0])
-                    .step(true)
-                    .toDic()!,
-                AASeriesElement()
-                    .name("Tasks")
-                    .data([3, 2, 1, 2, 3, 3, 2, 0])
-                    .step(true)
-                    .toDic()!,
-                ])
-        aaChartView.aa_drawChartWithChartModel(aaChartModel)
+        customCollectionView.reloadData()
     }
     
-    func createMonthGraph() {
+    func prepareData() {
+        var yearArray: [GoalData] = []
+        yearArray.removeAll()
+        var monthArray: [GoalData] = []
+        monthArray.removeAll()
+        
+        var workingYear = ""
+        var workingMonth = ""
+        
+        var i = 0
+        let count = data.count
+        data.forEach { goalData in
+            let formatter = DateFormatter()
+            formatter.dateFormat = "YYYY-MM"
+            let array = formatter.string(from: goalData.date!).split(separator: "-")
+            
+            if workingYear != String(array[0]) {
+                workingYear = String(array[0])
+                if !yearArray.isEmpty {
+                    years.append(yearArray)
+                    yearArray.removeAll()
+                }
+            }
+            
+            if workingMonth != String(array[1]) {
+                workingMonth = String(array[1])
+                if !monthArray.isEmpty {
+                    months.append(monthArray)
+                    monthArray.removeAll()
+                }
+            }
+            
+            yearArray.append(goalData)
+            monthArray.append(goalData)
+            i += 1
+            if count == i {
+                years.append(yearArray)
+                months.append(monthArray)
+            }
+        }
+        print(years.count)
+        print(months.count)
+    }
+    
+    func showTasksGraph() {
         graphView.subviews.last?.removeFromSuperview()
+        monthsModel = AAChartModel()
+        setUpGraphs()
+    }
+    
+    
+    func showYearGraph() {
+        graphView.subviews.last?.removeFromSuperview()
+        yearsModel = AAChartModel()
+        setUpGraphs()
+    }
+    
+    func setUpGraphs() {
+        monthsGraph.frame = graphView.bounds
+        yearsGraph.frame = graphView.bounds
         
-        let aaChartView = AAChartView()
-        aaChartView.frame = graphView.bounds
-        // set the content height of aachartView
-        // aaChartView?.contentHeight = self.view.frame.size.height
-        graphView.addSubview(aaChartView)
-        
-        let aaChartModel = AAChartModel()
-            .chartType(.bar)//Can be any of the chart types listed under `AAChartType`
-            .stacking(.normal)
+        monthsModel
+            .chartType(activeTask ? .bar : .pie)
+            .stacking(.none)
             .animationType(.easeInBack)
-            .title("April")//The chart title
-//            .subtitle("23.03 - 30.03")//The chart subtitle
-            .dataLabelEnabled(false) //Enable or disable the data labels. Defaults to false
-            .tooltipValueSuffix("")//the value suffix of the chart tooltip
-            .categories(["1", "2", "3", "4", "5", "6","7", "8", "9", "10",
+            .dataLabelEnabled(false)
+            .title("")
+            .colorsTheme(["#fe117c", "#a188b1", "#12rtc7", "#1f4ab1", "#aaaaaa", "#8f6cc1"])
+            .categories(activeTask ? [
+                "1", "2", "3", "4", "5", "6","7", "8", "9", "10",
                 "11", "12", "13", "14", "15", "16","17", "18", "19", "20",
                 "21", "22", "23", "24", "25", "26","27", "28", "29", "30",
-                ""
+                "31"
+                ] : [])
+        
+        yearsModel = AAChartModel()
+        yearsModel
+            .chartType(.bar)
+            .stacking(.none)
+            .animationType(.easeInBack)
+            .dataLabelEnabled(false)
+            .title("")
+            .colorsTheme(["#fe117c"])
+            .categories([
+                "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct",
+                "Nov", "Dec"
                 ])
-            .colorsTheme(["#fe117c","#ffc069"])
-            .series([
-                AASeriesElement()
-                    .name("Goals")
-                    .data([
-                        1, 0, 1, 1, 0, 1, 0, 0, 1, 1,
-                        0, 1, 1, 1, 0, 0, 1, 0, 1, 0,
-                        1, 0, 0, 1, 1, 1, 0, 1, 1, 1,
-                        0
-                        ])
-                    .step(true)
-                    .toDic()!,
-                AASeriesElement()
-                    .name("Tasks")
-                    .data([
-                        3, 1, 2, 3, 1, 3, 1, 2, 3, 3,
-                        2, 3, 1, 3, 2, 1, 3, 2, 3, 1,
-                        3, 1, 1, 3, 2, 3, 2, 3, 3, 2,
-                        0
-                        ])
-                    .step(true)
-                    .toDic()!,
-                ])
-        aaChartView.aa_drawChartWithChartModel(aaChartModel)
+        
+        if activeMonth {
+            feedDataToMonthsGraph(withIndex: activeCVIndex, first: true)
+            monthsGraph.aa_drawChartWithChartModel(monthsModel)
+        } else {
+            feedDataToYearsGraph(withIndex: activeCVIndex, first: true)
+            yearsGraph.aa_drawChartWithChartModel(yearsModel)
+        }
+        graphView.addSubview(activeMonth ? monthsGraph : yearsGraph)
     }
     
-    func createYearGraph() {
-        graphView.subviews.last?.removeFromSuperview()
+    func feedDataToMonthsGraph(withIndex index: Int, first: Bool = false) {
+        let section = months[index]
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM YYYY"
+        let dateString = formatter.string(from: (section.first?.date!)!)
         
-        let aaChartView = AAChartView()
-        aaChartView.frame = graphView.bounds
-        // set the content height of aachartView
-        // aaChartView?.contentHeight = self.view.frame.size.height
-        graphView.addSubview(aaChartView)
+        titleLabel.text = dateString
         
-        let aaChartModel = AAChartModel()
-            .chartType(.column)//Can be any of the chart types listed under `AAChartType`
-            .stacking(.normal)
-            .polar(true)
-            .yAxisReversed(true)
-            .animationType(.bounce)
-            .title("April")//The chart title
-            //            .subtitle("23.03 - 30.03")//The chart subtitle
-            .dataLabelEnabled(false) //Enable or disable the data labels. Defaults to false
-            .tooltipValueSuffix("")//the value suffix of the chart tooltip
-            .categories(["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct",
-                         "Nov", "Dec"
-                ])
-            .colorsTheme(["#fe117c","#ffc069"])
-            .series([
+        let data = createMonthData(from: section)
+        updateMonthGraph(data: data, first: first)
+    }
+    
+    func feedDataToYearsGraph(withIndex index: Int, first: Bool = false) {
+        let section = years[index]
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY"
+        let dateString = formatter.string(from: (section.first?.date!)!)
+        
+        titleLabel.text = dateString
+        
+        let data = createYearData(from: section)
+        updateYearGraph(data: data, first: first)
+    }
+    
+    func createYearData(from years: [GoalData]) -> [Int] {
+        var array: [Int] = Array(repeating: 0, count: 12)
+        var monthSum: Int = 0
+
+        var workingMonth = ""
+        
+        years.forEach { (day) in
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM"
+            let month = String(formatter.string(from: day.date!))
+
+            if workingMonth != month {
+                if monthSum != 0 {
+                    array[Int(workingMonth)! - 1] = monthSum
+                    monthSum = 0
+                }
+                workingMonth = month
+            }
+            monthSum += activeTask ? day.getNumberOfTaskCompletions() : Int(day.goalCompletion) == 3 ? 1 : 0
+        }
+        return array
+    }
+    
+    func createMonthData(from months: [GoalData]) -> [Int] {
+        var array: [Int] = []
+        var activeIndex = 0
+        
+        if !activeTask {
+            array.append(0)
+            array.append(0)
+            array.append(0)
+            array.append(0)
+            array.append(0)
+            months.forEach { (day) in
+                array[Int(day.goalCompletion)] += 1
+            }
+        } else {
+            for i in 0 ..< 31 {
+                let goalData = months[activeIndex]
+                let formatter = DateFormatter()
+                formatter.dateFormat = "dd"
+                let string = formatter.string(from: goalData.date!)
+                
+                if 31 - i == Int(string) {
+                    array.append(goalData.getNumberOfTaskCompletions())
+                    activeIndex += 1
+                } else {
+                    array.append(0)
+                }
+            }
+        }
+        return array.reversed()
+    }
+    
+    func createDict(data: [Int]) -> [[Any]] {
+        let dictOfAny = [
+            ["NotCompleted", data[4]],
+            ["OneThird", data[3]],
+            ["TwoTHirds", data[2]],
+            ["Completed", data[1]],
+            ["NotYetAchieved", data[0]]
+        ]
+        return dictOfAny
+    }
+    
+    func updateMonthGraph(data: [Int], first: Bool = false) {
+        if first {
+            
+            monthsModel
+                .series([
                 AASeriesElement()
-                    .name("Goals")
-                    .data([
-                        12, 28, 21, 7, 25, 17, 0, 0, 0, 0,
-                        0, 0
-                        ])
-                    .step(true)
-                    .toDic()!,
-                AASeriesElement()
-                    .name("Tasks")
-                    .data([
-                        41, 81, 55, 31, 73, 61, 4, 0, 0, 0,
-                        0, 0
-                        ])
-                    .step(true)
-                    .toDic()!,
+                    .name(activeTask ? "Tasks" : "Goals")
+                    .allowPointSelect(false)
+                    .data(activeTask ? data : createDict(data: data))
+                    .toDic()!
                 ])
-        aaChartView.aa_drawChartWithChartModel(aaChartModel)
+            print("FIRST")
+        } else {
+            self.monthsGraph.aa_onlyRefreshTheChartDataWithChartModelSeries([
+                AASeriesElement()
+                    .name(activeTask ? "Tasks" : "Goals")
+                    .allowPointSelect(false)
+                    .data(activeTask ? data : createDict(data: data))
+                    .toDic()!
+                ])
+        }
+    }
+    
+    func updateYearGraph(data: [Int], first: Bool = false) {
+        if first {
+            yearsModel
+                .series([
+                    AASeriesElement()
+                        .name(activeTask ? "Tasks" : "Goals")
+                        .allowPointSelect(false)
+                        .data(data)
+                        .toDic()!
+                    ])
+            print("FIRST")
+        } else {
+            self.yearsGraph.aa_onlyRefreshTheChartDataWithChartModelSeries([
+                AASeriesElement()
+                    .name(activeTask ? "Tasks" : "Goals")
+                    .allowPointSelect(false)
+                    .data(data)
+                    .toDic()!
+                ])
+        }
+    }
+    
+    func cellWasSelected(withIndex index: Int) {
+        activeCVIndex = index
+        print(index)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -158,15 +330,27 @@ class ProgressViewController: UIViewController {
     }
     
     
-    @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
+    @IBAction func taskGoalSegmentedControl(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 1:
-            createMonthGraph()
-        case 2:
-            createYearGraph()
+            activeTask = false
+            showTasksGraph()
         default:
-            // 0
-            createWeekGraph()
+            activeTask = true
+            showTasksGraph()
         }
+    }
+    
+    @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
+        activeCVIndex = 0
+        switch sender.selectedSegmentIndex {
+        case 1:
+            activeMonth = false
+            showYearGraph()
+        default:
+            activeMonth = true
+            showYearGraph()
+        }
+        setCollectionViewData()
     }
 }

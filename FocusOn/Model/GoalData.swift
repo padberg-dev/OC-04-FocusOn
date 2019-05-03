@@ -95,20 +95,22 @@ class GoalData: NSManagedObject {
         try! context.save()
     }
     
-    static func createALotOfDataScenario() {
+    static func createALotOfDataScenario(numberOfDays: Int) {
         let context = AppDelegate.context
         
-        for i in 0 ..< 100 {
+        
+        for i in 0 ... numberOfDays {
             let goal = GoalData(context: context)
             let completions = GoalData.generateCompletion()
             
             var completionsSum = completions.filter { $0 == 1 }.count
+            
             if completionsSum == 3 {
                 let oneInFour = Int.random(in: 0 ... 4)
                 completionsSum = oneInFour == 4 ? 4 : 3
             }
             
-            goal.date = Date().addingTimeInterval(Double(99 - i) * -24*3600)
+            goal.date = Date().addingTimeInterval(Double(numberOfDays - i) * -24*3600)
             goal.goalText = GoalData.generateGoalName()
             goal.goalCompletion = Int32(completionsSum)
             goal.taskText1 = "First Task"
@@ -158,5 +160,12 @@ class GoalData: NSManagedObject {
         let random2 = Int.random(in: 0 ... 1)
         let random3 = Int.random(in: 0 ... 1)
         return [random1, random2, random3]
+    }
+    
+    func getNumberOfTaskCompletions() -> Int {
+        var number = taskCompletion1 ? 1 : 0
+        number += taskCompletion2 ? 1 : 0
+        number += taskCompletion3 ? 1 : 0
+        return number
     }
 }

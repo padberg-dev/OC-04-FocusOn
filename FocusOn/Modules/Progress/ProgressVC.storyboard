@@ -23,9 +23,8 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="A1K-TB-HbE">
-                                <rect key="frame" x="10" y="452.5" width="300" height="29"/>
+                                <rect key="frame" x="10" y="530" width="300" height="29"/>
                                 <segments>
-                                    <segment title="Week"/>
                                     <segment title="Month"/>
                                     <segment title="Year"/>
                                 </segments>
@@ -33,28 +32,78 @@
                                     <action selector="segmentedControlChanged:" destination="0dy-d7-b7S" eventType="valueChanged" id="EUo-1L-1g5"/>
                                 </connections>
                             </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Jr4-tk-Rj0">
+                                <rect key="frame" x="60" y="500" width="200" height="29"/>
+                                <segments>
+                                    <segment title="Tasks"/>
+                                    <segment title="Goals"/>
+                                </segments>
+                                <connections>
+                                    <action selector="taskGoalSegmentedControl:" destination="0dy-d7-b7S" eventType="valueChanged" id="8mN-AY-BV7"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="app-gi-VfN">
+                                <rect key="frame" x="139" y="32" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tSE-HH-SqJ" customClass="CustomCollectionView" customModule="FocusOn" customModuleProvider="target">
+                                <rect key="frame" x="10" y="465" width="300" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="NfR-11-kG5"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WEP-dN-gVL">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="x8O-Te-5vY">
+                                        <rect key="frame" x="0.0" y="-10" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.53333333329999999" green="0.83137254900000002" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="0cM-6p-7PE" firstAttribute="trailing" secondItem="A1K-TB-HbE" secondAttribute="trailing" constant="10" id="4lz-yB-aP7"/>
                             <constraint firstItem="QKU-iP-vVe" firstAttribute="centerX" secondItem="vx1-dP-Ejv" secondAttribute="centerX" id="6Kr-17-7e5"/>
+                            <constraint firstItem="tSE-HH-SqJ" firstAttribute="leading" secondItem="0cM-6p-7PE" secondAttribute="leading" constant="10" id="7so-TU-nTa"/>
                             <constraint firstItem="QKU-iP-vVe" firstAttribute="top" secondItem="0cM-6p-7PE" secondAttribute="top" constant="10" id="EoX-Vw-xHn"/>
+                            <constraint firstItem="0cM-6p-7PE" firstAttribute="bottom" secondItem="A1K-TB-HbE" secondAttribute="bottom" constant="10" id="Gp7-7V-0Hu"/>
                             <constraint firstItem="QKU-iP-vVe" firstAttribute="height" secondItem="vx1-dP-Ejv" secondAttribute="height" multiplier="0.7" id="Has-so-uN4"/>
+                            <constraint firstItem="A1K-TB-HbE" firstAttribute="top" secondItem="Jr4-tk-Rj0" secondAttribute="bottom" constant="2" id="KZt-od-YfT"/>
                             <constraint firstItem="QKU-iP-vVe" firstAttribute="width" secondItem="vx1-dP-Ejv" secondAttribute="width" multiplier="0.9" id="LcW-r3-Esf"/>
-                            <constraint firstItem="A1K-TB-HbE" firstAttribute="top" secondItem="QKU-iP-vVe" secondAttribute="bottom" constant="25" id="WJL-3W-9Ok"/>
+                            <constraint firstItem="app-gi-VfN" firstAttribute="centerX" secondItem="vx1-dP-Ejv" secondAttribute="centerX" id="Q9p-e4-08x"/>
+                            <constraint firstItem="app-gi-VfN" firstAttribute="top" secondItem="0cM-6p-7PE" secondAttribute="top" constant="12" id="VHg-up-RdV"/>
+                            <constraint firstItem="Jr4-tk-Rj0" firstAttribute="leading" secondItem="0cM-6p-7PE" secondAttribute="leading" constant="60" id="X14-Yv-LCI"/>
+                            <constraint firstItem="0cM-6p-7PE" firstAttribute="trailing" secondItem="tSE-HH-SqJ" secondAttribute="trailing" constant="10" id="Yrp-sQ-Uvl"/>
                             <constraint firstItem="A1K-TB-HbE" firstAttribute="leading" secondItem="0cM-6p-7PE" secondAttribute="leading" constant="10" id="f46-nB-crG"/>
+                            <constraint firstItem="Jr4-tk-Rj0" firstAttribute="centerX" secondItem="vx1-dP-Ejv" secondAttribute="centerX" id="l8G-Q3-VkA"/>
+                            <constraint firstItem="0cM-6p-7PE" firstAttribute="trailing" secondItem="Jr4-tk-Rj0" secondAttribute="trailing" constant="60" id="xBl-E2-bOL"/>
+                            <constraint firstItem="Jr4-tk-Rj0" firstAttribute="top" secondItem="tSE-HH-SqJ" secondAttribute="bottom" constant="5" id="yGy-BP-Jjf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0cM-6p-7PE"/>
                     </view>
                     <navigationItem key="navigationItem" title="FocusOn Progress" id="QND-xb-Zdh"/>
                     <connections>
+                        <outlet property="customCollectionView" destination="tSE-HH-SqJ" id="BGw-oW-xoh"/>
                         <outlet property="graphView" destination="QKU-iP-vVe" id="CCS-ag-r8B"/>
                         <outlet property="segmentedControl" destination="A1K-TB-HbE" id="UNm-gc-0im"/>
+                        <outlet property="titleLabel" destination="app-gi-VfN" id="E63-pe-naz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MbD-Og-mFE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1943.2" y="617.54122938530736"/>
+            <point key="canvasLocation" x="1942.5" y="616.90140845070425"/>
         </scene>
     </scenes>
 </document>

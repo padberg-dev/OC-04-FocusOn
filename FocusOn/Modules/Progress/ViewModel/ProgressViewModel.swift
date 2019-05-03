@@ -7,7 +7,25 @@
 //
 
 import Foundation
+import CoreData
 
 struct ProgressViewModel {
     
+    func loadData() -> [GoalData] {
+        var match: [GoalData] = []
+        let context = AppDelegate.context
+        
+        let firstOfMonth = Date.firstOfMonth()
+        
+        let request: NSFetchRequest<GoalData> = GoalData.fetchRequest()
+        let sorting = NSSortDescriptor(key: "date", ascending: false)
+        request.sortDescriptors = [sorting]
+        
+        do {
+            match = try context.fetch(request)
+        } catch {
+            print("DATABASE ERROR")
+        }
+        return match
+    }
 }

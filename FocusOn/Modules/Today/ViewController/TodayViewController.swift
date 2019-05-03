@@ -38,6 +38,14 @@ class TodayViewController: UIViewController, UITextFieldDelegate {
         taskTextFields.forEach { $0.delegate = self }
         
         todayVM.loadData()
+        
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.ReferenceType.default
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let strDate = formatter.string(from: Date())
+        print(strDate)
+        
+        print(Date())
     }
     
     private func checkStatus() {

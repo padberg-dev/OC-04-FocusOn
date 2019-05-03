@@ -11,7 +11,13 @@ import UIKit
 class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     var goals: [[GoalData]] = []
+    
     var indexes: [String] = []
+    var indexesSections: [Int] = []
+    var rowId = 0
+    
+    var lastYear: String?
+    
     var stopUpdating = false
     
     var historyVM: HistoryViewModel!
@@ -21,6 +27,8 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     override func awakeFromNib() {
         delegate = self
         dataSource = self
+        
+        sectionIndexColor = UIColor.darkGray
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -33,22 +41,33 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func loadNextPart() {
-        
         stopUpdating = true
         
         let count = goals.count
-        let newGoals = historyVM.loadNextData(fromMonth: count, toMonth: count + 1)
+        let newGoals = historyVM.loadNextData(fromMonth: count - 1, toMonth: count)
         if newGoals.count > 0 {
             goals.append(newGoals)
-            if indexes.count == 0 {
-                indexes.append("01")
-                indexes.append("02")
-            } else {
-                indexes.append("0\(goals.count)")
-            }
+            setIndex()
             self.insertSections([goals.count - 1], with: .none)
             stopUpdating = false
         }
+    }
+    
+    func setIndex() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY-MM"
+        let indx = formatter.string(from: (goals.last?.last!.date)!)
+        
+        let array = indx.split(separator: "-")
+
+        if lastYear == nil || "\(array[0])" != lastYear {
+            indexes.append("\(array[0])")
+            indexesSections.append(rowId)
+            lastYear = "\(array[0])"
+        }
+        indexes.append("\(array[1])")
+        indexesSections.append(rowId)
+        rowId += 1
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -57,6 +76,10 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return goals[section].count
+    }
+    
+    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        return indexesSections[index]
     }
     
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
@@ -68,7 +91,11 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         let sectionGoals = goals[section]
         let done = sectionGoals.filter { $0.goalCompletion == 3 }
         
-        headerView.configureHeader(sectionText: "Section \(section + 1)", completedGoals: done.count, allGoals: sectionGoals.count)
+        let date = sectionGoals.first?.date
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM YYYY"
+        
+        headerView.configureHeader(sectionText: formatter.string(from: date!), completedGoals: done.count, allGoals: sectionGoals.count)
         
         return headerView
     }
