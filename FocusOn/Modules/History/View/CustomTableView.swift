@@ -21,14 +21,19 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     var stopUpdating = false
     
     var historyVM: HistoryViewModel!
-    
+
     var selectedCell: IndexPath?
     
     override func awakeFromNib() {
         delegate = self
         dataSource = self
         
+        register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
+        
         sectionIndexColor = UIColor.darkGray
+        
+        rowHeight = UITableView.automaticDimension
+        estimatedRowHeight = 60
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -54,6 +59,7 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func setIndex() {
+        print("LLL \(goals)")
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY-MM"
         let indx = formatter.string(from: (goals.last?.last!.date)!)
@@ -61,7 +67,7 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         let array = indx.split(separator: "-")
 
         if lastYear == nil || "\(array[0])" != lastYear {
-            indexes.append("\(array[0])")
+            indexes.append("[\(array[0].suffix(2))]")
             indexesSections.append(rowId)
             lastYear = "\(array[0])"
         }
@@ -110,48 +116,119 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         
         let goal = goals[indexPath.section][indexPath.row]
         
-        cell?.dateLabel.text = goal.date?.description
-        cell?.goalNameLabel.text = goal.goalText
-        cell?.goalCompletionLabel.text = decodeCompletion(num: goal.goalCompletion)
-        cell?.task1Label.text = goal.taskText1
-        cell?.task2Label.text = goal.taskText2
-        cell?.task3Label.text = goal.taskText3
-        
-        cell?.task1CompletionLabel.text = goal.taskCompletion1 ? "completed" : "notCompleted"
-        cell?.task2CompletionLabel.text = goal.taskCompletion2 ? "completed" : "notCompleted"
-        cell?.task3CompletionLabel.text = goal.taskCompletion3 ? "completed" : "notCompleted"
+        cell?.goalBlockView.setTo(text: goal.goalText!, dateString: goal.date!.getDateString(), completion: decodeCompletion(num: goal.goalCompletion))
+        cell?.taskBlocks.forEach { $0.config(parent: nil) }
+        cell?.taskBlocks[0].checkBox.show()
+        cell?.taskBlocks[0].checkBox.isSelected = goal.taskCompletion1
+        cell?.taskBlocks[1].checkBox.show()
+        cell?.taskBlocks[1].checkBox.isSelected = goal.taskCompletion2
+        cell?.taskBlocks[2].checkBox.show()
+        cell?.taskBlocks[2].checkBox.isSelected = goal.taskCompletion3
         
         return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let index = selectedCell, index == indexPath {
-            selectedCell = nil
+        guard let thisCell = cellForRow(at: indexPath) as? CustomTableViewCell else { fatalError() }
+        
+        beginUpdates()
+        
+        if selectedCell == nil {
+            // Select This Cell
+            thisCell.bottomConstraint.constant = 100
+            thisCell.cellIsSelected = true
+            print("DDD Select This")
+            activateCell(thisCell)
+            endUpdates()
         } else {
-            selectedCell = indexPath
+            if selectedCell == indexPath {
+                // Deselect This Cell
+                thisCell.bottomConstraint.constant = 0
+                thisCell.cellIsSelected = false
+                print("DDD DeSelect This")
+                deactivateCell(thisCell)
+                endUpdates()
+            } else {
+                if let oldCell = cellForRow(at: selectedCell!) as? CustomTableViewCell {
+                    // Deselect Old Cell
+                    oldCell.bottomConstraint.constant = 0
+                    print("DDD DeSelect Old")
+                    deactivateCell(oldCell) { [weak self] in
+                        thisCell.bottomConstraint.constant = 100
+                        print("DDD Select This")
+                        // Select This Cell
+                        self?.activateCell(thisCell)
+                        self?.endUpdates()
+                    }
+                } else {
+                    thisCell.bottomConstraint.constant = 100
+                    print("DDD Select This")
+                    // Select This Cell
+                    activateCell(thisCell)
+                    endUpdates()
+                }
+            }
         }
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+        selectedCell = selectedCell == indexPath ? nil : indexPath
+        
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if let index = selectedCell, indexPath == index {
-            return 133
+    private func deactivateCell(_ cell: CustomTableViewCell, completion: (() -> Void)? = nil) {
+        cell.resetTasks()
+        UIView.animate(withDuration: 0.6, animations: {
+            
+            cell.goalBlockView.frame.origin.x -= 26
+            cell.gradientView.frame.origin.x -= 26
+            cell.gradientViewTop.frame.origin.x -= 26
+            cell.gradientViewOverBlock.frame.origin.x -= 26
+            cell.gearImageView.transform = .identity
+            cell.goalBlockView.completionImageView.frame.origin.x += 26
+            cell.layoutIfNeeded()
+        }) { _ in
+            print("CCC HAHA END ANIMATION")
+            //            thisCell.goalBlockView.frame.origin.x = 20
+            completion?()
         }
-        return 55
     }
+    
+    private func activateCell(_ cell: CustomTableViewCell) {
+        cell.animateTasks()
+        UIView.animate(withDuration: 0.6, animations: {
+            
+            cell.goalBlockView.frame.origin.x += 26
+            cell.gradientView.frame.origin.x += 26
+            cell.gradientViewTop.frame.origin.x += 26
+            cell.gradientViewOverBlock.frame.origin.x += 26
+            cell.gearImageView.transform = CGAffineTransform(rotationAngle: 0.9 * CGFloat.pi)
+            //            thisCell.topLeftView.frame.origin.x += 26
+            //            thisCell.bottomLeftView.frame.origin.x += 26
+            cell.goalBlockView.completionImageView.frame.origin.x -= 26
+            cell.layoutIfNeeded()
+        }) { _ in
+            print("CCC HAHA END ANIMATION")
+            //            thisCell.goalBlockView.frame.origin.x = 20
+        }
+    }
+    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        if let index = selectedCell, indexPath == index {
+//            return 150
+//        }
+//        return 60
+//    }
 
-    private func decodeCompletion(num: Int32) -> String {
+    private func decodeCompletion(num: Int32) -> Goal.CompletionProgress {
         switch num {
         case 1:
-            return "oneThird"
+            return .oneThird
         case 2:
-            return "twoThirds"
+            return .twoThirds
         case 3:
-            return "completed"
+            return .completed
         case 4:
-            return "notCompleted"
+            return .notYetAchieved
         default:
-            return "notCompleted"
+            return .notCompleted
         }
     }
 }

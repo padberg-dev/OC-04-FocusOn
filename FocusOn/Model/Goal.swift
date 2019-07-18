@@ -71,6 +71,10 @@ struct Goal: CustomStringConvertible {
     
     mutating func updateGoal() {
         var num = 0
+        if completion == .notYetAchieved {
+            completionImageName = "cancel"
+            return
+        }
         tasks.forEach { task in
             if task.completion == .completed || task.completion == .overridden { num += 1 }
         }

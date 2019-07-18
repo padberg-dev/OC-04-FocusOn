@@ -10,13 +10,21 @@
 		0111C5F4224D602E005E8AF7 /* TodayBindingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0111C5F3224D602E005E8AF7 /* TodayBindingDelegate.swift */; };
 		0111C604224D7636005E8AF7 /* TodayViewModelUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0111C603224D7636005E8AF7 /* TodayViewModelUnitTest.swift */; };
 		0111C607224D7E2F005E8AF7 /* FocusOn.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0111C605224D7E2F005E8AF7 /* FocusOn.xcdatamodeld */; };
+		011823D722C2BF18001C83B4 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 011823D622C2BF18001C83B4 /* CustomTableViewCell.xib */; };
+		011F8B322293198D005CDB82 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011F8B312293198D005CDB82 /* UIColor.swift */; };
+		011F8B3422932370005CDB82 /* UIView+Effects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011F8B3322932370005CDB82 /* UIView+Effects.swift */; };
+		011F8B3822933489005CDB82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011F8B3722933489005CDB82 /* Assets.xcassets */; };
+		011F8B3A22933C44005CDB82 /* CompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011F8B3922933C44005CDB82 /* CompletionView.swift */; };
+		011F8B3C22933C8F005CDB82 /* CompletionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 011F8B3B22933C8F005CDB82 /* CompletionView.xib */; };
 		012D2365222DD9300073FA57 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D2364222DD9300073FA57 /* HistoryViewController.swift */; };
 		012D2367222DD9440073FA57 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D2366222DD9440073FA57 /* TodayViewController.swift */; };
 		012D2369222DD94D0073FA57 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D2368222DD94D0073FA57 /* ProgressViewController.swift */; };
 		0132CDE2222C8FBE00457CD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0132CDE1222C8FBE00457CD5 /* AppDelegate.swift */; };
-		0132CDE9222C8FC000457CD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0132CDE8222C8FC000457CD5 /* Assets.xcassets */; };
-		0132CDEC222C8FC000457CD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0132CDEA222C8FC000457CD5 /* LaunchScreen.storyboard */; };
 		0132CDF6222C9A8500457CD5 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0132CDF5222C9A8500457CD5 /* CustomTabBarController.swift */; };
+		014B0C6822E09AA700EDDB0D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014B0C6722E09AA700EDDB0D /* Settings.swift */; };
+		0152F29822BCBC1200F98055 /* CompletionBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0152F29722BCBC1100F98055 /* CompletionBlockView.swift */; };
+		0152F29A22BCBC2400F98055 /* CompletionBlockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0152F29922BCBC2400F98055 /* CompletionBlockView.xib */; };
+		0152F29D22BCDC6C00F98055 /* SlideInTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0152F29C22BCDC6C00F98055 /* SlideInTransitionAnimator.swift */; };
 		015F661C2271FC480030E88D /* AAOptionsConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F66102271FC480030E88D /* AAOptionsConstructor.swift */; };
 		015F661D2271FC480030E88D /* AAChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F66112271FC480030E88D /* AAChartView.swift */; };
 		015F661E2271FC480030E88D /* AAChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F66122271FC480030E88D /* AAChartModel.swift */; };
@@ -37,8 +45,15 @@
 		019B6B5E227B4DCD00716EBE /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019B6B5D227B4DCD00716EBE /* CustomCollectionViewCell.swift */; };
 		019B6B60227B4DDD00716EBE /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019B6B5F227B4DDD00716EBE /* CustomCollectionViewCell.xib */; };
 		019B6B63227B684200716EBE /* CustomCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019B6B62227B684200716EBE /* CustomCollectionViewDelegate.swift */; };
+		01A7435822C3E07800E1126C /* GoalBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7435722C3E07800E1126C /* GoalBlockView.swift */; };
+		01A7435A22C3E08800E1126C /* GoalBlockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01A7435922C3E08800E1126C /* GoalBlockView.xib */; };
 		01A8F9582271E19B0050C992 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A8F9572271E19B0050C992 /* SectionHeaderView.swift */; };
 		01A8F95A2271E1A80050C992 /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01A8F9592271E1A80050C992 /* SectionHeaderView.xib */; };
+		01AAAC9822BBAA4500A5E07E /* CGFloat+Calculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AAAC9722BBAA4500A5E07E /* CGFloat+Calculations.swift */; };
+		01AAAC9A22BBC24200A5E07E /* TaskCheckButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AAAC9922BBC24200A5E07E /* TaskCheckButtonView.swift */; };
+		01AAAC9C22BBC24D00A5E07E /* TaskCheckButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01AAAC9B22BBC24D00A5E07E /* TaskCheckButtonView.xib */; };
+		01AAAC9E22BBEF5D00A5E07E /* TaskBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AAAC9D22BBEF5D00A5E07E /* TaskBlockView.swift */; };
+		01AAACA022BBEF6800A5E07E /* TaskBlockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01AAAC9F22BBEF6800A5E07E /* TaskBlockView.xib */; };
 		01E4107F22353F2E00C74766 /* StartFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4107E22353F2E00C74766 /* StartFactory.swift */; };
 		01E41081223543BD00C74766 /* HistoryVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01E41080223543BD00C74766 /* HistoryVC.storyboard */; };
 		01E410832235451B00C74766 /* TodayVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01E410822235451B00C74766 /* TodayVC.storyboard */; };
@@ -67,15 +82,23 @@
 		0111C5FD224D7317005E8AF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0111C603224D7636005E8AF7 /* TodayViewModelUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModelUnitTest.swift; sourceTree = "<group>"; };
 		0111C606224D7E2F005E8AF7 /* FocusOn.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FocusOn.xcdatamodel; sourceTree = "<group>"; };
+		011823D622C2BF18001C83B4 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		011F8B312293198D005CDB82 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		011F8B3322932370005CDB82 /* UIView+Effects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Effects.swift"; sourceTree = "<group>"; };
+		011F8B3722933489005CDB82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		011F8B3922933C44005CDB82 /* CompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionView.swift; sourceTree = "<group>"; };
+		011F8B3B22933C8F005CDB82 /* CompletionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompletionView.xib; sourceTree = "<group>"; };
 		012D2364222DD9300073FA57 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		012D2366222DD9440073FA57 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		012D2368222DD94D0073FA57 /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		0132CDDE222C8FBE00457CD5 /* FocusOn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusOn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0132CDE1222C8FBE00457CD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0132CDE8222C8FC000457CD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0132CDEB222C8FC000457CD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0132CDED222C8FC000457CD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0132CDF5222C9A8500457CD5 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		014B0C6722E09AA700EDDB0D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		0152F29722BCBC1100F98055 /* CompletionBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionBlockView.swift; sourceTree = "<group>"; };
+		0152F29922BCBC2400F98055 /* CompletionBlockView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompletionBlockView.xib; sourceTree = "<group>"; };
+		0152F29C22BCDC6C00F98055 /* SlideInTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransitionAnimator.swift; sourceTree = "<group>"; };
 		015F66102271FC480030E88D /* AAOptionsConstructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AAOptionsConstructor.swift; sourceTree = "<group>"; };
 		015F66112271FC480030E88D /* AAChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AAChartView.swift; sourceTree = "<group>"; };
 		015F66122271FC480030E88D /* AAChartModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AAChartModel.swift; sourceTree = "<group>"; };
@@ -96,8 +119,15 @@
 		019B6B5D227B4DCD00716EBE /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		019B6B5F227B4DDD00716EBE /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
 		019B6B62227B684200716EBE /* CustomCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		01A7435722C3E07800E1126C /* GoalBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalBlockView.swift; sourceTree = "<group>"; };
+		01A7435922C3E08800E1126C /* GoalBlockView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoalBlockView.xib; sourceTree = "<group>"; };
 		01A8F9572271E19B0050C992 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		01A8F9592271E1A80050C992 /* SectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeaderView.xib; sourceTree = "<group>"; };
+		01AAAC9722BBAA4500A5E07E /* CGFloat+Calculations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Calculations.swift"; sourceTree = "<group>"; };
+		01AAAC9922BBC24200A5E07E /* TaskCheckButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCheckButtonView.swift; sourceTree = "<group>"; };
+		01AAAC9B22BBC24D00A5E07E /* TaskCheckButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCheckButtonView.xib; sourceTree = "<group>"; };
+		01AAAC9D22BBEF5D00A5E07E /* TaskBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskBlockView.swift; sourceTree = "<group>"; };
+		01AAAC9F22BBEF6800A5E07E /* TaskBlockView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskBlockView.xib; sourceTree = "<group>"; };
 		01E4107E22353F2E00C74766 /* StartFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartFactory.swift; sourceTree = "<group>"; };
 		01E41080223543BD00C74766 /* HistoryVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HistoryVC.storyboard; sourceTree = "<group>"; };
 		01E410822235451B00C74766 /* TodayVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TodayVC.storyboard; sourceTree = "<group>"; };
@@ -145,6 +175,21 @@
 			path = FocusOnUnitTests;
 			sourceTree = "<group>";
 		};
+		011F8B352293274C005CDB82 /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				011F8B3622932752005CDB82 /* Font */,
+			);
+			path = Ressources;
+			sourceTree = "<group>";
+		};
+		011F8B3622932752005CDB82 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		0132CDD5222C8FBE00457CD5 = {
 			isa = PBXGroup;
 			children = (
@@ -166,18 +211,65 @@
 		0132CDE0222C8FBE00457CD5 /* FocusOn */ = {
 			isa = PBXGroup;
 			children = (
+				01BB9FDB22DF9F4C00AE1DE7 /* NEW -------- */,
 				015F660E2271FC480030E88D /* AAInfographics */,
+				011F8B352293274C005CDB82 /* Ressources */,
 				0193C70A225FD1230068BA4B /* Extension */,
 				0132CDE1222C8FBE00457CD5 /* AppDelegate.swift */,
-				0132CDE8222C8FC000457CD5 /* Assets.xcassets */,
-				0132CDEA222C8FC000457CD5 /* LaunchScreen.storyboard */,
+				011F8B3722933489005CDB82 /* Assets.xcassets */,
 				0132CDED222C8FC000457CD5 /* Info.plist */,
 				01E4107D22353E1F00C74766 /* NavTabController */,
 				01E41086223567D800C74766 /* Model */,
-				017E5519223A6B7C00F7E9F6 /* Views */,
 				01FFB5AD222E7E8D00EAEB59 /* Modules */,
 			);
 			path = FocusOn;
+			sourceTree = "<group>";
+		};
+		014B0C6622E099E600EDDB0D /* Globals */ = {
+			isa = PBXGroup;
+			children = (
+				014B0C6722E09AA700EDDB0D /* Settings.swift */,
+			);
+			path = Globals;
+			sourceTree = "<group>";
+		};
+		014B0C6922E0C28C00EDDB0D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		014B0C6A22E0C3E600EDDB0D /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				014B0C6B22E0C3ED00EDDB0D /* Today */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		014B0C6B22E0C3ED00EDDB0D /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				014B0C6C22E0C40600EDDB0D /* ViewControllers */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		014B0C6C22E0C40600EDDB0D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				012D2366222DD9440073FA57 /* TodayViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0152F29B22BCDC4B00F98055 /* TransitionAnimator */ = {
+			isa = PBXGroup;
+			children = (
+				0152F29C22BCDC6C00F98055 /* SlideInTransitionAnimator.swift */,
+			);
+			path = TransitionAnimator;
 			sourceTree = "<group>";
 		};
 		015F660E2271FC480030E88D /* AAInfographics */ = {
@@ -226,6 +318,16 @@
 			isa = PBXGroup;
 			children = (
 				017E551F223A6F5000F7E9F6 /* CustomCheckButton.swift */,
+				011F8B3922933C44005CDB82 /* CompletionView.swift */,
+				011F8B3B22933C8F005CDB82 /* CompletionView.xib */,
+				01AAAC9922BBC24200A5E07E /* TaskCheckButtonView.swift */,
+				01AAAC9B22BBC24D00A5E07E /* TaskCheckButtonView.xib */,
+				01AAAC9D22BBEF5D00A5E07E /* TaskBlockView.swift */,
+				01AAAC9F22BBEF6800A5E07E /* TaskBlockView.xib */,
+				0152F29722BCBC1100F98055 /* CompletionBlockView.swift */,
+				0152F29922BCBC2400F98055 /* CompletionBlockView.xib */,
+				01A7435722C3E07800E1126C /* GoalBlockView.swift */,
+				01A7435922C3E08800E1126C /* GoalBlockView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -235,6 +337,7 @@
 			children = (
 				0188CC622269E47D0035E8BB /* CustomTableView.swift */,
 				0188CC642269E4AD0035E8BB /* CustomTableViewCell.swift */,
+				011823D622C2BF18001C83B4 /* CustomTableViewCell.xib */,
 				01A8F9572271E19B0050C992 /* SectionHeaderView.swift */,
 				01A8F9592271E1A80050C992 /* SectionHeaderView.xib */,
 			);
@@ -245,6 +348,9 @@
 			isa = PBXGroup;
 			children = (
 				0193C70B225FD1300068BA4B /* Date+Extension.swift */,
+				011F8B312293198D005CDB82 /* UIColor.swift */,
+				011F8B3322932370005CDB82 /* UIView+Effects.swift */,
+				01AAAC9722BBAA4500A5E07E /* CGFloat+Calculations.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -267,11 +373,39 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		01BB9FD922DF9B7500AE1DE7 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				017E5519223A6B7C00F7E9F6 /* Views */,
+				0132CDF5222C9A8500457CD5 /* CustomTabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		01BB9FDA22DF9BC900AE1DE7 /* NavigationFlow */ = {
+			isa = PBXGroup;
+			children = (
+				01BB9FD922DF9B7500AE1DE7 /* TabBar */,
+				01E4107E22353F2E00C74766 /* StartFactory.swift */,
+			);
+			path = NavigationFlow;
+			sourceTree = "<group>";
+		};
+		01BB9FDB22DF9F4C00AE1DE7 /* NEW -------- */ = {
+			isa = PBXGroup;
+			children = (
+				014B0C6A22E0C3E600EDDB0D /* Modules */,
+				014B0C6922E0C28C00EDDB0D /* Protocols */,
+				014B0C6622E099E600EDDB0D /* Globals */,
+				01BB9FDA22DF9BC900AE1DE7 /* NavigationFlow */,
+			);
+			path = "NEW --------";
+			sourceTree = "<group>";
+		};
 		01E4107D22353E1F00C74766 /* NavTabController */ = {
 			isa = PBXGroup;
 			children = (
-				01E4107E22353F2E00C74766 /* StartFactory.swift */,
-				0132CDF5222C9A8500457CD5 /* CustomTabBarController.swift */,
+				0152F29B22BCDC4B00F98055 /* TransitionAnimator */,
 			);
 			path = NavTabController;
 			sourceTree = "<group>";
@@ -343,7 +477,6 @@
 		01FFB5B5222E84AB00EAEB59 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				012D2366222DD9440073FA57 /* TodayViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -468,14 +601,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				011F8B3C22933C8F005CDB82 /* CompletionView.xib in Resources */,
 				01E4108522354B0400C74766 /* ProgressVC.storyboard in Resources */,
-				0132CDEC222C8FC000457CD5 /* LaunchScreen.storyboard in Resources */,
+				011823D722C2BF18001C83B4 /* CustomTableViewCell.xib in Resources */,
 				01E410832235451B00C74766 /* TodayVC.storyboard in Resources */,
-				0132CDE9222C8FC000457CD5 /* Assets.xcassets in Resources */,
 				015F66232271FC480030E88D /* AAJSFiles.bundle in Resources */,
 				01E41081223543BD00C74766 /* HistoryVC.storyboard in Resources */,
+				01AAACA022BBEF6800A5E07E /* TaskBlockView.xib in Resources */,
 				01A8F95A2271E1A80050C992 /* SectionHeaderView.xib in Resources */,
+				01AAAC9C22BBC24D00A5E07E /* TaskCheckButtonView.xib in Resources */,
+				011F8B3822933489005CDB82 /* Assets.xcassets in Resources */,
+				0152F29A22BCBC2400F98055 /* CompletionBlockView.xib in Resources */,
 				019B6B60227B4DDD00716EBE /* CustomCollectionViewCell.xib in Resources */,
+				01A7435A22C3E08800E1126C /* GoalBlockView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,12 +636,15 @@
 				0111C607224D7E2F005E8AF7 /* FocusOn.xcdatamodeld in Sources */,
 				01FFB5BF222E898800EAEB59 /* ProgressViewModel.swift in Sources */,
 				0132CDE2222C8FBE00457CD5 /* AppDelegate.swift in Sources */,
+				014B0C6822E09AA700EDDB0D /* Settings.swift in Sources */,
 				015F66252271FC480030E88D /* AADataLabels.swift in Sources */,
+				01AAAC9A22BBC24200A5E07E /* TaskCheckButtonView.swift in Sources */,
 				01FFB5BB222E852000EAEB59 /* TodayViewModel.swift in Sources */,
 				017E551D223A6BCA00F7E9F6 /* CustomTabBarItemView.swift in Sources */,
 				0188CC652269E4AD0035E8BB /* CustomTableViewCell.swift in Sources */,
 				015F66212271FC480030E88D /* AAColor.swift in Sources */,
 				01A8F9582271E19B0050C992 /* SectionHeaderView.swift in Sources */,
+				01A7435822C3E07800E1126C /* GoalBlockView.swift in Sources */,
 				015F66262271FC480030E88D /* AAPlotBandsElement.swift in Sources */,
 				015F661C2271FC480030E88D /* AAOptionsConstructor.swift in Sources */,
 				012D2367222DD9440073FA57 /* TodayViewController.swift in Sources */,
@@ -515,18 +656,25 @@
 				015F661D2271FC480030E88D /* AAChartView.swift in Sources */,
 				01E4108A223567FC00C74766 /* Task.swift in Sources */,
 				019B6B63227B684200716EBE /* CustomCollectionViewDelegate.swift in Sources */,
+				0152F29D22BCDC6C00F98055 /* SlideInTransitionAnimator.swift in Sources */,
 				01E41088223567EE00C74766 /* Goal.swift in Sources */,
+				01AAAC9822BBAA4500A5E07E /* CGFloat+Calculations.swift in Sources */,
 				0132CDF6222C9A8500457CD5 /* CustomTabBarController.swift in Sources */,
+				011F8B322293198D005CDB82 /* UIColor.swift in Sources */,
+				011F8B3A22933C44005CDB82 /* CompletionView.swift in Sources */,
 				015F661E2271FC480030E88D /* AAChartModel.swift in Sources */,
+				0152F29822BCBC1200F98055 /* CompletionBlockView.swift in Sources */,
 				0111C5F4224D602E005E8AF7 /* TodayBindingDelegate.swift in Sources */,
 				0188CC632269E47D0035E8BB /* CustomTableView.swift in Sources */,
 				012D2365222DD9300073FA57 /* HistoryViewController.swift in Sources */,
 				019B6B5C227B497500716EBE /* CustomCollectionView.swift in Sources */,
 				019B6B5E227B4DCD00716EBE /* CustomCollectionViewCell.swift in Sources */,
+				011F8B3422932370005CDB82 /* UIView+Effects.swift in Sources */,
 				01E410952235716D00C74766 /* GoalData.swift in Sources */,
 				015F66242271FC480030E88D /* AAPlotLinesElement.swift in Sources */,
 				017E5520223A6F5000F7E9F6 /* CustomCheckButton.swift in Sources */,
 				015F66202271FC480030E88D /* AASeriesElement.swift in Sources */,
+				01AAAC9E22BBEF5D00A5E07E /* TaskBlockView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,17 +687,6 @@
 			targetProxy = 0111C5FE224D7317005E8AF7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		0132CDEA222C8FC000457CD5 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0132CDEB222C8FC000457CD5 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		0111C601224D7317005E8AF7 /* Debug */ = {
@@ -712,6 +849,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7KK37S6N26;
 				INFOPLIST_FILE = FocusOn/Info.plist;
@@ -730,6 +868,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7KK37S6N26;
 				INFOPLIST_FILE = FocusOn/Info.plist;

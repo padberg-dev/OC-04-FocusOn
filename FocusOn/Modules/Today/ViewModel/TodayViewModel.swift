@@ -21,7 +21,6 @@ class TodayViewModel {
             saveChanges()
         }
     }
-    weak var bindingDelegate: TodayBindingDelegate?
     
     func changeTaskText(_ text: String, withId index: Int) {
         if text != "" {
@@ -45,7 +44,7 @@ class TodayViewModel {
         
         updateGoalImage()
         cleanOverriddenTasks()
-        bindingDelegate?.updateTaskWith(imageName: goal.tasks[index].completionImageName, taskId: index)
+        bindingDelegate?.updateTaskWith(imageName: goal.tasks[index].completionImageName, taskId: index, completion: goal.tasks[index].completion)
     }
     
     func changeGoalCompletion() {
@@ -60,7 +59,14 @@ class TodayViewModel {
             }
         }
         updateGoalImage()
-        bindingDelegate?.updateAllTasksWith(imageNames: getButtonsImageNames())
+        
+        bindingDelegate?.updateAllTasksWith(imageNames: getButtonsImageNames(), completions: getTasksCompletions())
+    }
+    
+    func changeGoalToNYA() {
+        let progress: Goal.CompletionProgress = .notYetAchieved
+        
+        bindingDelegate?.updateGoalWith(imageName: "cancel", completion: progress)
     }
     
     private func cleanOverriddenTasks() {
@@ -71,12 +77,22 @@ class TodayViewModel {
         }
     }
     
-    private func updateGoalImage() {
-        bindingDelegate?.updateGoalWith(imageName: getGoalImageName())
+    private func updateGoalImage(isSwitching: Bool = false) {
+        bindingDelegate?.updateGoalWith(imageName: getGoalImageName(), completion: getGoalCompletion())
     }
     
     private func getGoalImageName() -> String {
         return goal.completionImageName
+    }
+    
+    private func getGoalCompletion() -> Goal.CompletionProgress {
+        return goal.completion
+    }
+    
+    private func getTasksCompletions() -> [Task.CompletionProgress] {
+        var completions = [Task.CompletionProgress]()
+        goal.tasks.forEach { completions.append($0.completion) }
+        return completions
     }
     
     private func getButtonsImageNames() -> [String] {
@@ -119,6 +135,24 @@ class TodayViewModel {
         blockSaving = false
     }
     
+    func loadData() {
+        blockSaving = true
+        for i in 0 ..< 3 {
+            goal.tasks[i].changeImageName()
+        }
+        self.goal.updateGoal()
+            bindingDelegate?.updateUI(withGoalData: self.goal)
+        blockSaving = false
+    }
+    
+    // ---------------
+    
+    // MARK:- Public Properties
+    
+    weak var bindingDelegate: TodayBindingDelegate?
+    
+    // MARK:- Static Methods
+    
     static func loadFromCoreData() -> TodayViewModel {
         let context = AppDelegate.context
         let result = GoalData.findLastData(in: context)
@@ -132,15 +166,7 @@ class TodayViewModel {
         }
     }
     
-    func loadData() {
-        blockSaving = true
-        for i in 0 ..< 3 {
-            goal.tasks[i].changeImageName()
-        }
-        self.goal.updateGoal()
-            bindingDelegate?.updateUI(withGoalData: self.goal)
-        blockSaving = false
-    }
+    // MARK:- Public Methods
     
     deinit {
         bindingDelegate = nil

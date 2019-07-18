@@ -21,6 +21,12 @@ extension Date {
         return num1 - num2
     }
     
+    func getDateString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .full
+        return formatter.string(from: self)
+    }
+    
     static func firstOfMonth(thisMonthMinus months: Int = 0) -> Date {
         let today = Date()
         let formatter = DateFormatter()

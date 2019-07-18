@@ -16,21 +16,28 @@ class HistoryViewController: UIViewController {
     
     var historyVM = HistoryViewModel()
     
-    override func awakeFromNib() {
-        tabBarItem.image = UIImage(named: "history")
-        title = "History"
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("VDL HISTORY")
         
         tableView.goals = historyVM.loadData()
-        tableView.setIndex()
         tableView.historyVM = historyVM
+        tableView.setIndex()
+        
+        tableView.sectionIndexColor = UIColor.Main.rosin
     }
     
     override func viewWillAppear(_ animated: Bool) {
         parent?.navigationItem.title = "FocusOn History"
         tableView.reloadRows(at: [IndexPath(item: 0, section: 0)], with: .left)
+        
+        DispatchQueue.main.async {
+            let gradient = CAGradientLayer()
+            gradient.frame = self.view.frame
+            gradient.colors = UIColor.Gradients.greenYellowish
+            gradient.startPoint = CGPoint(x: 1, y: 0)
+            gradient.endPoint = CGPoint(x: 0, y: 1)
+            self.view.layer.insertSublayer(gradient, at: 0)
+        }
     }
 }

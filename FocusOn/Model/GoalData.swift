@@ -98,7 +98,6 @@ class GoalData: NSManagedObject {
     static func createALotOfDataScenario(numberOfDays: Int) {
         let context = AppDelegate.context
         
-        
         for i in 0 ... numberOfDays {
             let goal = GoalData(context: context)
             let completions = GoalData.generateCompletion()
@@ -106,8 +105,8 @@ class GoalData: NSManagedObject {
             var completionsSum = completions.filter { $0 == 1 }.count
             
             if completionsSum == 3 {
-                let oneInFour = Int.random(in: 0 ... 4)
-                completionsSum = oneInFour == 4 ? 4 : 3
+                let oneInEight = Int.random(in: 0 ... 7)
+                completionsSum = oneInEight == 7 ? 4 : 3
             }
             
             goal.date = Date().addingTimeInterval(Double(numberOfDays - i) * -24*3600)
@@ -156,9 +155,9 @@ class GoalData: NSManagedObject {
     }
     
     static func generateCompletion() -> [Int] {
-        let random1 = Int.random(in: 0 ... 1)
-        let random2 = Int.random(in: 0 ... 1)
-        let random3 = Int.random(in: 0 ... 1)
+        let random1 = Int.random(in: 0 ... 5) >= 1 ? 1 : 0
+        let random2 = Int.random(in: 0 ... 5) >= 1 ? 1 : 0
+        let random3 = Int.random(in: 0 ... 5) >= 1 ? 1 : 0
         return [random1, random2, random3]
     }
     

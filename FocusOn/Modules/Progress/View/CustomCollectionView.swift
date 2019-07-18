@@ -11,6 +11,8 @@ import UIKit
 class CustomCollectionView: UICollectionView, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var customDelegate: CustomCollectionViewDelegate?
+    
+    var highlightedCell = 0
 
     var data: [String] = []
     
@@ -34,11 +36,27 @@ class CustomCollectionView: UICollectionView, UICollectionViewDataSource, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCell", for: indexPath) as! CustomCollectionViewCell
         
         cell.setTitile(to: data[indexPath.item])
+        if indexPath.item == highlightedCell {
+            cell.highlightCell()
+        } else {
+            cell.clearCell()
+        }
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         customDelegate?.cellWasSelected(withIndex: indexPath.item)
+    }
+    
+    func highlightCell(withIndex: Int) {
+        if let cell = self.cellForItem(at: IndexPath(item: highlightedCell, section: 0)) as? CustomCollectionViewCell {
+            cell.clearCell()
+        }
+        
+        if let cell = self.cellForItem(at: IndexPath(item: withIndex, section: 0)) as? CustomCollectionViewCell {
+            cell.highlightCell()
+        }
+        highlightedCell = withIndex
     }
 }

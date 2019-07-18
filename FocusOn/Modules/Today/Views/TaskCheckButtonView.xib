@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TaskCheckButtonView" customModule="FocusOn" customModuleProvider="target">
+            <connections>
+                <outlet property="checkButton" destination="cqm-ng-Zs3" id="v2s-KL-dkl"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="VO4-9f-pBO"/>
+                <outlet property="insideView" destination="2Ob-Wb-ll6" id="Zhc-zC-20M"/>
+                <outlet property="pathView" destination="7Sh-uK-Or6" id="8YI-5q-c6H"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ob-Wb-ll6">
+                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Sh-uK-Or6">
+                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="7Sh-uK-Or6" secondAttribute="trailing" id="DlV-Vo-hIK"/>
+                        <constraint firstAttribute="bottom" secondItem="7Sh-uK-Or6" secondAttribute="bottom" id="Mmg-UV-dEK"/>
+                        <constraint firstItem="7Sh-uK-Or6" firstAttribute="leading" secondItem="2Ob-Wb-ll6" secondAttribute="leading" id="aoX-h1-8r5"/>
+                        <constraint firstItem="7Sh-uK-Or6" firstAttribute="top" secondItem="2Ob-Wb-ll6" secondAttribute="top" id="gGT-mR-G7k"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqm-ng-Zs3">
+                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                    <connections>
+                        <action selector="buttonTapped:" destination="-1" eventType="touchUpInside" id="ZkD-58-sga"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="2Ob-Wb-ll6" secondAttribute="bottom" id="4Yi-Z3-v2D"/>
+                <constraint firstItem="cqm-ng-Zs3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="79p-wa-cYr"/>
+                <constraint firstItem="cqm-ng-Zs3" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="7PF-pp-Cyc"/>
+                <constraint firstItem="2Ob-Wb-ll6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ACo-X7-fqg"/>
+                <constraint firstItem="cqm-ng-Zs3" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Xaz-ff-Ow4"/>
+                <constraint firstAttribute="trailing" secondItem="cqm-ng-Zs3" secondAttribute="trailing" id="aIn-gm-EEL"/>
+                <constraint firstAttribute="trailing" secondItem="2Ob-Wb-ll6" secondAttribute="trailing" id="ebC-Pt-Z18"/>
+                <constraint firstItem="2Ob-Wb-ll6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="gFo-VL-cUI"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="87" y="75"/>
+        </view>
+    </objects>
+</document>

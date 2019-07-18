@@ -9,9 +9,9 @@
 import Foundation
 
 protocol TodayBindingDelegate: class {
-    func updateGoalWith(imageName: String)
-    func updateTaskWith(imageName: String, taskId: Int)
-    func updateAllTasksWith(imageNames: [String])
+    func updateGoalWith(imageName: String, completion: Goal.CompletionProgress)
+    func updateTaskWith(imageName: String, taskId: Int, completion: Task.CompletionProgress)
+    func updateAllTasksWith(imageNames: [String], completions: [Task.CompletionProgress])
     func undoTaskTextChange(text: String, index: Int)
     func undoGoalTextChange(text: String)
     func updateUI(withGoalData goal: Goal)

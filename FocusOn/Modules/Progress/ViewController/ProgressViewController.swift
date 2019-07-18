@@ -15,6 +15,10 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var titleLabel: UILabel!
     
+    @IBOutlet weak var leftView: UIView!
+    @IBOutlet weak var leftCustomCollectionView: CustomCollectionView!
+    @IBOutlet weak var rightView: UIView!
+    
     var activeCVIndex = 0 {
         didSet {
             if activeMonth {
@@ -22,6 +26,8 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
             } else {
                 feedDataToYearsGraph(withIndex: activeCVIndex, first: false)
             }
+            customCollectionView.highlightCell(withIndex: activeCVIndex)
+            leftCustomCollectionView.highlightCell(withIndex: activeCVIndex)
         }
     }
     var activeTask = true
@@ -38,15 +44,11 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
     var yearsGraph: AAChartView = AAChartView()
     var yearsModel: AAChartModel = AAChartModel()
     
-    override func awakeFromNib() {
-        tabBarItem.image = UIImage(named: "progress")
-        title = "Progress"
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         customCollectionView.customDelegate = self
+        leftCustomCollectionView.customDelegate = self
         
         print("START")
         data = progressVM.loadData()
@@ -56,8 +58,30 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
         prepareData()
         
         setCollectionViewData()
+        setCollectionViewData2()
         
         setUpGraphs()
+        
+        setupSideViews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let rightButton = UIBarButtonItem(image: UIImage(named: "calendar"), style: .plain, target: self, action: #selector(showCalendar))
+        rightButton.tintColor = UIColor.Main.berkshireLace
+        
+        self.tabBarController?.navigationItem.rightBarButtonItem  = rightButton
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.tabBarController?.navigationItem.rightBarButtonItem = nil
+    }
+    
+    @objc func showCalendar() {
+        toggleCalendar()
     }
     
     func setCollectionViewData() {
@@ -84,6 +108,33 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
             
             customCollectionView.data = collectionYears
         }
+        
+        customCollectionView.reloadData()
+    }
+    
+    
+    func setCollectionViewData2() {
+        var collectionMonths: [String] = []
+        months.forEach { (month) in
+            let date = month.first?.date
+            let formatter = DateFormatter()
+            formatter.dateFormat = "YYYY MMM"
+            
+            collectionMonths.append(formatter.string(from: date!))
+        }
+        
+        leftCustomCollectionView.data = collectionMonths
+    
+//        var collectionYears: [String] = []
+//        years.forEach { (year) in
+//            let date = year.first?.date
+//            let formatter = DateFormatter()
+//            formatter.dateFormat = "YYYY"
+//
+//            collectionYears.append(formatter.string(from: date!))
+//        }
+//
+//        customCollectionView.data = collectionYears
         
         customCollectionView.reloadData()
     }
@@ -145,9 +196,11 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
         setUpGraphs()
     }
     
-    func setUpGraphs() {
+    func setUpGraphs() {        
         monthsGraph.frame = graphView.bounds
+        monthsGraph.scrollEnabled = false
         yearsGraph.frame = graphView.bounds
+        yearsGraph.scrollEnabled = false
         
         monthsModel
             .chartType(activeTask ? .bar : .pie)
@@ -165,7 +218,8 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
         
         yearsModel = AAChartModel()
         yearsModel
-            .chartType(.bar)
+            .chartType(activeTask ? .bar : .area)
+            .inverted(activeTask ? false : true)
             .stacking(.none)
             .animationType(.easeInBack)
             .dataLabelEnabled(false)
@@ -308,7 +362,6 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
                         .data(data)
                         .toDic()!
                     ])
-            print("FIRST")
         } else {
             self.yearsGraph.aa_onlyRefreshTheChartDataWithChartModelSeries([
                 AASeriesElement()
@@ -320,9 +373,52 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
         }
     }
     
+    var isCalendarToggled: Bool = false
+    
+    func toggleCalendar(immediately: Bool = false) {
+        isCalendarToggled = !isCalendarToggled
+        
+        let transform = transformForFraction(isCalendarToggled ? 1 : 0, ofWidth: 30)
+        let transform2 = transformForFraction(isCalendarToggled ? -1 : 0, ofWidth: 30)
+        let grapghTransform = isCalendarToggled ? .identity : CGAffineTransform(scaleX: 0.67, y: 0.67)
+        
+        if immediately {
+            self.leftView.layer.transform = transform
+            self.rightView.layer.transform = transform2
+        } else {
+        UIView.animate(withDuration: 0.6, animations: {
+            self.graphView.transform = grapghTransform
+            self.leftView.layer.transform = transform
+            self.rightView.layer.transform = transform2
+        }, completion: { [weak self] _ in
+            
+        })
+        }
+    }
+    
+    func setupSideViews() {
+        leftView.layer.anchorPoint = CGPoint(x: 0, y: 0.5)
+        rightView.layer.anchorPoint = CGPoint(x: 1, y: 0.5)
+        
+        toggleCalendar(immediately: true)
+    }
+    
+    private func transformForFraction(_ fraction: CGFloat, ofWidth width: CGFloat)
+        -> CATransform3D {
+            //1
+            var identity = CATransform3DIdentity
+            identity.m34 = -1.0 / 1000.0
+            
+            //2
+            let angle = -fraction * .pi/2.0
+            
+            //3
+            let rotateTransform = CATransform3DRotate(identity, angle, 0.0, 1.0, 0.0)
+            return rotateTransform
+    }
+    
     func cellWasSelected(withIndex index: Int) {
         activeCVIndex = index
-        print(index)
     }
     
     override func viewWillAppear(_ animated: Bool) {

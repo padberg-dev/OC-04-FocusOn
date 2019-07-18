@@ -12,6 +12,7 @@ import CoreData
 class HistoryViewModel {
     
     func loadData() -> [[GoalData]] {
+        print("LLL Load data")
         var match: [GoalData] = []
         let context = AppDelegate.context
         
@@ -27,6 +28,9 @@ class HistoryViewModel {
             match = try context.fetch(request)
         } catch {
             print("DATABASE ERROR")
+        }
+        while (match.isEmpty) {
+            match = loadNextData(fromMonth: 1, toMonth: 2)
         }
         return [match]
     }

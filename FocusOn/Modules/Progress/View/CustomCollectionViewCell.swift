@@ -15,10 +15,18 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         self.layer.cornerRadius = 5.0
-//        customView.layer.cornerRadius = 5.0
+        customView.layer.cornerRadius = 5.0
     }
     
     func setTitile(to text: String) {
         customLabel.text = text
+    }
+    
+    func highlightCell() {
+        self.customView.backgroundColor = .white
+    }
+    
+    func  clearCell() {
+        self.customView.backgroundColor = UIColor(red: 136/255, green: 212/255, blue: 152/255, alpha: 1.0)
     }
 }

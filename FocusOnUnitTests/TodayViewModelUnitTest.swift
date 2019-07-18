@@ -43,7 +43,7 @@ class TodayViewModelUnitTest: XCTestCase {
         
         // Goal should be 1/3 and only 1 task completed
         XCTAssert(todayVM.goal.completion == .oneThird, "Goal should be 1/3 completed")
-        let assertedCompletion: [CompletionProgress] = [.completed, .notCompleted, .notCompleted]
+        let assertedCompletion: [Task.CompletionProgress] = [.completed, .notCompleted, .notCompleted]
         for i in 0 ..< 3 {
             XCTAssert(todayVM.goal.tasks[i].completion == assertedCompletion[i], "\(i) task completion should be \(assertedCompletion[i])")
         }
@@ -68,7 +68,7 @@ class TodayViewModelUnitTest: XCTestCase {
         todayVM.changeGoalCompletion()
         
         // Task 1 and 2 should be completed and goal 2/3 completed
-        let assertedCompletion: [CompletionProgress] = [.completed, .completed, .notCompleted]
+        let assertedCompletion: [Task.CompletionProgress] = [.completed, .completed, .notCompleted]
         for i in 0 ..< 3 {
             XCTAssert(todayVM.goal.tasks[i].completion == assertedCompletion[i], "\(i) task completion should be \(assertedCompletion[i])")
         }
