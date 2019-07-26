@@ -26,11 +26,11 @@ extension UIColor {
     }
     
     struct Gradients {
-        static let greenLight = [UIColor.Main.deepPeacoockBlue.cgColor, UIColor.Main.lagoon.cgColor]
-        static let greenMedium = [UIColor.Main.deepPeacoockBlue.cgColor, UIColor.Main.treetop.cgColor]
-        static let greenYellowish = [UIColor.Main.deepPeacoockBlue.cgColor, UIColor.Main.berkshireLace.cgColor]
-        static let greenYellowishLight = [UIColor.Main.lagoon.cgColor, UIColor.Main.berkshireLace.cgColor]
-        static let greenDarker = [UIColor.Main.atlanticDeep.cgColor, UIColor.Main.deepPeacoockBlue.cgColor]
-        static let greenBlack = [UIColor.Main.blackSafflower.cgColor, UIColor.Main.deepPeacoockBlue.cgColor]
+        static let greenLight = [UIColor.Main.deepPeacoockBlue, UIColor.Main.lagoon]
+        static let greenMedium = [UIColor.Main.deepPeacoockBlue, UIColor.Main.treetop]
+        static let greenYellowish = [UIColor.Main.deepPeacoockBlue, UIColor.Main.berkshireLace]
+        static let greenYellowishLight = [UIColor.Main.lagoon, UIColor.Main.berkshireLace]
+        static let greenDarker = [UIColor.Main.atlanticDeep, UIColor.Main.deepPeacoockBlue]
+        static let greenBlack = [UIColor.Main.blackSafflower, UIColor.Main.deepPeacoockBlue]
     }
 }

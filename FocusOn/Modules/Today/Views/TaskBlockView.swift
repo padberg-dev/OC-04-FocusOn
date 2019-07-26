@@ -9,7 +9,7 @@
 import UIKit
 
 class TaskBlockView: UIView {
-
+    
     @IBOutlet var contentView: UIView!
     
     @IBOutlet weak var insideView: UIView!
@@ -43,42 +43,31 @@ class TaskBlockView: UIView {
     // MARK:- Public Methods
     
     func turn() {
-        let transform = transformForFraction(1, ofWidth: 30)
-        let transform2 = transformForFraction(2, ofWidth: 30)
+        let transform3 = transformForFraction(2, ofWidth: 30)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            UIView.animate(withDuration: self.animationDuration * 2, animations: {
-                self.insideView.layer.transform = transform
-            }, completion: { [weak self] _ in
-                self?.insideView.subviews.forEach { $0.alpha = 0 }
-                self?.insideView.layer.cornerRadius = 12
-                self?.insideView.layer.borderColor = UIColor.Main.rosin.cgColor
-                self?.insideView.layer.borderWidth = 1.0
-                UIView.animate(withDuration: self!.animationDuration * 2) {
-                    self?.insideView.layer.transform = transform2
-                }
-            })
-        }
+        self.insideView.subviews.forEach { $0.alpha = 0 }
+        self.insideView.layer.cornerRadius = 12
+        self.insideView.layer.borderColor = UIColor.Main.rosin.cgColor
+        self.insideView.layer.borderWidth = 1.0
+        self.insideView.layer.transform = transform3
     }
     
-    func turnBack() {
+    func turnBack(delayBy: Int) {
         let transform = transformForFraction(1, ofWidth: 30)
         let transform2 = transformForFraction(0, ofWidth: 30)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            UIView.animate(withDuration: self.animationDuration * 2, animations: {
-                self.insideView.layer.transform = transform
-            }, completion: { [weak self] _ in
-                self?.insideView.subviews.forEach { $0.alpha = 1 }
+        UIView.animate(withDuration: self.animationDuration * 2, delay: Double(delayBy) * 0.2, options: .curveEaseInOut, animations: {
+            self.insideView.layer.transform = transform
+        }, completion: { [weak self] _ in
+            self?.insideView.subviews.forEach { $0.alpha = 1 }
             
-                self?.insideView.layer.cornerRadius = 0
-                self?.insideView.layer.borderWidth = 0.0
-                
-                UIView.animate(withDuration: self!.animationDuration * 2) {
-                    self?.insideView.layer.transform = transform2
-                }
-            })
-        }
+            self?.insideView.layer.cornerRadius = 0
+            self?.insideView.layer.borderWidth = 0.0
+            
+            UIView.animate(withDuration: self!.animationDuration * 2) {
+                self?.insideView.layer.transform = transform2
+            }
+        })
     }
     
     func activateTextField(isSelected: Bool, immediately: Bool = false) {
@@ -98,6 +87,7 @@ class TaskBlockView: UIView {
             parentConnection = parent
             taskTextField.delegate = parent
             checkBox.parentConnection = self
+            alpha = 0
         }
         
         var index = self.tag
@@ -146,7 +136,7 @@ class TaskBlockView: UIView {
         print(taskTextField.text)
         return taskTextField.text != ""
     }
-
+    
     // MARK:- PRIVATE
     // MARK:- Custom Methods
     

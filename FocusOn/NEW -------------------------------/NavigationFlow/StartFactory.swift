@@ -13,9 +13,11 @@ class StartFactory {
     static func showIn(window: UIWindow) {
         
         let tabBarController = CustomTabBarController()
-        
         let navigationController = UINavigationController()
-        navigationController.navigationBar.barStyle = .black
+        navigationController.configure()
+        
+//        GoalData.createALotOfDataScenario(numberOfDays: 255)
+        
         navigationController.setViewControllers([tabBarController], animated: false)
         
         window.rootViewController = navigationController

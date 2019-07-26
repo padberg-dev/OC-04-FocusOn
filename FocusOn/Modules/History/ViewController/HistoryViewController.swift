@@ -31,13 +31,15 @@ class HistoryViewController: UIViewController {
         parent?.navigationItem.title = "FocusOn History"
         tableView.reloadRows(at: [IndexPath(item: 0, section: 0)], with: .left)
         
-        DispatchQueue.main.async {
+//        DispatchQueue.main.async {
             let gradient = CAGradientLayer()
             gradient.frame = self.view.frame
             gradient.colors = UIColor.Gradients.greenYellowish
             gradient.startPoint = CGPoint(x: 1, y: 0)
             gradient.endPoint = CGPoint(x: 0, y: 1)
             self.view.layer.insertSublayer(gradient, at: 0)
-        }
+//        }
+        
+        view.addDiagonalGradient(of: UIColor.Gradients.greenYellowish)
     }
 }

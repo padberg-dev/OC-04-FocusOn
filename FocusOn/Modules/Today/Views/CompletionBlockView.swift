@@ -13,7 +13,10 @@ class CompletionBlockView: UIView {
     @IBOutlet var contentView: UIView!
     
     @IBOutlet var completionView: CompletionView!
+    @IBOutlet var pulsatingShadowView: UIView!
     @IBOutlet var pathView: UIView!
+    
+    private var parentConnection: TodayViewController!
     
     private var initialLayerLeft: CAShapeLayer = CAShapeLayer()
     private var initialLayerRight: CAShapeLayer = CAShapeLayer()
@@ -37,12 +40,21 @@ class CompletionBlockView: UIView {
         setupUI()
     }
     
+    // MARK:- Public Methods
+    
+    func config(parent: TodayViewController) {
+        
+        parentConnection = parent
+    }
+    
+    func animateStart() {
+        
+        drawInitialPath()
+    }
+    
     // MARK:- PRIVATE
     // MARK:- Animation Methods
     
-    private func animateStart() {
-        
-    }
     
     // MARK:- Layer and Path Methods
     
@@ -87,6 +99,9 @@ class CompletionBlockView: UIView {
         initialLayerLeft.add(animation, forKey: nil)
         initialLayerRight.add(animation, forKey: nil)
         
+        
+        
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.initialLayerLeft.strokeStart = 0.5
             self.initialLayerRight.strokeStart = 0.5
@@ -95,19 +110,55 @@ class CompletionBlockView: UIView {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) {
+            
             UIView.animate(withDuration: 0.8, animations: {
                 self.completionView.alpha = 1
                 self.pathView.alpha = 0
-                self.completionView.addSimpleShadow(color: UIColor.Main.berkshireLace, radius: 40, opacity: 0.6, offset: .zero)
             }, completion: { [weak self] _ in
-                UIView.animate(withDuration: 0.4, animations: {
-//                    self?.completionView.addSimpleShadow(color: UIColor.Main.berkshireLace, radius: 10, opacity: 0.3, offset: .zero)
-                })
+                self?.pulsate()
+                self?.parentConnection.didFinishCompletionBlockAnimation()
             })
         }
         
         pathView.layer.addSublayer(initialLayerLeft)
         pathView.layer.addSublayer(initialLayerRight)
+    }
+    
+    var pulsatingLayer: CAShapeLayer!
+    
+    func pulsate() {
+        
+        let circularPath = UIBezierPath(arcCenter: .zero, radius: 39, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
+        self.pulsatingLayer = CAShapeLayer()
+        self.pulsatingLayer.path = circularPath.cgPath
+        self.pulsatingLayer.fillColor = UIColor.white.cgColor
+        self.pulsatingLayer.lineCap = .round
+        self.pulsatingLayer.position = CGPoint(x: self.pulsatingShadowView.bounds.midX, y: self.pulsatingShadowView.bounds.midY)
+        self.pulsatingShadowView.layer.addSublayer(self.pulsatingLayer)
+        
+        pulsatingShadowView.layer.opacity = 0.2
+        UIView.animate(withDuration: 1.0, animations: {
+            self.pulsatingShadowView.layer.opacity = 1.0
+            self.pulsatingShadowView.addSimpleShadow(color: UIColor.Main.berkshireLace, radius: 20, opacity: 1, offset: .zero)
+        }) { [weak self] _ in
+            self?.animatePulsatingLayer()
+        }
+        
+        
+        
+    }
+    
+    private func animatePulsatingLayer() {
+        
+        
+        let animation = CABasicAnimation(keyPath: "opacity")
+        animation.fromValue = 1.0
+        animation.toValue = 0.2
+        animation.duration = 1.0
+        animation.autoreverses = true
+        animation.repeatCount = .infinity
+        
+        pulsatingLayer.add(animation, forKey: "pulsating")
     }
     
     // MARK:- Custom Methods
@@ -118,7 +169,6 @@ class CompletionBlockView: UIView {
         contentView.backgroundColor = .clear
         
         completionView.alpha = 0
-        drawInitialPath()
     }
     
     private func loadFromNib() {
@@ -128,5 +178,10 @@ class CompletionBlockView: UIView {
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(contentView)
+    }
+    
+    @IBAction func completionViewTapped(_ button: UIButton) {
+        
+        parentConnection.changeCompletion()
     }
 }

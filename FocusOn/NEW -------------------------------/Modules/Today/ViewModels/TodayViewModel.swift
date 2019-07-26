@@ -135,40 +135,77 @@ class TodayViewModel {
         blockSaving = false
     }
     
-    func loadData() {
-        blockSaving = true
-        for i in 0 ..< 3 {
-            goal.tasks[i].changeImageName()
-        }
-        self.goal.updateGoal()
-            bindingDelegate?.updateUI(withGoalData: self.goal)
-        blockSaving = false
-    }
-    
     // ---------------
     
     // MARK:- Public Properties
     
     weak var bindingDelegate: TodayBindingDelegate?
     
-    // MARK:- Static Methods
+    // MARK:- Public Properties
     
-    static func loadFromCoreData() -> TodayViewModel {
-        let context = AppDelegate.context
-        let result = GoalData.findLastData(in: context)
-        
-        if result != nil {
-            // Database has at leat one record
-            return TodayViewModel(currentGoal: result)
-        } else {
-            // Empty Database
-            return TodayViewModel()
-        }
-    }
+    private var didCheckLastGoal: Bool = false
     
     // MARK:- Public Methods
     
-    deinit {
-        bindingDelegate = nil
+    func checkLastGoalStatus() {
+        if didCheckLastGoal { return }
+        
+        let context = AppDelegate.context
+        
+        if let lastGoal = GoalData.findLast(in: context) {
+            let differenceOfDays = lastGoal.date?.getDifferenceOfDays(to: Date().addingTimeInterval(1 * 24 * 3600))
+            
+            switch differenceOfDays {
+            case 0:
+                // lastGoal is from today -> Update UI
+                startNewGoal(Goal(goalData: lastGoal))
+            case -1:
+                // lastGoal is from yesterday -> Check if yesterday's goal is .completed
+                print("YESTERDAY GOAL -> CHECK IF COMPLETED")
+                if lastGoal.goalCompletion == 3 {
+                    // lastGoal is .completed -> Start with a new goal
+                    print("GOAL COMPLETED -> START ANEW")
+                    startNewGoal()
+                } else {
+                    // Ask User if he wants to continue with not completed goal from yesterday
+                    print("ASK USER")
+                    bindingDelegate?.shouldContinueWithLastGoal(completion: { [weak self] shouldContinue in
+                        print("Should continue: \(shouldContinue)")
+                        if shouldContinue {
+                            // User wants to continue with lastGoal -> Copy last goal
+                            print("COPY OLD GOAL -> UPDATE UI")
+                            var goal = Goal(goalData: lastGoal)
+                            goal.date = Date()
+                            self?.startNewGoal(goal)
+                        } else {
+                            // User Wants start with new goal
+                            print("USER DENIED -> START ANEW")
+                            self?.startNewGoal()
+                        }
+                    })
+                }
+            default:
+                // lastGoal is older than yesterday -> Start with a new goal
+                print("NO GOAL YESTERDAY -> START ANEW")
+                startNewGoal()
+            }
+        } else {
+            // There is no lastGoal -> Start with a new goal
+            print("NO LAST GOAL -> START ANEW")
+            startNewGoal()
+        }
+        didCheckLastGoal = true
+    }
+    
+    // MARK:- PRIVATE
+    // MARK:- Custom Methods
+    
+    private func updateWholeUI(animationType: InitialAnimationType) {
+        bindingDelegate?.updateWholeUI(with: self.goal, animationType: animationType)
+    }
+    
+    private func startNewGoal(_ goal: Goal? = nil) {
+        self.goal = goal ?? Goal()
+        updateWholeUI(animationType: (goal != nil) ? .continueWithOldGoal : .createNewGoal)
     }
 }

@@ -22,7 +22,9 @@ class GoalBlockView: UIView {
     @IBOutlet weak var bottomLineView: UIView!
     @IBOutlet weak var bottomLineLeftView: UIView!
     @IBOutlet weak var bottomLineRightView: UIView!
-    @IBOutlet weak var backgroundView: UIView!    
+    @IBOutlet weak var backgroundView: UIView!
+    
+    private var parentConnection: TodayViewController!
     
     var completionProgress: Goal.CompletionProgress!
     
@@ -48,6 +50,15 @@ class GoalBlockView: UIView {
     }
     
     // MARK:- Public Methods
+    
+    func config(parent: TodayViewController?) {
+        if parent != nil {
+            parentConnection = parent
+            goalTextField.tag = tag
+            goalTextField.delegate = parent
+            alpha = 0
+        }
+    }
     
     func changeLabels(title: String, date: String) {
         self.goalLabel.text = title

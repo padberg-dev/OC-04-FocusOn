@@ -14,5 +14,9 @@ protocol TodayBindingDelegate: class {
     func updateAllTasksWith(imageNames: [String], completions: [Task.CompletionProgress])
     func undoTaskTextChange(text: String, index: Int)
     func undoGoalTextChange(text: String)
-    func updateUI(withGoalData goal: Goal)
+    
+    // ----------------
+    
+    func shouldContinueWithLastGoal(completion: @escaping ((_ shouldContinue: Bool) -> Void))
+    func updateWholeUI(with goal: Goal, animationType: InitialAnimationType)
 }

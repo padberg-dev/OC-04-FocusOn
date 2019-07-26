@@ -135,7 +135,8 @@ class CompletionView: UIView {
         }
     }
     
-    private func maskToOneThirdFraction(_ view: UIView) {
+    private func maskToOneThirdFraction(_ view: UIView, isInitialThird: Bool = false) {
+        
         view.layer.cornerRadius = view.bounds.height / 2
         
         let pathLayer = CAShapeLayer()
@@ -147,7 +148,7 @@ class CompletionView: UIView {
         path.addLine(to: CGPoint(x: halfWidth, y: halfWidth))
         
         // (tan(30 degree) + 1) * halfWidth == halfWidth * ((3 + sqrt(3.0)) / 3)
-        let y = (tan(CGFloat.pi / 6) + 1.01) * halfWidth
+        let y = (tan(CGFloat.pi / 6) + (isInitialThird ? 1.05 : 1.0)) * halfWidth
         
         path.addLine(to: CGPoint(x: 0, y: y))
         path.addLine(to: CGPoint(x: 0, y: 0))
@@ -223,6 +224,7 @@ class CompletionView: UIView {
     }
     
     private func animateCheck(isSelected: Bool) {
+        
     }
     
     private func animateFail() {
@@ -232,23 +234,22 @@ class CompletionView: UIView {
     private func setupUI() {
         
         backgroundColor = .clear
-        oneThirdCover.backgroundColor = .green
-        insideView.backgroundColor = .green
+        oneThirdCover.backgroundColor = UIColor.Main.berkshireLace
+        insideView.backgroundColor = UIColor.Main.berkshireLace
         topView.backgroundColor = UIColor.Main.atlanticDeep
         
         insideView.layer.cornerRadius = insideView.bounds.height / 2
         topView.layer.cornerRadius = topView.bounds.height / 2
         
-        maskToOneThirdFraction(oneThirdCover)
-        
         for _ in 0 ..< 3 {
             let view = UIView(frame: insideView.bounds)
-            view.backgroundColor = .white
+            view.backgroundColor = UIColor.Main.atlanticDeep
             insideView.insertSubview(view, at: 0)
             maskToOneThirdFraction(view)
             oneThirds.append(view)
             print("ADD oneTHird")
         }
+        maskToOneThirdFraction(oneThirdCover, isInitialThird: true)
     }
     
     private func loadFromNib() {

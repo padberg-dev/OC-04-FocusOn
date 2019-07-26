@@ -29,6 +29,7 @@ class SlideInTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning
             return
         }
         print("ANIMATE \(isFirstTime)")
+        
         if isFirstTime { duration = 2.0 } else { duration = 0.8 }
         
         let container = transitionContext.containerView
@@ -41,14 +42,15 @@ class SlideInTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning
         container.addSubview(fromView)
         container.addSubview(toView)
         
-        let table = toView.subviews[0] as? UITableView
-        let cell = table?.cellForRow(at: IndexPath(row: 0, section: 0))
-        print(table?.frame)
-        let yOrigin = cell!.frame.origin.y + 64
-        
-        var newGoal: GoalBlockView!
-        
         if isFirstTime {
+            
+            let table = toView.subviews[0] as? UITableView
+            let cell = table?.cellForRow(at: IndexPath(row: 0, section: 0))
+            print(table?.frame)
+            let yOrigin = cell!.frame.origin.y + 64
+            
+            var newGoal: GoalBlockView!
+            
             print("TERAZ")
             if let goalView = fromView.subviews[0].subviews[0].subviews.last as? GoalBlockView {
                 print("TERAZ UDAŁO SIĘ")
@@ -60,23 +62,35 @@ class SlideInTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning
                 newGoal.changeLabels(title: goalView.goalLabel.text!, date: goalView.dateLabel.text!)
                 newGoal.animateTransition()
             }
-        }
-        
-        UIView.animate(withDuration: duration / 2, animations: {
-            newGoal.frame.origin.y = yOrigin
-        }) { _ in
+            
+            UIView.animate(withDuration: duration / 2, animations: {
+                newGoal.frame.origin.y = yOrigin
+            }) { _ in
+                UIView.animate(withDuration: self.duration / 2, animations: {
+                    newGoal.imageViewRightConstraint.constant += 26
+                    newGoal.layoutIfNeeded()
+                    newGoal.backgroundView.frame.size.width -= 26
+                    fromView.subviews[0].transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+                    toView.transform = CGAffineTransform.identity
+                    toView.subviews.last?.frame.origin.x = 0
+                }, completion: { _ in
+                    newGoal.removeFromSuperview()
+                    fromView.subviews[0].transform = .identity
+                    transitionContext.completeTransition(true)
+                    self.isFirstTime = false
+                    if let goalView = fromView.subviews[0].subviews[0].subviews.last as? GoalBlockView {
+                        goalView.alpha = 1
+                    }
+                })
+            }
+        } else {
             UIView.animate(withDuration: self.duration / 2, animations: {
-                newGoal.imageViewRightConstraint.constant += 26
-                newGoal.layoutIfNeeded()
-                newGoal.backgroundView.frame.size.width -= 26
                 fromView.subviews[0].transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
                 toView.transform = CGAffineTransform.identity
                 toView.subviews.last?.frame.origin.x = 0
             }, completion: { _ in
-                newGoal.removeFromSuperview()
                 fromView.subviews[0].transform = .identity
                 transitionContext.completeTransition(true)
-                self.isFirstTime = false
             })
         }
     }

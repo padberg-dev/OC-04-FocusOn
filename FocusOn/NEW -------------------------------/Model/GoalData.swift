@@ -11,46 +11,40 @@ import CoreData
 
 class GoalData: NSManagedObject {
     
-//    static func fetchRequest() -> NSFetchRequest<GoalData> {
-//        return NSFetchRequest<GoalData>(entityName: "GoalData")
-//    }
-//    
-//    var date: Date = Date()
-//    var goalText: String = ""
-//    var goalCompletion: Int = 0
-//    var taskText1: String = ""
-//    var taskCompletion1: Bool = false
-//    var taskText2: String = ""
-//    var taskCompletion2: Bool = false
-//    var taskText3: String = ""
-//    var taskCompletion3: Bool = false
+    // MARK:- Static Methods
     
-    static func findGoalData(matchingFromDate date: Date, in context: NSManagedObjectContext) -> GoalData?
-    {
-        let dateFrom = Calendar(identifier: .gregorian).startOfDay(for: date)
-        
+    static func findLast(in context: NSManagedObjectContext) -> GoalData? {
         let request: NSFetchRequest<GoalData> = GoalData.fetchRequest()
-        request.predicate = NSPredicate(format: "date > %@", dateFrom as NSDate)
+        let latest = NSSortDescriptor(key: "date", ascending: false)
+        request.sortDescriptors = [latest]
         request.fetchLimit = 1
         
-        var match: [GoalData] = []
         do {
-            match = try context.fetch(request)
+            let match = try context.fetch(request)
+            if match.count == 1 {
+                return match.first
+            }
         } catch {
-            print("DATABASE ERROR")
-        }
-        
-        if match.count == 1 {
-            return match[0]
+            print("DATABASE ERROR: Error fetching [GoalData]")
         }
         return nil
     }
     
-    static func findLastData(in context: NSManagedObjectContext) -> GoalData?
-    {
+    
+    
+    
+    
+    
+    // --------------------------------------
+    
+    
+    
+    
+    static func findGoalData(matchingFromDate date: Date, in context: NSManagedObjectContext) -> GoalData? {
+        let dateFrom = Calendar(identifier: .gregorian).startOfDay(for: date)
+        
         let request: NSFetchRequest<GoalData> = GoalData.fetchRequest()
-        let latest = NSSortDescriptor(key: "date", ascending: false)
-        request.sortDescriptors = [latest]
+        request.predicate = NSPredicate(format: "date > %@", dateFrom as NSDate)
         request.fetchLimit = 1
         
         var match: [GoalData] = []

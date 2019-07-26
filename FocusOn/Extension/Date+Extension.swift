@@ -10,15 +10,16 @@ import Foundation
 
 extension Date {
     
-    func getDifferenceOfDaysFromNow(toDate: Date) -> Int {
+    func getDifferenceOfDays(to date: Date) -> Int {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        let nowArray = formatter.string(from: self).split(separator: "-")
-        let dateArray = formatter.string(from: toDate).split(separator: "-")
         
-        let num1 = 372 * Int(nowArray[0])! + 31 * Int(nowArray[1])! + Int(nowArray[2])!
-        let num2 = 372 * Int(dateArray[0])! + 31 * Int(dateArray[1])! + Int(dateArray[2])!
-        return num1 - num2
+        let fromArray = formatter.string(from: self).split(separator: "-")
+        let toArray = formatter.string(from: date).split(separator: "-")
+        
+        let fromNumber = 372 * Int(fromArray[0])! + 31 * Int(fromArray[1])! + Int(fromArray[2])!
+        let toNumber = 372 * Int(toArray[0])! + 31 * Int(toArray[1])! + Int(toArray[2])!
+        return fromNumber - toNumber
     }
     
     func getDateString() -> String {

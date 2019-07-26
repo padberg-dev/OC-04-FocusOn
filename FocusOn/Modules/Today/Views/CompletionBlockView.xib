@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CompletionBlockView" customModule="FocusOn" customModuleProvider="target">
+            <connections>
+                <outlet property="completionView" destination="Je1-fi-g7h" id="xgy-yN-HDZ"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="6Ad-8Z-SDy"/>
+                <outlet property="pathView" destination="Hz8-4J-2CK" id="HDg-sx-f2v"/>
+                <outlet property="pulsatingShadowView" destination="NkV-h2-gM4" id="3VC-e5-fIj"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hz8-4J-2CK">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NkV-h2-gM4">
+                    <rect key="frame" x="167" y="10" width="80" height="80"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Je1-fi-g7h" customClass="CompletionView" customModule="FocusOn" customModuleProvider="target">
+                    <rect key="frame" x="167" y="10" width="80" height="80"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="D4u-ov-sTd"/>
+                        <constraint firstAttribute="width" constant="80" id="z9U-O9-qg2"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EO1-7T-N9P">
+                    <rect key="frame" x="167" y="10" width="80" height="80"/>
+                    <connections>
+                        <action selector="completionViewTapped:" destination="-1" eventType="touchUpInside" id="iHV-74-XJO"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="NkV-h2-gM4" firstAttribute="width" secondItem="Je1-fi-g7h" secondAttribute="width" id="4Eu-z2-xE9"/>
+                <constraint firstItem="NkV-h2-gM4" firstAttribute="centerX" secondItem="Je1-fi-g7h" secondAttribute="centerX" id="8fe-fj-6IZ"/>
+                <constraint firstItem="NkV-h2-gM4" firstAttribute="centerY" secondItem="Je1-fi-g7h" secondAttribute="centerY" id="Ax6-Qc-gg7"/>
+                <constraint firstItem="Hz8-4J-2CK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Cgk-si-GQ6"/>
+                <constraint firstItem="EO1-7T-N9P" firstAttribute="centerY" secondItem="Je1-fi-g7h" secondAttribute="centerY" id="IZi-ho-6KT"/>
+                <constraint firstItem="Je1-fi-g7h" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="JgC-JA-Av9"/>
+                <constraint firstAttribute="bottom" secondItem="Hz8-4J-2CK" secondAttribute="bottom" id="Qo2-vW-V0e"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Hz8-4J-2CK" secondAttribute="trailing" id="Rzk-i4-KX0"/>
+                <constraint firstItem="Hz8-4J-2CK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="WEi-4c-wBM"/>
+                <constraint firstItem="EO1-7T-N9P" firstAttribute="centerX" secondItem="Je1-fi-g7h" secondAttribute="centerX" id="bfd-Fk-Pjd"/>
+                <constraint firstItem="Je1-fi-g7h" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="een-1K-cYv"/>
+                <constraint firstItem="EO1-7T-N9P" firstAttribute="height" secondItem="Je1-fi-g7h" secondAttribute="height" id="kE2-nV-QNz"/>
+                <constraint firstItem="NkV-h2-gM4" firstAttribute="height" secondItem="Je1-fi-g7h" secondAttribute="height" id="rty-2a-z8E"/>
+                <constraint firstItem="EO1-7T-N9P" firstAttribute="width" secondItem="Je1-fi-g7h" secondAttribute="width" id="zTF-jC-GKx"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-2" y="266"/>
+        </view>
+    </objects>
+</document>

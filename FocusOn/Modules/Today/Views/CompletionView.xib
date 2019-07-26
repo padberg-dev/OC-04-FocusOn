@@ -32,14 +32,14 @@
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xyW-Rz-iHd">
                                     <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
-                                    <color key="backgroundColor" red="0.1843137255" green="0.39607843139999999" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c6U-Cy-HZh">
                                     <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" red="0.53333333329999999" green="0.83137254900000002" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="c6U-Cy-HZh" firstAttribute="top" secondItem="Pfl-oM-aBc" secondAttribute="top" id="2A3-F8-yUG"/>
                                 <constraint firstItem="c6U-Cy-HZh" firstAttribute="leading" secondItem="Pfl-oM-aBc" secondAttribute="leading" id="3W3-rd-7sd"/>
@@ -52,7 +52,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="Pfl-oM-aBc" firstAttribute="top" secondItem="d65-Dn-cgk" secondAttribute="top" constant="2" id="6sU-mh-RBM"/>
                         <constraint firstAttribute="bottom" secondItem="Pfl-oM-aBc" secondAttribute="bottom" constant="2" id="DdE-UX-WGh"/>

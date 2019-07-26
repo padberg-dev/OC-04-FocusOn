@@ -55,6 +55,18 @@ struct Goal: CustomStringConvertible {
         self.updateGoal()
     }
     
+    init(goalData: GoalData) {
+        self.fullDescription = goalData.goalText ?? ""
+        self.completion = CompletionProgress.init(rawValue: Int(goalData.goalCompletion)) ?? CompletionProgress.notCompleted
+        self.date = goalData.date ?? Date()
+        
+        self.tasks = [
+            Task(text: goalData.taskText1, completion: goalData.taskCompletion1),
+            Task(text: goalData.taskText2, completion: goalData.taskCompletion2),
+            Task(text: goalData.taskText3, completion: goalData.taskCompletion3)
+        ]
+    }
+    
     func updateOrCreateGoalData(currentData data: GoalData?, in context: NSManagedObjectContext) -> GoalData {
         let goal = data ?? GoalData(context: context)
         goal.date = self.date

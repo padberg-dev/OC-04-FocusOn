@@ -78,9 +78,6 @@ extension CustomTabBarController: UITabBarControllerDelegate {
         
         if let vc = tabBarController.selectedViewController as? TodayViewController {
             let validationCheck = vc.isTodayVCFilledOutCompletely
-            if !validationCheck {
-                print("You have to fill out Today VC completely in order to change tabs")
-            }
             return validationCheck
         } else {
             return true

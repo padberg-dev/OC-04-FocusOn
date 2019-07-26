@@ -12,7 +12,7 @@
 		0111C607224D7E2F005E8AF7 /* FocusOn.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0111C605224D7E2F005E8AF7 /* FocusOn.xcdatamodeld */; };
 		011823D722C2BF18001C83B4 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 011823D622C2BF18001C83B4 /* CustomTableViewCell.xib */; };
 		011F8B322293198D005CDB82 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011F8B312293198D005CDB82 /* UIColor.swift */; };
-		011F8B3422932370005CDB82 /* UIView+Effects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011F8B3322932370005CDB82 /* UIView+Effects.swift */; };
+		011F8B3422932370005CDB82 /* UIView+effects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011F8B3322932370005CDB82 /* UIView+effects.swift */; };
 		011F8B3822933489005CDB82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011F8B3722933489005CDB82 /* Assets.xcassets */; };
 		011F8B3A22933C44005CDB82 /* CompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011F8B3922933C44005CDB82 /* CompletionView.swift */; };
 		011F8B3C22933C8F005CDB82 /* CompletionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 011F8B3B22933C8F005CDB82 /* CompletionView.xib */; };
@@ -21,7 +21,14 @@
 		012D2369222DD94D0073FA57 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D2368222DD94D0073FA57 /* ProgressViewController.swift */; };
 		0132CDE2222C8FBE00457CD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0132CDE1222C8FBE00457CD5 /* AppDelegate.swift */; };
 		0132CDF6222C9A8500457CD5 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0132CDF5222C9A8500457CD5 /* CustomTabBarController.swift */; };
+		013F367222E4D02A00E12927 /* AnimatedMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F367122E4D02A00E12927 /* AnimatedMaskView.swift */; };
+		013F367422E4D77D00E12927 /* AnimatedLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F367322E4D77D00E12927 /* AnimatedLabelView.swift */; };
+		013F367622E4D78900E12927 /* AnimatedLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 013F367522E4D78900E12927 /* AnimatedLabelView.xib */; };
+		013F367822E4F6EA00E12927 /* InitialAnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F367722E4F6EA00E12927 /* InitialAnimationType.swift */; };
+		013F367B22E4FBB600E12927 /* InitialAnimationStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F367A22E4FBB600E12927 /* InitialAnimationStage.swift */; };
+		013F367D22E4FE4700E12927 /* UIView+animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F367C22E4FE4700E12927 /* UIView+animations.swift */; };
 		014B0C6822E09AA700EDDB0D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014B0C6722E09AA700EDDB0D /* Settings.swift */; };
+		014B0C7122E0E57C00EDDB0D /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014B0C7022E0E57C00EDDB0D /* NavigationController.swift */; };
 		0152F29822BCBC1200F98055 /* CompletionBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0152F29722BCBC1100F98055 /* CompletionBlockView.swift */; };
 		0152F29A22BCBC2400F98055 /* CompletionBlockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0152F29922BCBC2400F98055 /* CompletionBlockView.xib */; };
 		0152F29D22BCDC6C00F98055 /* SlideInTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0152F29C22BCDC6C00F98055 /* SlideInTransitionAnimator.swift */; };
@@ -54,6 +61,8 @@
 		01AAAC9C22BBC24D00A5E07E /* TaskCheckButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01AAAC9B22BBC24D00A5E07E /* TaskCheckButtonView.xib */; };
 		01AAAC9E22BBEF5D00A5E07E /* TaskBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AAAC9D22BBEF5D00A5E07E /* TaskBlockView.swift */; };
 		01AAACA022BBEF6800A5E07E /* TaskBlockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01AAAC9F22BBEF6800A5E07E /* TaskBlockView.xib */; };
+		01D90BC222EA433B00094533 /* AnimatedMaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D90BC122EA433B00094533 /* AnimatedMaskView.xib */; };
+		01D90BC422EA455800094533 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D90BC322EA455800094533 /* CGRect.swift */; };
 		01E4107F22353F2E00C74766 /* StartFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4107E22353F2E00C74766 /* StartFactory.swift */; };
 		01E41081223543BD00C74766 /* HistoryVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01E41080223543BD00C74766 /* HistoryVC.storyboard */; };
 		01E410832235451B00C74766 /* TodayVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01E410822235451B00C74766 /* TodayVC.storyboard */; };
@@ -84,7 +93,7 @@
 		0111C606224D7E2F005E8AF7 /* FocusOn.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FocusOn.xcdatamodel; sourceTree = "<group>"; };
 		011823D622C2BF18001C83B4 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		011F8B312293198D005CDB82 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		011F8B3322932370005CDB82 /* UIView+Effects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Effects.swift"; sourceTree = "<group>"; };
+		011F8B3322932370005CDB82 /* UIView+effects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+effects.swift"; sourceTree = "<group>"; };
 		011F8B3722933489005CDB82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		011F8B3922933C44005CDB82 /* CompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionView.swift; sourceTree = "<group>"; };
 		011F8B3B22933C8F005CDB82 /* CompletionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompletionView.xib; sourceTree = "<group>"; };
@@ -95,7 +104,14 @@
 		0132CDE1222C8FBE00457CD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0132CDED222C8FC000457CD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0132CDF5222C9A8500457CD5 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		013F367122E4D02A00E12927 /* AnimatedMaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedMaskView.swift; sourceTree = "<group>"; };
+		013F367322E4D77D00E12927 /* AnimatedLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedLabelView.swift; sourceTree = "<group>"; };
+		013F367522E4D78900E12927 /* AnimatedLabelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnimatedLabelView.xib; sourceTree = "<group>"; };
+		013F367722E4F6EA00E12927 /* InitialAnimationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialAnimationType.swift; sourceTree = "<group>"; };
+		013F367A22E4FBB600E12927 /* InitialAnimationStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialAnimationStage.swift; sourceTree = "<group>"; };
+		013F367C22E4FE4700E12927 /* UIView+animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+animations.swift"; sourceTree = "<group>"; };
 		014B0C6722E09AA700EDDB0D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		014B0C7022E0E57C00EDDB0D /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		0152F29722BCBC1100F98055 /* CompletionBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionBlockView.swift; sourceTree = "<group>"; };
 		0152F29922BCBC2400F98055 /* CompletionBlockView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompletionBlockView.xib; sourceTree = "<group>"; };
 		0152F29C22BCDC6C00F98055 /* SlideInTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransitionAnimator.swift; sourceTree = "<group>"; };
@@ -128,6 +144,8 @@
 		01AAAC9B22BBC24D00A5E07E /* TaskCheckButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCheckButtonView.xib; sourceTree = "<group>"; };
 		01AAAC9D22BBEF5D00A5E07E /* TaskBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskBlockView.swift; sourceTree = "<group>"; };
 		01AAAC9F22BBEF6800A5E07E /* TaskBlockView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskBlockView.xib; sourceTree = "<group>"; };
+		01D90BC122EA433B00094533 /* AnimatedMaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnimatedMaskView.xib; sourceTree = "<group>"; };
+		01D90BC322EA455800094533 /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
 		01E4107E22353F2E00C74766 /* StartFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartFactory.swift; sourceTree = "<group>"; };
 		01E41080223543BD00C74766 /* HistoryVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HistoryVC.storyboard; sourceTree = "<group>"; };
 		01E410822235451B00C74766 /* TodayVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TodayVC.storyboard; sourceTree = "<group>"; };
@@ -161,7 +179,6 @@
 		0111C5F2224D5FC4005E8AF7 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				0111C5F3224D602E005E8AF7 /* TodayBindingDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -211,7 +228,8 @@
 		0132CDE0222C8FBE00457CD5 /* FocusOn */ = {
 			isa = PBXGroup;
 			children = (
-				01BB9FDB22DF9F4C00AE1DE7 /* NEW -------- */,
+				01BB9FDB22DF9F4C00AE1DE7 /* NEW ------------------------------- */,
+				014B0C6D22E0C6D700EDDB0D /* --------------------------------- */,
 				015F660E2271FC480030E88D /* AAInfographics */,
 				011F8B352293274C005CDB82 /* Ressources */,
 				0193C70A225FD1230068BA4B /* Extension */,
@@ -219,10 +237,29 @@
 				011F8B3722933489005CDB82 /* Assets.xcassets */,
 				0132CDED222C8FC000457CD5 /* Info.plist */,
 				01E4107D22353E1F00C74766 /* NavTabController */,
-				01E41086223567D800C74766 /* Model */,
 				01FFB5AD222E7E8D00EAEB59 /* Modules */,
 			);
 			path = FocusOn;
+			sourceTree = "<group>";
+		};
+		013F367022E4D00800E12927 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				013F367122E4D02A00E12927 /* AnimatedMaskView.swift */,
+				01D90BC122EA433B00094533 /* AnimatedMaskView.xib */,
+				013F367322E4D77D00E12927 /* AnimatedLabelView.swift */,
+				013F367522E4D78900E12927 /* AnimatedLabelView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		013F367922E4F6F000E12927 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				013F367722E4F6EA00E12927 /* InitialAnimationType.swift */,
+				013F367A22E4FBB600E12927 /* InitialAnimationStage.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		014B0C6622E099E600EDDB0D /* Globals */ = {
@@ -236,6 +273,7 @@
 		014B0C6922E0C28C00EDDB0D /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				0111C5F3224D602E005E8AF7 /* TodayBindingDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -244,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				014B0C6B22E0C3ED00EDDB0D /* Today */,
+				01E410822235451B00C74766 /* TodayVC.storyboard */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -251,7 +290,9 @@
 		014B0C6B22E0C3ED00EDDB0D /* Today */ = {
 			isa = PBXGroup;
 			children = (
+				013F367022E4D00800E12927 /* View */,
 				014B0C6C22E0C40600EDDB0D /* ViewControllers */,
+				01FFB5B8222E84D600EAEB59 /* ViewModels */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -262,6 +303,24 @@
 				012D2366222DD9440073FA57 /* TodayViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		014B0C6D22E0C6D700EDDB0D /* --------------------------------- */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "---------------------------------";
+			sourceTree = "<group>";
+		};
+		014B0C6F22E0E55A00EDDB0D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				014B0C7022E0E57C00EDDB0D /* NavigationController.swift */,
+				013F367C22E4FE4700E12927 /* UIView+animations.swift */,
+				011F8B3322932370005CDB82 /* UIView+effects.swift */,
+				01D90BC322EA455800094533 /* CGRect.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		0152F29B22BCDC4B00F98055 /* TransitionAnimator */ = {
@@ -349,7 +408,6 @@
 			children = (
 				0193C70B225FD1300068BA4B /* Date+Extension.swift */,
 				011F8B312293198D005CDB82 /* UIColor.swift */,
-				011F8B3322932370005CDB82 /* UIView+Effects.swift */,
 				01AAAC9722BBAA4500A5E07E /* CGFloat+Calculations.swift */,
 			);
 			path = Extension;
@@ -391,15 +449,18 @@
 			path = NavigationFlow;
 			sourceTree = "<group>";
 		};
-		01BB9FDB22DF9F4C00AE1DE7 /* NEW -------- */ = {
+		01BB9FDB22DF9F4C00AE1DE7 /* NEW ------------------------------- */ = {
 			isa = PBXGroup;
 			children = (
-				014B0C6A22E0C3E600EDDB0D /* Modules */,
-				014B0C6922E0C28C00EDDB0D /* Protocols */,
+				013F367922E4F6F000E12927 /* Enums */,
+				014B0C6F22E0E55A00EDDB0D /* Extensions */,
 				014B0C6622E099E600EDDB0D /* Globals */,
+				01E41086223567D800C74766 /* Model */,
+				014B0C6A22E0C3E600EDDB0D /* Modules */,
 				01BB9FDA22DF9BC900AE1DE7 /* NavigationFlow */,
+				014B0C6922E0C28C00EDDB0D /* Protocols */,
 			);
-			path = "NEW --------";
+			path = "NEW -------------------------------";
 			sourceTree = "<group>";
 		};
 		01E4107D22353E1F00C74766 /* NavTabController */ = {
@@ -426,9 +487,7 @@
 			children = (
 				0111C5F2224D5FC4005E8AF7 /* Protocol */,
 				01FFB5B5222E84AB00EAEB59 /* ViewController */,
-				01FFB5B8222E84D600EAEB59 /* ViewModel */,
 				017E551E223A6F3800F7E9F6 /* Views */,
-				01E410822235451B00C74766 /* TodayVC.storyboard */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -497,12 +556,12 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		01FFB5B8222E84D600EAEB59 /* ViewModel */ = {
+		01FFB5B8222E84D600EAEB59 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				01FFB5BA222E852000EAEB59 /* TodayViewModel.swift */,
 			);
-			path = ViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		01FFB5B9222E84DF00EAEB59 /* ViewModel */ = {
@@ -605,8 +664,10 @@
 				01E4108522354B0400C74766 /* ProgressVC.storyboard in Resources */,
 				011823D722C2BF18001C83B4 /* CustomTableViewCell.xib in Resources */,
 				01E410832235451B00C74766 /* TodayVC.storyboard in Resources */,
+				013F367622E4D78900E12927 /* AnimatedLabelView.xib in Resources */,
 				015F66232271FC480030E88D /* AAJSFiles.bundle in Resources */,
 				01E41081223543BD00C74766 /* HistoryVC.storyboard in Resources */,
+				01D90BC222EA433B00094533 /* AnimatedMaskView.xib in Resources */,
 				01AAACA022BBEF6800A5E07E /* TaskBlockView.xib in Resources */,
 				01A8F95A2271E1A80050C992 /* SectionHeaderView.xib in Resources */,
 				01AAAC9C22BBC24D00A5E07E /* TaskCheckButtonView.xib in Resources */,
@@ -635,11 +696,15 @@
 				015F661F2271FC480030E88D /* AASerializable.swift in Sources */,
 				0111C607224D7E2F005E8AF7 /* FocusOn.xcdatamodeld in Sources */,
 				01FFB5BF222E898800EAEB59 /* ProgressViewModel.swift in Sources */,
+				013F367B22E4FBB600E12927 /* InitialAnimationStage.swift in Sources */,
 				0132CDE2222C8FBE00457CD5 /* AppDelegate.swift in Sources */,
 				014B0C6822E09AA700EDDB0D /* Settings.swift in Sources */,
+				013F367D22E4FE4700E12927 /* UIView+animations.swift in Sources */,
+				01D90BC422EA455800094533 /* CGRect.swift in Sources */,
 				015F66252271FC480030E88D /* AADataLabels.swift in Sources */,
 				01AAAC9A22BBC24200A5E07E /* TaskCheckButtonView.swift in Sources */,
 				01FFB5BB222E852000EAEB59 /* TodayViewModel.swift in Sources */,
+				013F367822E4F6EA00E12927 /* InitialAnimationType.swift in Sources */,
 				017E551D223A6BCA00F7E9F6 /* CustomTabBarItemView.swift in Sources */,
 				0188CC652269E4AD0035E8BB /* CustomTableViewCell.swift in Sources */,
 				015F66212271FC480030E88D /* AAColor.swift in Sources */,
@@ -658,18 +723,21 @@
 				019B6B63227B684200716EBE /* CustomCollectionViewDelegate.swift in Sources */,
 				0152F29D22BCDC6C00F98055 /* SlideInTransitionAnimator.swift in Sources */,
 				01E41088223567EE00C74766 /* Goal.swift in Sources */,
+				013F367422E4D77D00E12927 /* AnimatedLabelView.swift in Sources */,
 				01AAAC9822BBAA4500A5E07E /* CGFloat+Calculations.swift in Sources */,
+				013F367222E4D02A00E12927 /* AnimatedMaskView.swift in Sources */,
 				0132CDF6222C9A8500457CD5 /* CustomTabBarController.swift in Sources */,
 				011F8B322293198D005CDB82 /* UIColor.swift in Sources */,
 				011F8B3A22933C44005CDB82 /* CompletionView.swift in Sources */,
 				015F661E2271FC480030E88D /* AAChartModel.swift in Sources */,
 				0152F29822BCBC1200F98055 /* CompletionBlockView.swift in Sources */,
 				0111C5F4224D602E005E8AF7 /* TodayBindingDelegate.swift in Sources */,
+				014B0C7122E0E57C00EDDB0D /* NavigationController.swift in Sources */,
 				0188CC632269E47D0035E8BB /* CustomTableView.swift in Sources */,
 				012D2365222DD9300073FA57 /* HistoryViewController.swift in Sources */,
 				019B6B5C227B497500716EBE /* CustomCollectionView.swift in Sources */,
 				019B6B5E227B4DCD00716EBE /* CustomCollectionViewCell.swift in Sources */,
-				011F8B3422932370005CDB82 /* UIView+Effects.swift in Sources */,
+				011F8B3422932370005CDB82 /* UIView+effects.swift in Sources */,
 				01E410952235716D00C74766 /* GoalData.swift in Sources */,
 				015F66242271FC480030E88D /* AAPlotLinesElement.swift in Sources */,
 				017E5520223A6F5000F7E9F6 /* CustomCheckButton.swift in Sources */,
