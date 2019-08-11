@@ -23,7 +23,11 @@ class CustomCollectionViewCell: UICollectionViewCell {
     }
     
     func highlightCell() {
-        self.customView.backgroundColor = .white
+        customView.backgroundColor = .white
+    }
+    
+    func setUnavailable() {
+        self.customView.backgroundColor = UIColor.white.withAlphaComponent(0.4)
     }
     
     func  clearCell() {

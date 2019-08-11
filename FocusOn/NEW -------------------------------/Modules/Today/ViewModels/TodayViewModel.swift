@@ -153,7 +153,7 @@ class TodayViewModel {
         let context = AppDelegate.context
         
         if let lastGoal = GoalData.findLast(in: context) {
-            let differenceOfDays = lastGoal.date?.getDifferenceOfDays(to: Date().addingTimeInterval(1 * 24 * 3600))
+            let differenceOfDays = lastGoal.date?.getDifferenceOfDays(to: Date())//.addingTimeInterval(1 * 24 * 3600))
             
             switch differenceOfDays {
             case 0:

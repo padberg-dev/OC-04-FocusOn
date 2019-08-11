@@ -43,6 +43,11 @@ class TodayViewController: UIViewController {
         parent?.navigationItem.title = "FocusOn Today"
         
         view.addVerticalGradient(of: UIColor.Gradients.greenLight)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         todayVM.checkLastGoalStatus()
     }
     

@@ -18,6 +18,8 @@ class AnimatedMaskView: UIView, CAAnimationDelegate {
     
     @IBOutlet var contentView: UIView!
     
+    
+    
     @IBOutlet weak var insideView: UIView!
     @IBOutlet weak var messageLabel: UILabel!
     

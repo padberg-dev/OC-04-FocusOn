@@ -92,7 +92,7 @@ extension CustomTabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if let fromIndex = viewControllers?.firstIndex(of: fromVC) {
             if let toIndex = viewControllers?.firstIndex(of: toVC) {
-                if transitionAnimator.isFirstTime {
+                if transitionAnimator.isFirstTime && fromIndex == 1 && toIndex == 0 {
                     transitionAnimator.duration = 10.0
                 }
                 transitionAnimator.toTheLeft = fromIndex > toIndex

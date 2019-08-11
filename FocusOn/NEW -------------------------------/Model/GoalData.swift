@@ -92,6 +92,7 @@ class GoalData: NSManagedObject {
     static func createALotOfDataScenario(numberOfDays: Int) {
         let context = AppDelegate.context
         
+        let numberOfDays = numberOfDays - 1
         for i in 0 ... numberOfDays {
             let goal = GoalData(context: context)
             let completions = GoalData.generateCompletion()
@@ -104,6 +105,7 @@ class GoalData: NSManagedObject {
             }
             
             goal.date = Date().addingTimeInterval(Double(numberOfDays - i) * -24*3600)
+            print(goal.date)
             goal.goalText = GoalData.generateGoalName()
             goal.goalCompletion = Int32(completionsSum)
             goal.taskText1 = "First Task"

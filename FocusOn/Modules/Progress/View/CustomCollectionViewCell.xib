@@ -22,8 +22,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E9C-WN-aXy">
                         <rect key="frame" x="2" y="2" width="56" height="16"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sep 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mRy-jf-WX0">
-                                <rect key="frame" x="2" y="1" width="52.5" height="14.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sep 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mRy-jf-WX0">
+                                <rect key="frame" x="4" y="1" width="48" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -31,7 +31,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.53333333329999999" green="0.83137254900000002" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="mRy-jf-WX0" firstAttribute="leading" secondItem="E9C-WN-aXy" secondAttribute="leading" constant="4" id="Gj3-nR-FDG"/>
                             <constraint firstItem="mRy-jf-WX0" firstAttribute="centerX" secondItem="E9C-WN-aXy" secondAttribute="centerX" id="ejO-UZ-Ldj"/>
+                            <constraint firstAttribute="trailing" secondItem="mRy-jf-WX0" secondAttribute="trailing" constant="4" id="frg-b8-xKa"/>
                             <constraint firstItem="mRy-jf-WX0" firstAttribute="centerY" secondItem="E9C-WN-aXy" secondAttribute="centerY" id="pE2-cc-8N1"/>
                         </constraints>
                     </view>

@@ -50,4 +50,15 @@ extension Date {
         let firstDayOfTheMonth = Calendar(identifier: .gregorian).startOfDay(for: newDate!)
         return firstDayOfTheMonth
     }
+    
+    func daysInMonth(_ monthNumber: Int? = nil, _ year: Int? = nil) -> Int {
+        var dateComponents = DateComponents()
+        dateComponents.year = year ?? Calendar.current.component(.year,  from: self)
+        dateComponents.month = monthNumber ?? Calendar.current.component(.month,  from: self)
+        if
+            let d = Calendar.current.date(from: dateComponents),
+            let interval = Calendar.current.dateInterval(of: .month, for: d),
+            let days = Calendar.current.dateComponents([.day], from: interval.start, to: interval.end).day
+        { return days } else { return -1 }
+    }
 }

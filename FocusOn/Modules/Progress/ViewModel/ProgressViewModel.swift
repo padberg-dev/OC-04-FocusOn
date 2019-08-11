@@ -18,7 +18,7 @@ struct ProgressViewModel {
         let firstOfMonth = Date.firstOfMonth()
         
         let request: NSFetchRequest<GoalData> = GoalData.fetchRequest()
-        let sorting = NSSortDescriptor(key: "date", ascending: false)
+        let sorting = NSSortDescriptor(key: "date", ascending: true)
         request.sortDescriptors = [sorting]
         
         do {

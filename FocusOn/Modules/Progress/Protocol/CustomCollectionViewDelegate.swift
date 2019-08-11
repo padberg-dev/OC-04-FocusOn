@@ -9,5 +9,5 @@
 import Foundation
 
 protocol CustomCollectionViewDelegate: class {
-    func cellWasSelected(withIndex index: Int)
+    func cellWasSelected(withIndex index: Int, cellType: CellType)
 }

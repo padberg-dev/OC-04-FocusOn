@@ -129,7 +129,6 @@ class CompletionView: UIView {
     }
     
     private func changeRotations(to rotation: CGFloat) {
-        
         for i in 0 ..< 3 {
             oneThirds[i].transform = CGAffineTransform(rotationAngle: getRotationOfView(positionsBefore: CGFloat(i), with: rotation) * CGFloat.pi / 180)
         }

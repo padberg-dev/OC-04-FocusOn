@@ -12,7 +12,7 @@ class SlideInTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning
     
     var duration = 4.0
     var toTheLeft: Bool = true
-    var isFirstTime: Bool = true
+    var isFirstTime: Bool = false
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return duration
