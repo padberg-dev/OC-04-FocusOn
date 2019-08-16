@@ -16,6 +16,8 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     var indexesSections: [Int] = []
     var rowId = 0
     
+    var parentConnection: HistoryViewController!
+    
     var lastYear: String?
     
     var stopUpdating = false
@@ -115,16 +117,35 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell") as? CustomTableViewCell
         
         let goal = goals[indexPath.section][indexPath.row]
+        cell?.goal = goal
         
-        cell?.goalBlockView.setTo(text: goal.goalText!, dateString: goal.date!.getDateString(), completion: decodeCompletion(num: goal.goalCompletion))
-        cell?.taskBlocks.forEach { $0.config(parent: nil) }
-        cell?.taskBlocks[0].checkBox.show()
-        cell?.taskBlocks[0].checkBox.isSelected = goal.taskCompletion1
-        cell?.taskBlocks[1].checkBox.show()
-        cell?.taskBlocks[1].checkBox.isSelected = goal.taskCompletion2
-        cell?.taskBlocks[2].checkBox.show()
-        cell?.taskBlocks[2].checkBox.isSelected = goal.taskCompletion3
+        cell?.goalBlockView.setTo(title: goal.goalText!, dateString: goal.date!.getDateString(), completion: decodeCompletion(num: goal.goalCompletion))
         
+        if selectedCell == indexPath {
+            
+            cell?.taskBlocks.forEach { $0.config(parent: nil) }
+            cell?.taskBlocks[0].checkBox.set(selected: goal.taskCompletion1, immediately: true)
+            cell?.taskBlocks[1].checkBox.set(selected: goal.taskCompletion2, immediately: true)
+            cell?.taskBlocks[2].checkBox.set(selected: goal.taskCompletion3, immediately: true)
+            
+            let transform = CGAffineTransform(translationX: 26, y: 0)
+            cell?.goalBlockView.transform = transform
+            cell?.gradientView.transform = transform
+            cell?.gradientViewTop.transform = transform
+            cell?.gradientViewOverBlock.transform = transform
+            cell?.gearImageView.transform = CGAffineTransform(rotationAngle: 0.9 * CGFloat.pi)
+            cell?.goalBlockView.completionImageView.transform = CGAffineTransform(translationX: -26, y: 0)
+            cell?.bottomConstraint.constant = 100
+        } else {
+            
+            cell?.goalBlockView.transform = .identity
+            cell?.gradientView.transform = .identity
+            cell?.gradientViewTop.transform = .identity
+            cell?.gradientViewOverBlock.transform = .identity
+            cell?.gearImageView.transform = .identity
+            cell?.goalBlockView.completionImageView.transform = .identity
+            cell?.bottomConstraint.constant = 0
+        }
         return cell!
     }
     
@@ -140,7 +161,8 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
             print("DDD Select This")
             activateCell(thisCell)
             endUpdates()
-        } else {
+        }
+        else {
             if selectedCell == indexPath {
                 // Deselect This Cell
                 thisCell.bottomConstraint.constant = 0
@@ -148,7 +170,8 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
                 print("DDD DeSelect This")
                 deactivateCell(thisCell)
                 endUpdates()
-            } else {
+            }
+            else {
                 if let oldCell = cellForRow(at: selectedCell!) as? CustomTableViewCell {
                     // Deselect Old Cell
                     oldCell.bottomConstraint.constant = 0
@@ -160,7 +183,8 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
                         self?.activateCell(thisCell)
                         self?.endUpdates()
                     }
-                } else {
+                }
+                else {
                     thisCell.bottomConstraint.constant = 100
                     print("DDD Select This")
                     // Select This Cell
@@ -170,44 +194,45 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
             }
         }
         selectedCell = selectedCell == indexPath ? nil : indexPath
-        
     }
     
     private func deactivateCell(_ cell: CustomTableViewCell, completion: (() -> Void)? = nil) {
-        cell.resetTasks()
+//        cell.resetTasks()
+        
         UIView.animate(withDuration: 0.6, animations: {
             
-            cell.goalBlockView.frame.origin.x -= 26
-            cell.gradientView.frame.origin.x -= 26
-            cell.gradientViewTop.frame.origin.x -= 26
-            cell.gradientViewOverBlock.frame.origin.x -= 26
+            cell.goalBlockView.transform = .identity
+            cell.gradientView.transform = .identity
+            cell.gradientViewTop.transform = .identity
+            cell.gradientViewOverBlock.transform = .identity
             cell.gearImageView.transform = .identity
-            cell.goalBlockView.completionImageView.frame.origin.x += 26
+            cell.goalBlockView.completionImageView.transform = .identity
             cell.layoutIfNeeded()
         }) { _ in
             print("CCC HAHA END ANIMATION")
-            //            thisCell.goalBlockView.frame.origin.x = 20
             completion?()
         }
     }
     
     private func activateCell(_ cell: CustomTableViewCell) {
-        cell.animateTasks()
-        UIView.animate(withDuration: 0.6, animations: {
+        
+        cell.taskBlocks.forEach { $0.config(parent: nil) }
+        cell.taskBlocks[0].checkBox.set(selected: cell.goal.taskCompletion1, immediately: true)
+        cell.taskBlocks[1].checkBox.set(selected: cell.goal.taskCompletion2, immediately: true)
+        cell.taskBlocks[2].checkBox.set(selected: cell.goal.taskCompletion3, immediately: true)
+        
+        UIView.animate(withDuration: 0.6, delay: 0.2, options: .curveEaseInOut, animations: {
             
-            cell.goalBlockView.frame.origin.x += 26
-            cell.gradientView.frame.origin.x += 26
-            cell.gradientViewTop.frame.origin.x += 26
-            cell.gradientViewOverBlock.frame.origin.x += 26
+            
+            let transform = CGAffineTransform(translationX: 26, y: 0)
+            cell.goalBlockView.transform = transform
+            cell.gradientView.transform = transform
+            cell.gradientViewTop.transform = transform
+            cell.gradientViewOverBlock.transform = transform
             cell.gearImageView.transform = CGAffineTransform(rotationAngle: 0.9 * CGFloat.pi)
-            //            thisCell.topLeftView.frame.origin.x += 26
-            //            thisCell.bottomLeftView.frame.origin.x += 26
-            cell.goalBlockView.completionImageView.frame.origin.x -= 26
+            cell.goalBlockView.completionImageView.transform = CGAffineTransform(translationX: -26, y: 0)
             cell.layoutIfNeeded()
-        }) { _ in
-            print("CCC HAHA END ANIMATION")
-            //            thisCell.goalBlockView.frame.origin.x = 20
-        }
+        }, completion: nil)
     }
     
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

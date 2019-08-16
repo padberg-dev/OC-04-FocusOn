@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-struct Goal: CustomStringConvertible {
+struct Goal {
     
     enum CompletionProgress: Int {
         case notCompleted = 0
@@ -19,14 +19,14 @@ struct Goal: CustomStringConvertible {
         case notYetAchieved = 4
     }
     
-    var description: String {
-        print("===")
-        print("Goal: '\(fullDescription)' || Completion: \(completion) || Image: \(completionImageName) || \(date)")
-        for task in tasks {
-            print("TASK: '\(task.fullDescription)' || completion: \(task.completion) || Image: \(task.completionImageName)")
-        }
-        return "==="
-    }
+//    var description: String {
+//        print("===")
+//        print("Goal: '\(fullDescription)' || Completion: \(completion) || Image: \(completionImageName) || \(date)")
+//        for task in tasks {
+//            print("TASK: '\(task.fullDescription)' || completion: \(task.completion) || Image: \(task.completionImageName)")
+//        }
+//        return "==="
+//    }
     
     var date: Date
     var fullDescription: String

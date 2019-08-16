@@ -16,7 +16,8 @@ class StartFactory {
         let navigationController = UINavigationController()
         navigationController.configure()
         
-//        GoalData.createALotOfDataScenario(numberOfDays: 333)
+//        GoalData.createALotOfDataScenario(numberOfDays: 358)
+//        GoalData.deleteAllData()
         
         navigationController.setViewControllers([tabBarController], animated: false)
         

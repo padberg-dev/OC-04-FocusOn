@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="backgroundView" destination="4hz-XC-p7e" id="rRd-Al-s6M"/>
                 <outlet property="bottomLineLeftView" destination="b6A-fo-BCX" id="yuM-t1-uE6"/>
+                <outlet property="bottomLineRightConstraint" destination="V1M-3x-G0b" id="dHf-cK-RZW"/>
                 <outlet property="bottomLineRightView" destination="vpJ-RW-Zaw" id="mli-Oc-Xnn"/>
                 <outlet property="bottomLineView" destination="oJA-iB-ca4" id="f97-dy-ojt"/>
                 <outlet property="completionImageView" destination="QV2-eA-WeM" id="6GA-Wb-saa"/>
@@ -64,21 +65,21 @@
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b6A-fo-BCX">
                     <rect key="frame" x="0.0" y="59" width="20" height="1"/>
-                    <color key="backgroundColor" red="0.1843137255" green="0.39607843139999999" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="VUT-QR-YoM"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oJA-iB-ca4">
                     <rect key="frame" x="20" y="59" width="335" height="1"/>
-                    <color key="backgroundColor" red="0.1843137255" green="0.39607843139999999" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="StK-Rk-v21"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vpJ-RW-Zaw">
                     <rect key="frame" x="355" y="59" width="20" height="1"/>
-                    <color key="backgroundColor" red="0.1843137255" green="0.39607843139999999" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="70h-0w-af7"/>
                     </constraints>
@@ -95,13 +96,13 @@
                 <constraint firstItem="hcm-yR-OQs" firstAttribute="leading" secondItem="UDJ-h6-s6j" secondAttribute="leading" id="ENd-D5-o1E"/>
                 <constraint firstItem="4hz-XC-p7e" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="F7q-qJ-fuQ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="oJA-iB-ca4" secondAttribute="trailing" constant="20" id="FL6-cg-GLe"/>
+                <constraint firstItem="vpJ-RW-Zaw" firstAttribute="width" secondItem="b6A-fo-BCX" secondAttribute="width" id="GSb-vi-7wB"/>
                 <constraint firstAttribute="bottom" secondItem="oJA-iB-ca4" secondAttribute="bottom" id="H20-h3-rzC"/>
                 <constraint firstItem="b6A-fo-BCX" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="H4j-dU-mjP"/>
                 <constraint firstItem="oJA-iB-ca4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="PXp-2c-ruT"/>
-                <constraint firstItem="vpJ-RW-Zaw" firstAttribute="leading" secondItem="oJA-iB-ca4" secondAttribute="trailing" id="TYh-r6-Qgd"/>
                 <constraint firstAttribute="trailing" secondItem="QV2-eA-WeM" secondAttribute="trailing" constant="20" id="Ue0-dj-vmH"/>
+                <constraint firstItem="vpJ-RW-Zaw" firstAttribute="trailing" secondItem="4hz-XC-p7e" secondAttribute="trailing" id="V1M-3x-G0b"/>
                 <constraint firstItem="4hz-XC-p7e" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="Yjj-Wo-0jk"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="vpJ-RW-Zaw" secondAttribute="trailing" id="aNX-h5-oCC"/>
                 <constraint firstItem="7dZ-7N-03x" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="c5Y-jl-1RW"/>
                 <constraint firstItem="oJA-iB-ca4" firstAttribute="leading" secondItem="b6A-fo-BCX" secondAttribute="trailing" id="hVF-ex-bCZ"/>
                 <constraint firstItem="4hz-XC-p7e" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kfw-iG-pKd"/>

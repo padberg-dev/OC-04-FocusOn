@@ -32,6 +32,9 @@
 		0152F29822BCBC1200F98055 /* CompletionBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0152F29722BCBC1100F98055 /* CompletionBlockView.swift */; };
 		0152F29A22BCBC2400F98055 /* CompletionBlockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0152F29922BCBC2400F98055 /* CompletionBlockView.xib */; };
 		0152F29D22BCDC6C00F98055 /* SlideInTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0152F29C22BCDC6C00F98055 /* SlideInTransitionAnimator.swift */; };
+		015D3C052303498100B5B2CE /* CoreDataUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015D3C042303498100B5B2CE /* CoreDataUnitTests.swift */; };
+		015D3C08230349FA00B5B2CE /* XCTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015D3C07230349FA00B5B2CE /* XCTestCase.swift */; };
+		015D3C11230355A600B5B2CE /* FocusOnUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015D3C10230355A600B5B2CE /* FocusOnUITests.swift */; };
 		015F661C2271FC480030E88D /* AAOptionsConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F66102271FC480030E88D /* AAOptionsConstructor.swift */; };
 		015F661D2271FC480030E88D /* AAChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F66112271FC480030E88D /* AAChartView.swift */; };
 		015F661E2271FC480030E88D /* AAChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F66122271FC480030E88D /* AAChartModel.swift */; };
@@ -61,6 +64,8 @@
 		01AAAC9C22BBC24D00A5E07E /* TaskCheckButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01AAAC9B22BBC24D00A5E07E /* TaskCheckButtonView.xib */; };
 		01AAAC9E22BBEF5D00A5E07E /* TaskBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AAAC9D22BBEF5D00A5E07E /* TaskBlockView.swift */; };
 		01AAACA022BBEF6800A5E07E /* TaskBlockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01AAAC9F22BBEF6800A5E07E /* TaskBlockView.xib */; };
+		01BD8BB02305BFC30085C700 /* ViewControllerNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD8BAF2305BFC30085C700 /* ViewControllerNames.swift */; };
+		01D11F1D2306F38C000F0E1E /* CABasicAnimation+Creators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D11F1C2306F38C000F0E1E /* CABasicAnimation+Creators.swift */; };
 		01D90BC222EA433B00094533 /* AnimatedMaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D90BC122EA433B00094533 /* AnimatedMaskView.xib */; };
 		01D90BC422EA455800094533 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D90BC322EA455800094533 /* CGRect.swift */; };
 		01E4107F22353F2E00C74766 /* StartFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4107E22353F2E00C74766 /* StartFactory.swift */; };
@@ -77,6 +82,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		0111C5FE224D7317005E8AF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0132CDD6222C8FBE00457CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0132CDDD222C8FBE00457CD5;
+			remoteInfo = FocusOn;
+		};
+		015D3C13230355A600B5B2CE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0132CDD6222C8FBE00457CD5 /* Project object */;
 			proxyType = 1;
@@ -115,6 +127,11 @@
 		0152F29722BCBC1100F98055 /* CompletionBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionBlockView.swift; sourceTree = "<group>"; };
 		0152F29922BCBC2400F98055 /* CompletionBlockView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompletionBlockView.xib; sourceTree = "<group>"; };
 		0152F29C22BCDC6C00F98055 /* SlideInTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransitionAnimator.swift; sourceTree = "<group>"; };
+		015D3C042303498100B5B2CE /* CoreDataUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUnitTests.swift; sourceTree = "<group>"; };
+		015D3C07230349FA00B5B2CE /* XCTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCase.swift; sourceTree = "<group>"; };
+		015D3C0E230355A600B5B2CE /* FocusOnUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FocusOnUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		015D3C10230355A600B5B2CE /* FocusOnUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusOnUITests.swift; sourceTree = "<group>"; };
+		015D3C12230355A600B5B2CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		015F66102271FC480030E88D /* AAOptionsConstructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AAOptionsConstructor.swift; sourceTree = "<group>"; };
 		015F66112271FC480030E88D /* AAChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AAChartView.swift; sourceTree = "<group>"; };
 		015F66122271FC480030E88D /* AAChartModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AAChartModel.swift; sourceTree = "<group>"; };
@@ -144,6 +161,8 @@
 		01AAAC9B22BBC24D00A5E07E /* TaskCheckButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCheckButtonView.xib; sourceTree = "<group>"; };
 		01AAAC9D22BBEF5D00A5E07E /* TaskBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskBlockView.swift; sourceTree = "<group>"; };
 		01AAAC9F22BBEF6800A5E07E /* TaskBlockView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskBlockView.xib; sourceTree = "<group>"; };
+		01BD8BAF2305BFC30085C700 /* ViewControllerNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerNames.swift; sourceTree = "<group>"; };
+		01D11F1C2306F38C000F0E1E /* CABasicAnimation+Creators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CABasicAnimation+Creators.swift"; sourceTree = "<group>"; };
 		01D90BC122EA433B00094533 /* AnimatedMaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnimatedMaskView.xib; sourceTree = "<group>"; };
 		01D90BC322EA455800094533 /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
 		01E4107E22353F2E00C74766 /* StartFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartFactory.swift; sourceTree = "<group>"; };
@@ -173,6 +192,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		015D3C0B230355A600B5B2CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -186,7 +212,8 @@
 		0111C5FA224D7317005E8AF7 /* FocusOnUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				0111C603224D7636005E8AF7 /* TodayViewModelUnitTest.swift */,
+				015D3C0923034B3500B5B2CE /* TestCases */,
+				015D3C06230349E600B5B2CE /* Extension */,
 				0111C5FD224D7317005E8AF7 /* Info.plist */,
 			);
 			path = FocusOnUnitTests;
@@ -212,6 +239,7 @@
 			children = (
 				0132CDE0222C8FBE00457CD5 /* FocusOn */,
 				0111C5FA224D7317005E8AF7 /* FocusOnUnitTests */,
+				015D3C0F230355A600B5B2CE /* FocusOnUITests */,
 				0132CDDF222C8FBE00457CD5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -221,6 +249,7 @@
 			children = (
 				0132CDDE222C8FBE00457CD5 /* FocusOn.app */,
 				0111C5F9224D7317005E8AF7 /* FocusOnUnitTests.xctest */,
+				015D3C0E230355A600B5B2CE /* FocusOnUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -236,7 +265,6 @@
 				0132CDE1222C8FBE00457CD5 /* AppDelegate.swift */,
 				011F8B3722933489005CDB82 /* Assets.xcassets */,
 				0132CDED222C8FC000457CD5 /* Info.plist */,
-				01E4107D22353E1F00C74766 /* NavTabController */,
 				01FFB5AD222E7E8D00EAEB59 /* Modules */,
 			);
 			path = FocusOn;
@@ -245,10 +273,10 @@
 		013F367022E4D00800E12927 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				013F367122E4D02A00E12927 /* AnimatedMaskView.swift */,
-				01D90BC122EA433B00094533 /* AnimatedMaskView.xib */,
-				013F367322E4D77D00E12927 /* AnimatedLabelView.swift */,
-				013F367522E4D78900E12927 /* AnimatedLabelView.xib */,
+				01A7435722C3E07800E1126C /* GoalBlockView.swift */,
+				01A7435922C3E08800E1126C /* GoalBlockView.xib */,
+				0152F29722BCBC1100F98055 /* CompletionBlockView.swift */,
+				0152F29922BCBC2400F98055 /* CompletionBlockView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -258,6 +286,7 @@
 			children = (
 				013F367722E4F6EA00E12927 /* InitialAnimationType.swift */,
 				013F367A22E4FBB600E12927 /* InitialAnimationStage.swift */,
+				01BD8BAF2305BFC30085C700 /* ViewControllerNames.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -281,6 +310,8 @@
 		014B0C6A22E0C3E600EDDB0D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				01BD8BAA2305B12E0085C700 /* History */,
+				01BD8BAB2305B1350085C700 /* Progress */,
 				014B0C6B22E0C3ED00EDDB0D /* Today */,
 				01E410822235451B00C74766 /* TodayVC.storyboard */,
 			);
@@ -319,16 +350,35 @@
 				013F367C22E4FE4700E12927 /* UIView+animations.swift */,
 				011F8B3322932370005CDB82 /* UIView+effects.swift */,
 				01D90BC322EA455800094533 /* CGRect.swift */,
+				01D11F1C2306F38C000F0E1E /* CABasicAnimation+Creators.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		0152F29B22BCDC4B00F98055 /* TransitionAnimator */ = {
+		015D3C06230349E600B5B2CE /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				0152F29C22BCDC6C00F98055 /* SlideInTransitionAnimator.swift */,
+				015D3C07230349FA00B5B2CE /* XCTestCase.swift */,
 			);
-			path = TransitionAnimator;
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		015D3C0923034B3500B5B2CE /* TestCases */ = {
+			isa = PBXGroup;
+			children = (
+				015D3C042303498100B5B2CE /* CoreDataUnitTests.swift */,
+				0111C603224D7636005E8AF7 /* TodayViewModelUnitTest.swift */,
+			);
+			path = TestCases;
+			sourceTree = "<group>";
+		};
+		015D3C0F230355A600B5B2CE /* FocusOnUITests */ = {
+			isa = PBXGroup;
+			children = (
+				015D3C10230355A600B5B2CE /* FocusOnUITests.swift */,
+				015D3C12230355A600B5B2CE /* Info.plist */,
+			);
+			path = FocusOnUITests;
 			sourceTree = "<group>";
 		};
 		015F660E2271FC480030E88D /* AAInfographics */ = {
@@ -376,6 +426,10 @@
 		017E551E223A6F3800F7E9F6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				013F367122E4D02A00E12927 /* AnimatedMaskView.swift */,
+				01D90BC122EA433B00094533 /* AnimatedMaskView.xib */,
+				013F367322E4D77D00E12927 /* AnimatedLabelView.swift */,
+				013F367522E4D78900E12927 /* AnimatedLabelView.xib */,
 				017E551F223A6F5000F7E9F6 /* CustomCheckButton.swift */,
 				011F8B3922933C44005CDB82 /* CompletionView.swift */,
 				011F8B3B22933C8F005CDB82 /* CompletionView.xib */,
@@ -383,10 +437,6 @@
 				01AAAC9B22BBC24D00A5E07E /* TaskCheckButtonView.xib */,
 				01AAAC9D22BBEF5D00A5E07E /* TaskBlockView.swift */,
 				01AAAC9F22BBEF6800A5E07E /* TaskBlockView.xib */,
-				0152F29722BCBC1100F98055 /* CompletionBlockView.swift */,
-				0152F29922BCBC2400F98055 /* CompletionBlockView.xib */,
-				01A7435722C3E07800E1126C /* GoalBlockView.swift */,
-				01A7435922C3E08800E1126C /* GoalBlockView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -443,6 +493,7 @@
 		01BB9FDA22DF9BC900AE1DE7 /* NavigationFlow */ = {
 			isa = PBXGroup;
 			children = (
+				01D11F1B2306EDA6000F0E1E /* TransitionAnimator */,
 				01BB9FD922DF9B7500AE1DE7 /* TabBar */,
 				01E4107E22353F2E00C74766 /* StartFactory.swift */,
 			);
@@ -463,12 +514,51 @@
 			path = "NEW -------------------------------";
 			sourceTree = "<group>";
 		};
-		01E4107D22353E1F00C74766 /* NavTabController */ = {
+		01BD8BAA2305B12E0085C700 /* History */ = {
 			isa = PBXGroup;
 			children = (
-				0152F29B22BCDC4B00F98055 /* TransitionAnimator */,
+				01BD8BAC2305B16F0085C700 /* View */,
+				01BD8BAD2305B1740085C700 /* ViewController */,
+				01BD8BAE2305B17D0085C700 /* ViewModel */,
 			);
-			path = NavTabController;
+			path = History;
+			sourceTree = "<group>";
+		};
+		01BD8BAB2305B1350085C700 /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Progress;
+			sourceTree = "<group>";
+		};
+		01BD8BAC2305B16F0085C700 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		01BD8BAD2305B1740085C700 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				012D2364222DD9300073FA57 /* HistoryViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		01BD8BAE2305B17D0085C700 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		01D11F1B2306EDA6000F0E1E /* TransitionAnimator */ = {
+			isa = PBXGroup;
+			children = (
+				0152F29C22BCDC6C00F98055 /* SlideInTransitionAnimator.swift */,
+			);
+			path = TransitionAnimator;
 			sourceTree = "<group>";
 		};
 		01E41086223567D800C74766 /* Model */ = {
@@ -528,7 +618,6 @@
 		01FFB5B4222E849900EAEB59 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				012D2364222DD9300073FA57 /* HistoryViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -610,13 +699,31 @@
 			productReference = 0132CDDE222C8FBE00457CD5 /* FocusOn.app */;
 			productType = "com.apple.product-type.application";
 		};
+		015D3C0D230355A600B5B2CE /* FocusOnUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 015D3C15230355A600B5B2CE /* Build configuration list for PBXNativeTarget "FocusOnUITests" */;
+			buildPhases = (
+				015D3C0A230355A600B5B2CE /* Sources */,
+				015D3C0B230355A600B5B2CE /* Frameworks */,
+				015D3C0C230355A600B5B2CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				015D3C14230355A600B5B2CE /* PBXTargetDependency */,
+			);
+			name = FocusOnUITests;
+			productName = FocusOnUITests;
+			productReference = 015D3C0E230355A600B5B2CE /* FocusOnUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		0132CDD6222C8FBE00457CD5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Rafal Padberg";
 				TargetAttributes = {
@@ -626,6 +733,10 @@
 					};
 					0132CDDD222C8FBE00457CD5 = {
 						CreatedOnToolsVersion = 10.1;
+					};
+					015D3C0D230355A600B5B2CE = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 0132CDDD222C8FBE00457CD5;
 					};
 				};
 			};
@@ -644,6 +755,7 @@
 			targets = (
 				0132CDDD222C8FBE00457CD5 /* FocusOn */,
 				0111C5F8224D7317005E8AF7 /* FocusOnUnitTests */,
+				015D3C0D230355A600B5B2CE /* FocusOnUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -678,6 +790,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		015D3C0C230355A600B5B2CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -685,6 +804,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				015D3C052303498100B5B2CE /* CoreDataUnitTests.swift in Sources */,
+				015D3C08230349FA00B5B2CE /* XCTestCase.swift in Sources */,
 				0111C604224D7636005E8AF7 /* TodayViewModelUnitTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -721,6 +842,7 @@
 				015F661D2271FC480030E88D /* AAChartView.swift in Sources */,
 				01E4108A223567FC00C74766 /* Task.swift in Sources */,
 				019B6B63227B684200716EBE /* CustomCollectionViewDelegate.swift in Sources */,
+				01BD8BB02305BFC30085C700 /* ViewControllerNames.swift in Sources */,
 				0152F29D22BCDC6C00F98055 /* SlideInTransitionAnimator.swift in Sources */,
 				01E41088223567EE00C74766 /* Goal.swift in Sources */,
 				013F367422E4D77D00E12927 /* AnimatedLabelView.swift in Sources */,
@@ -735,6 +857,7 @@
 				014B0C7122E0E57C00EDDB0D /* NavigationController.swift in Sources */,
 				0188CC632269E47D0035E8BB /* CustomTableView.swift in Sources */,
 				012D2365222DD9300073FA57 /* HistoryViewController.swift in Sources */,
+				01D11F1D2306F38C000F0E1E /* CABasicAnimation+Creators.swift in Sources */,
 				019B6B5C227B497500716EBE /* CustomCollectionView.swift in Sources */,
 				019B6B5E227B4DCD00716EBE /* CustomCollectionViewCell.swift in Sources */,
 				011F8B3422932370005CDB82 /* UIView+effects.swift in Sources */,
@@ -746,6 +869,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		015D3C0A230355A600B5B2CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				015D3C11230355A600B5B2CE /* FocusOnUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -753,6 +884,11 @@
 			isa = PBXTargetDependency;
 			target = 0132CDDD222C8FBE00457CD5 /* FocusOn */;
 			targetProxy = 0111C5FE224D7317005E8AF7 /* PBXContainerItemProxy */;
+		};
+		015D3C14230355A600B5B2CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0132CDDD222C8FBE00457CD5 /* FocusOn */;
+			targetProxy = 015D3C13230355A600B5B2CE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -953,6 +1089,46 @@
 			};
 			name = Release;
 		};
+		015D3C16230355A600B5B2CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7KK37S6N26;
+				INFOPLIST_FILE = FocusOnUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.RaV.FocusOnUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FocusOn;
+			};
+			name = Debug;
+		};
+		015D3C17230355A600B5B2CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7KK37S6N26;
+				INFOPLIST_FILE = FocusOnUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.RaV.FocusOnUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FocusOn;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -979,6 +1155,15 @@
 			buildConfigurations = (
 				0132CDF1222C8FC000457CD5 /* Debug */,
 				0132CDF2222C8FC000457CD5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		015D3C15230355A600B5B2CE /* Build configuration list for PBXNativeTarget "FocusOnUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				015D3C16230355A600B5B2CE /* Debug */,
+				015D3C17230355A600B5B2CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

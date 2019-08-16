@@ -11,8 +11,8 @@ import Foundation
 class Settings {
     
     struct AnimationDurations {
-        static let tabBar: Double = 0.6
         
+        static let tabBar: Double = 0.4
         static let viewAppearing: Double = 0.8
     }
 }

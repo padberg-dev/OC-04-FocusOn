@@ -24,10 +24,18 @@ class CustomTabBarItemView: UIView {
         tabBar.addSimpleShadow(color: UIColor.Main.rosin, radius: 3.0, opacity: 0.3, offset: .zero)
     }
     
-    func animateTo(tabBarId: Int) {
+    func animateTo(tabBarId: Int, delayBy: Double = 0) {
         
-        UIView.animate(withDuration: Settings.AnimationDurations.tabBar) {
-            self.frame.origin.x = self.itemWidth * CGFloat(tabBarId) + 1
+        if delayBy > 0 {
+            
+            UIView.animate(withDuration: Settings.AnimationDurations.tabBar, delay: delayBy, options: .curveEaseIn, animations: {
+                self.frame.origin.x = self.itemWidth * CGFloat(tabBarId) + 1
+            }, completion: nil)
+        } else {
+            
+            UIView.animate(withDuration: Settings.AnimationDurations.tabBar) {
+                self.frame.origin.x = self.itemWidth * CGFloat(tabBarId) + 1
+            }
         }
     }
 }

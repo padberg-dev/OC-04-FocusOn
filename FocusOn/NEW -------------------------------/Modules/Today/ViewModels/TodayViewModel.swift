@@ -44,7 +44,7 @@ class TodayViewModel {
         
         updateGoalImage()
         cleanOverriddenTasks()
-        bindingDelegate?.updateTaskWith(imageName: goal.tasks[index].completionImageName, taskId: index, completion: goal.tasks[index].completion)
+        bindingDelegate?.changeTask(completion: goal.tasks[index].completion, forTaskId: index)
     }
     
     func changeGoalCompletion() {
@@ -60,7 +60,7 @@ class TodayViewModel {
         }
         updateGoalImage()
         
-        bindingDelegate?.updateAllTasksWith(imageNames: getButtonsImageNames(), completions: getTasksCompletions())
+        bindingDelegate?.changeAllTask(completions: getTasksCompletions())
     }
     
     func changeGoalToNYA() {
@@ -134,6 +134,8 @@ class TodayViewModel {
         }
         blockSaving = false
     }
+    
+    
     
     // ---------------
     

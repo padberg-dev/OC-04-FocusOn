@@ -9,6 +9,7 @@
 import Foundation
 
 enum InitialAnimationType {
+    
     case createNewGoal
     case continueWithOldGoal
 }

@@ -65,7 +65,10 @@ class CustomCollectionView: UICollectionView, UICollectionViewDataSource, UIColl
     // todo: Case when switching from december 2018 to december 2019 it should be impossible or change to whole year
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let index = indexPath.item
+        print("highlited cell: \(highlightedCell) - \(data[index])")
         if index != highlightedCell && isDataAvailable[index] == true {
+            print("THROUGH")
+            print("*******")
             highlightCell(withIndex: indexPath.item)
             let number = type == .monthsCell ? index : Int(data[index])!
             customDelegate?.cellWasSelected(withIndex: number, cellType: type)

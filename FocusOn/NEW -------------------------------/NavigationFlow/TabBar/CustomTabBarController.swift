@@ -14,7 +14,10 @@ class CustomTabBarController: UITabBarController {
     
     private let selectedTabView = CustomTabBarItemView()
     private let transitionAnimator = SlideInTransitionAnimator()
-    private let tabBarData = ["history", "today", "progress"]
+    private let tabBarData: [String] = ["history", "today", "progress"]
+    private let tabBarVCs: [ViewControllerNames] = [.history, .today, .progress]
+    
+    private var shouldDelayTabBarAnimation: Bool = false
     
     // MARK:- View Controller's Life Cycle
     
@@ -86,16 +89,31 @@ extension CustomTabBarController: UITabBarControllerDelegate {
     
     // Fires AFTER viewController's viewDidLoad()
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        selectedTabView.animateTo(tabBarId: selectedIndex)
+        
+        if shouldDelayTabBarAnimation {
+            selectedTabView.animateTo(tabBarId: selectedIndex, delayBy: 1.4)
+            shouldDelayTabBarAnimation = false
+        } else {
+            selectedTabView.animateTo(tabBarId: selectedIndex)
+        }
     }
     
     func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
         if let fromIndex = viewControllers?.firstIndex(of: fromVC) {
+            
             if let toIndex = viewControllers?.firstIndex(of: toVC) {
-                if transitionAnimator.isFirstTime && fromIndex == 1 && toIndex == 0 {
-                    transitionAnimator.duration = 10.0
+                
+                if tabBarVCs[fromIndex] == .today && tabBarVCs[toIndex] == .history {
+                    
+                    if let vc = toVC as? HistoryViewController {
+                        
+                        transitionAnimator.shouldAnimateSliding = vc.shouldAnimateSliding
+                        transitionAnimator.shouldSlideToSelectedCell = vc.isFirstCellSelected
+                        shouldDelayTabBarAnimation = vc.shouldAnimateSliding
+                    }
                 }
-                transitionAnimator.toTheLeft = fromIndex > toIndex
+                transitionAnimator.isSlidingToTheLeft = fromIndex > toIndex
             }
         }
         return transitionAnimator

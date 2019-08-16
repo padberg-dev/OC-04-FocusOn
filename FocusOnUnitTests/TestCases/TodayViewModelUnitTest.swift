@@ -74,12 +74,4 @@ class TodayViewModelUnitTest: XCTestCase {
         }
         XCTAssert(todayVM.goal.completion == .twoThirds, "Goal should be 2/3 completed")
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

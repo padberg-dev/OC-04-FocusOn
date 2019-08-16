@@ -11,10 +11,9 @@ import Foundation
 enum InitialAnimationStage {
     
     case none
-    
     case first
     case second
     case third
-    
     case update
+    case finished
 }

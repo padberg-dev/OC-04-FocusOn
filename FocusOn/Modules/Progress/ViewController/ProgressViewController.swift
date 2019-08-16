@@ -80,6 +80,7 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
                 monthsAvilablility.append(!$0.isEmpty)
             }
         }
+        if !monthsAvilablility[activeMonth] { activeMonth = 0 }
         monthsCollectionView.data = monthsValues
         monthsCollectionView.isDataAvailable = monthsAvilablility
         monthsCollectionView.type = .monthsCell

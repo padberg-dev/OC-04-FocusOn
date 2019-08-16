@@ -10,6 +10,8 @@ import UIKit
 
 class TaskBlockView: UIView {
     
+    // MARK:- Outlets
+    
     @IBOutlet var contentView: UIView!
     
     @IBOutlet weak var insideView: UIView!
@@ -22,7 +24,11 @@ class TaskBlockView: UIView {
     @IBOutlet weak var topLine: UIView!
     @IBOutlet weak var bottomLine: UIView!
     
+    // MARK:- Public Properties
+    
     var parentConnection: TodayViewController!
+    
+    // MARK:- Private Properties
     
     private var animationDuration: Double = 0.4
     
@@ -41,6 +47,14 @@ class TaskBlockView: UIView {
     }
     
     // MARK:- Public Methods
+    
+    func changeTask(title: String? = nil, completion: Task.CompletionProgress, immediately: Bool = true) {
+        
+        let isSelected = completion != .notCompleted
+        
+        taskTextField.text = title ?? taskTextField.text
+        checkBox.set(selected: isSelected, immediately: immediately)
+    }
     
     func turn() {
         let transform3 = transformForFraction(2, ofWidth: 30)

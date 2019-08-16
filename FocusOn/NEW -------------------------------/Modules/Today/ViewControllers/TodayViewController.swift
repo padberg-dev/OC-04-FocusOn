@@ -13,19 +13,37 @@ class TodayViewController: UIViewController {
     // MARK:- Outlets
     
     @IBOutlet weak var scrollView: UIScrollView!
-    
-    @IBOutlet weak var goalLabelView: AnimatedLabelView!
-    @IBOutlet weak var tasksLabelView: AnimatedLabelView!
     @IBOutlet weak var messageView: AnimatedMaskView!
-    
+    @IBOutlet weak var goalLabelView: AnimatedLabelView!
     @IBOutlet weak var goalBlock: GoalBlockView!
     @IBOutlet weak var completionBlock: CompletionBlockView!
+    @IBOutlet weak var tasksLabelView: AnimatedLabelView!
     
-    // MARK:- Public Properties
+    @IBOutlet var taskBlocks: [TaskBlockView]!
+    
+    // MARK:- Private Properties
     
     private var todayVM: TodayViewModel = TodayViewModel()
+    
     private var currentInitialAnimationStage: InitialAnimationStage = .none
     private var activeTaskBlock: TaskBlockView?
+    
+    // MARK: Public Methods
+    
+    func didFinishCompletionBlockAnimation() {
+        
+        switch currentInitialAnimationStage {
+        case .second:
+            animateInitialGoal(animationStage: .third)
+        case .update:
+            animateUIAppearing()
+            tabBarController?.tabBar.animateAppearing()
+        case .finished:
+            tabBarController?.tabBar.animateAppearing()
+        default:
+            break
+        }
+    }
     
     // MARK:- View Controller Life Cycle
     
@@ -51,21 +69,6 @@ class TodayViewController: UIViewController {
         todayVM.checkLastGoalStatus()
     }
     
-    // MARK: Public Methods
-    
-    func didFinishCompletionBlockAnimation() {
-        
-        switch currentInitialAnimationStage {
-        case .second:
-            animateInitialGoal(animationStage: .third)
-        case .update:
-            print("START APPEARING")
-            animateUIAppearing()
-        default:
-            break
-        }
-    }
-    
     // MARK:- PRIVATE
     // MARK:- Custom Methods
     
@@ -73,12 +76,14 @@ class TodayViewController: UIViewController {
         
         todayVM.bindingDelegate = self
         
-        taskBlocks.forEach { $0.config(parent: self) }
         goalBlock.config(parent: self)
         completionBlock.config(parent: self)
+        taskBlocks.forEach { $0.config(parent: self) }
     }
     
     private func setupUI() {
+        
+        tabBarController?.tabBar.alpha = 0
         
         goalLabelView.assign(text: "Goal for the day to focus on:")
         tasksLabelView.assign(text: "3 tasks to achieve that goal:", font: .light)
@@ -149,12 +154,18 @@ class TodayViewController: UIViewController {
         case .third:
             tasksLabelView.show(animated: true)
             
-            for (i, taskBlock) in taskBlocks.enumerated() { taskBlock.turnBack(delayBy: i) }
+            for (i, taskBlock) in taskBlocks.enumerated() {
+                taskBlock.turnBack(delayBy: i)
+                if i == 2 {
+                    currentInitialAnimationStage = .finished
+                    didFinishCompletionBlockAnimation()
+                }
+            }
             currentInitialAnimationStage = .none
         case .update:
             currentInitialAnimationStage = .update
             completionBlock.animateStart()
-        case .none:
+        default:
             break
         }
     }
@@ -168,7 +179,14 @@ class TodayViewController: UIViewController {
         taskBlocks.forEach { $0.animateAppearing() }
     }
     
-    
+    func changeCompletion() {
+        
+        if validateTasks() {
+            todayVM.changeGoalCompletion()
+        } else {
+            self.messageView.show(with: .notAllTasksDefined)
+        }
+    }
     
     
     
@@ -180,7 +198,6 @@ class TodayViewController: UIViewController {
     @IBOutlet weak var topTaskSpaceConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomTaskSpaceConstraint: NSLayoutConstraint!
     
-    @IBOutlet var taskBlocks: [TaskBlockView]!
     
     @IBOutlet weak var todayView: UIView!
     
@@ -240,15 +257,6 @@ class TodayViewController: UIViewController {
         UIView.animate(withDuration: 0.6) {
             
             self.view.layoutIfNeeded()
-        }
-    }
-    
-    func changeCompletion()
-    {
-        if validateTasks() {
-            todayVM.changeGoalCompletion()
-        } else {
-            self.messageView.show(with: .notAllTasksDefined)
         }
     }
 }
@@ -322,14 +330,12 @@ extension TodayViewController: TodayBindingDelegate {
     
     func updateWholeUI(with goal: Goal, animationType: InitialAnimationType) {
         
-        goalBlock.setCompletion(to: goal.completion)
-        goalBlock.changeLabels(title: goal.fullDescription, date: goal.date.getDateString())
+        goalBlock.update(with: goal)
         completionBlock.completionView.changeTo(progress: goal.completion)
         
         for i in 0 ..< 3 {
-            taskBlocks[i].taskTextField.text = goal.tasks[i].fullDescription
-            let selected = goal.tasks[i].completion != .notCompleted
-            taskBlocks[i].checkBox.set(selected: selected, immediately: true)
+            
+            taskBlocks[i].changeTask(title: goal.fullDescription, completion: goal.tasks[i].completion)
         }
         
         switch animationType {
@@ -340,6 +346,19 @@ extension TodayViewController: TodayBindingDelegate {
             animateInitialGoal(animationStage: .first)
         }
     }
+    
+    func changeTask(completion: Task.CompletionProgress, forTaskId taskId: Int) {
+        
+        taskBlocks[taskId].changeTask(completion: completion, immediately: false)
+    }
+    
+    func changeAllTask(completions: [Task.CompletionProgress]) {
+        
+        for i in 0 ..< 3 {
+            
+            taskBlocks[i].changeTask(completion: completions[i])
+        }
+    }    
     
     // ------------------------------
     
@@ -353,24 +372,11 @@ extension TodayViewController: TodayBindingDelegate {
     
     func updateGoalWith(imageName: String, completion: Goal.CompletionProgress) {
         completionBlock.completionView.changeTo(progress: completion)
-        goalBlock.setCompletion(to: completion)
         
         if completion == .completed {
             fireAnimation()
         } else {
             fireBackAnimation()
-        }
-    }
-    
-    func updateTaskWith(imageName: String, taskId: Int, completion: Task.CompletionProgress) {
-        let selected = completion != .notCompleted
-        taskBlocks[taskId].checkBox.set(selected: selected)
-    }
-    
-    func updateAllTasksWith(imageNames: [String], completions: [Task.CompletionProgress]) {
-        for i in 0 ..< 3 {
-            let selected = completions[i] != .notCompleted
-            taskBlocks[i].checkBox.set(selected: selected)
         }
     }
 }

@@ -11,6 +11,7 @@ import UIKit
 extension CGFloat {
     
     func returnInRange(minValue: CGFloat, maxValue: CGFloat) -> CGFloat {
+        
         return Swift.min(maxValue, Swift.max(minValue, self))
     }
 }

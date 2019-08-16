@@ -56,11 +56,11 @@
                             <constraint firstAttribute="height" constant="52" id="aH7-3O-271"/>
                         </constraints>
                     </imageView>
-                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ap2-6z-MYi" customClass="TaskBlockView" customModule="FocusOn" customModuleProvider="target">
-                        <rect key="frame" x="30" y="116" width="484" height="29"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7zE-ui-KKy" customClass="TaskBlockView" customModule="FocusOn" customModuleProvider="target">
+                        <rect key="frame" x="30" y="59" width="484" height="29"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="29" id="2GA-iO-1Zq"/>
+                            <constraint firstAttribute="height" constant="29" id="XPw-mB-FPY"/>
                         </constraints>
                     </view>
                     <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GvJ-hO-Xwp" customClass="TaskBlockView" customModule="FocusOn" customModuleProvider="target">
@@ -70,11 +70,11 @@
                             <constraint firstAttribute="height" constant="30" id="YmP-bF-aKW"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7zE-ui-KKy" customClass="TaskBlockView" customModule="FocusOn" customModuleProvider="target">
-                        <rect key="frame" x="30" y="59" width="484" height="29"/>
+                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ap2-6z-MYi" customClass="TaskBlockView" customModule="FocusOn" customModuleProvider="target">
+                        <rect key="frame" x="30" y="116" width="484" height="29"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="29" id="XPw-mB-FPY"/>
+                            <constraint firstAttribute="height" constant="29" id="2GA-iO-1Zq"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xRJ-xp-J2Q" customClass="GoalBlockView" customModule="FocusOn" customModuleProvider="target">

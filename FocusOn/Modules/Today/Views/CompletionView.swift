@@ -10,6 +10,15 @@ import UIKit
 
 class CompletionView: UIView {
     
+    enum CompletionSign {
+        
+        case none
+        case success
+        case fail
+    }
+    
+    // MARK:- Outlets
+    
     @IBOutlet var contentView: UIView!
     
     @IBOutlet weak var topView: UIView!
@@ -17,13 +26,16 @@ class CompletionView: UIView {
     @IBOutlet weak var oneThirdCover: UIView!
     @IBOutlet weak var pathLayer: UIView!
     
-    var animationDuration: Double = 0.4
+    // MARK:- Private Properties
     
     private var oneThirds: [UIView] = []
-    private var lastRotation: CGFloat = 0
-    private var currentRotation: CGFloat = 0
     
-    private var sign: Int = 0
+    private var animationDuration: Double = 0.4
+    private var currentRotation: CGFloat = 0
+    private var lastRotation: CGFloat = 0
+    private var completionSign: CompletionSign = .none
+    
+    var lastFail: Bool = false
     
     // MARK:- Initializers
     
@@ -43,12 +55,15 @@ class CompletionView: UIView {
         setupUI()
     }
     
-    // MARK:- Private Methods
+    // MARK:- Public Methods
     
     func changeTo(progress: Goal.CompletionProgress) {
+        
         lastRotation = currentRotation
-        sign = 0
+        completionSign = .none
+        
         switch progress {
+            
         case .notCompleted:
             currentRotation = 0
         case .oneThird:
@@ -57,9 +72,9 @@ class CompletionView: UIView {
             currentRotation = 240
         case .completed:
             currentRotation = 360
-            sign = 1
+            completionSign = .success
         case .notYetAchieved:
-            sign = 2
+            completionSign = .fail
             break
         }
         animateSwitchChange()
@@ -69,70 +84,92 @@ class CompletionView: UIView {
     // MARK:- Animation Methods
     
     private func animateSwitchChange() {
-        let halfRotation = (currentRotation + lastRotation) / 2
-        let dRotation = abs(currentRotation - lastRotation)
-        if halfRotation == 0 { return }
-        if dRotation < 180 {
-            animateCompletionChange()
-            return
-        }
         
-        UIView.animate(withDuration: 2 * animationDuration / 3, animations: {
-            self.changeRotations(to: halfRotation)
-        }) { [weak self] _ in
-            self?.oneThirdCover.alpha = self!.currentRotation >= 240 ? 0 : 1
-            UIView.animate(withDuration: 2 * self!.animationDuration / 3, animations: {
-                self?.changeRotations(to: self!.currentRotation)
-            }, completion: { _ in
-                self?.oneThirdCover.alpha = self!.currentRotation >= 240 ? 0 : 1
-                self?.addSign()
-            })
-        }
-    }
-    
-    var lastFail: Bool = false
-    
-    func addSign() {
-        print("SIGN")
-        pathLayer.layer.sublayers?.last?.removeFromSuperlayer()
-        if lastFail {
-            pathLayer.layer.sublayers?.last?.removeFromSuperlayer()
-            pathLayer.layer.sublayers?.last?.removeFromSuperlayer()
-            lastFail = false
-        }
-        if sign == 1 {
-            print("DRAW CHECK")
-            drawCheckPath()
-        }
-        if sign == 2 {
-            print("DRAW FAIL")
-            drawFailPath()
-            lastFail = true
-        }
-    }
-    
-    private func animateCompletionChange() {
+        let halfRotation = (currentRotation + lastRotation) / 2
+        if halfRotation == 0 { return }
+        
         let dRotation = abs(currentRotation - lastRotation)
+        if dRotation < 180 {
+            
+            animateChangeInOneStep()
+        } else {
+            
+            animateChangeInTwoSteps(halfRotation: halfRotation)
+        }
+    }
+    
+    private func animateChangeInOneStep() {
         
         UIView.animate(withDuration: animationDuration, animations: {
-            self.changeRotations(to: self.currentRotation)
+            
+            self.transformAllThirdsView()
         }) { [weak self] _ in
+            
             self?.oneThirdCover.alpha = self!.currentRotation >= 240 ? 0 : 1
             self?.addSign()
         }
     }
     
+    private func animateChangeInTwoSteps(halfRotation: CGFloat) {
+        
+        let duration = 2 * animationDuration / 3
+        let isFullRotation = currentRotation >= 240
+        
+        UIView.animate(withDuration: duration, animations: {
+            
+            self.transformAllThirdsView(toResembleRotationOf: halfRotation)
+        }) { [weak self] _ in
+            
+            self?.oneThirdCover.alpha = isFullRotation ? 0 : 1
+            
+            UIView.animate(withDuration: duration, animations: {
+                
+                self?.transformAllThirdsView()
+            }, completion: { _ in
+                
+                self?.oneThirdCover.alpha = isFullRotation ? 0 : 1
+                self?.addSign()
+            })
+        }
+    }
+    
     // MARK:- Custom Methods
     
+    private func transformAllThirdsView(toResembleRotationOf rotation: CGFloat? = nil) {
+        
+        for i in 0 ..< 3 {
+            
+            oneThirds[i].transform = CGAffineTransform(rotationAngle: getRotationOfView(positionsBefore: CGFloat(i), with: rotation ?? currentRotation) * CGFloat.pi / 180)
+        }
+    }
+    
     private func getRotationOfView(positionsBefore: CGFloat, with rotation: CGFloat) -> CGFloat {
+        
         return rotation.returnInRange(minValue: 0, maxValue: 360 - positionsBefore * 120)
     }
     
-    private func changeRotations(to rotation: CGFloat) {
-        for i in 0 ..< 3 {
-            oneThirds[i].transform = CGAffineTransform(rotationAngle: getRotationOfView(positionsBefore: CGFloat(i), with: rotation) * CGFloat.pi / 180)
+    func addSign() {
+        
+        pathLayer.layer.sublayers?.last?.removeFromSuperlayer()
+        
+        if lastFail {
+            
+            pathLayer.layer.sublayers?.last?.removeFromSuperlayer()
+            pathLayer.layer.sublayers?.last?.removeFromSuperlayer()
+            lastFail = false
+        }
+        if completionSign == .success {
+            
+            drawCheckPath()
+        }
+        if completionSign == .fail {
+            
+            drawFailPath()
+            lastFail = true
         }
     }
+    
+    // MARK:- Path & Layer Drawing Methods
     
     private func maskToOneThirdFraction(_ view: UIView, isInitialThird: Bool = false) {
         
@@ -230,9 +267,11 @@ class CompletionView: UIView {
         
     }
     
+    // MARK:- PRIVATE
+    // MARK:- Custom Methods
+    
     private func setupUI() {
         
-        backgroundColor = .clear
         oneThirdCover.backgroundColor = UIColor.Main.berkshireLace
         insideView.backgroundColor = UIColor.Main.berkshireLace
         topView.backgroundColor = UIColor.Main.atlanticDeep
@@ -241,12 +280,13 @@ class CompletionView: UIView {
         topView.layer.cornerRadius = topView.bounds.height / 2
         
         for _ in 0 ..< 3 {
+            
             let view = UIView(frame: insideView.bounds)
             view.backgroundColor = UIColor.Main.atlanticDeep
+            
             insideView.insertSubview(view, at: 0)
             maskToOneThirdFraction(view)
             oneThirds.append(view)
-            print("ADD oneTHird")
         }
         maskToOneThirdFraction(oneThirdCover, isInitialThird: true)
     }
@@ -257,6 +297,7 @@ class CompletionView: UIView {
         
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        backgroundColor = .clear
         addSubview(contentView)
     }
 }

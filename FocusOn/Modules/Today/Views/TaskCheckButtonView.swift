@@ -16,7 +16,7 @@ class TaskCheckButtonView: UIView {
     @IBOutlet var pathView: UIView!
     @IBOutlet var checkButton: UIButton!
     
-    var parentConnection: TaskBlockView!
+    var parentConnection: TaskBlockView?
     
     private var distanceFromEdge: CGFloat = 2.0
     private var pathRadius: CGFloat = 8.0
@@ -60,16 +60,16 @@ class TaskCheckButtonView: UIView {
         isSelected = selected
         if immediately {
             checkLayer.strokeEnd = isSelected ? 1 : 0
-            parentConnection.activateTextField(isSelected: isSelected, immediately: immediately)
-            if isSelected || parentConnection.taskTextField.text != "" {
+            parentConnection?.activateTextField(isSelected: isSelected, immediately: immediately)
+            if isSelected || parentConnection?.taskTextField.text != "" {
                 pathView.layer.addSublayer(borderLayer)
                 isBorderOn = true
             }
         } else {
             animateCheck(isSelected: selected)
-            parentConnection.activateTextField(isSelected: isSelected)
+            parentConnection?.activateTextField(isSelected: isSelected)
         }
-        parentConnection.changeImage(toFilled: isSelected, immediate: immediately)
+        parentConnection?.changeImage(toFilled: isSelected, immediate: immediately)
     }
     
     func hide() {
@@ -242,9 +242,10 @@ class TaskCheckButtonView: UIView {
 
     @IBAction func buttonTapped(_ sender: UIButton) {
         print("Tapped \(isSelected)")
-        if parentConnection.validateTask() {
+        if parentConnection == nil { return }
+        if parentConnection!.validateTask() {
             set(selected: !isSelected)
-            parentConnection.parentConnection.taskButtonTapped(buttonTag: parentConnection.tag)
+            parentConnection?.parentConnection.taskButtonTapped(buttonTag: parentConnection!.tag)
         } else {
             print("No text in the Task-TextField BUTTON")
         }

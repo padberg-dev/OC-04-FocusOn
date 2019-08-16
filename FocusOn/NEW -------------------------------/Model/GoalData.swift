@@ -30,15 +30,7 @@ class GoalData: NSManagedObject {
         return nil
     }
     
-    
-    
-    
-    
-    
     // --------------------------------------
-    
-    
-    
     
     static func findGoalData(matchingFromDate date: Date, in context: NSManagedObjectContext) -> GoalData? {
         let dateFrom = Calendar(identifier: .gregorian).startOfDay(for: date)
@@ -162,5 +154,45 @@ class GoalData: NSManagedObject {
         number += taskCompletion2 ? 1 : 0
         number += taskCompletion3 ? 1 : 0
         return number
+    }
+    
+    static func deleteAllData() {
+        
+        var match: [GoalData] = []
+        let context = AppDelegate.context
+        
+        let request: NSFetchRequest<GoalData> = GoalData.fetchRequest()
+        do {
+            match = try context.fetch(request)
+        } catch {
+            print("DATABASE ERROR")
+        }
+        
+        match.forEach {
+            context.delete($0)
+        }
+        do {
+            try context.save()
+        } catch {
+            
+        }
+    }
+    
+    func loadData() -> [GoalData] {
+        var match: [GoalData] = []
+        let context = AppDelegate.context
+        
+        let firstOfMonth = Date.firstOfMonth()
+        
+        let request: NSFetchRequest<GoalData> = GoalData.fetchRequest()
+        let sorting = NSSortDescriptor(key: "date", ascending: true)
+        request.sortDescriptors = [sorting]
+        
+        do {
+            match = try context.fetch(request)
+        } catch {
+            print("DATABASE ERROR")
+        }
+        return match
     }
 }

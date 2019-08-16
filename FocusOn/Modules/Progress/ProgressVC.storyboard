@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QKU-iP-vVe">
-                                <rect key="frame" x="10" y="25" width="300" height="454.5"/>
+                                <rect key="frame" x="10" y="25" width="300" height="414.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Jr4-tk-Rj0">
@@ -111,7 +111,7 @@
                             <constraint firstItem="QKU-iP-vVe" firstAttribute="centerX" secondItem="vx1-dP-Ejv" secondAttribute="centerX" id="6Kr-17-7e5"/>
                             <constraint firstItem="0cM-6p-7PE" firstAttribute="bottom" secondItem="Jr4-tk-Rj0" secondAttribute="bottom" constant="4" id="8uB-cd-P5g"/>
                             <constraint firstItem="QKU-iP-vVe" firstAttribute="top" secondItem="0cM-6p-7PE" secondAttribute="top" constant="5" id="EoX-Vw-xHn"/>
-                            <constraint firstItem="QKU-iP-vVe" firstAttribute="height" secondItem="vx1-dP-Ejv" secondAttribute="height" multiplier="0.8" id="Has-so-uN4"/>
+                            <constraint firstItem="QKU-iP-vVe" firstAttribute="height" secondItem="vx1-dP-Ejv" secondAttribute="height" multiplier="0.73" id="Has-so-uN4"/>
                             <constraint firstItem="f0a-Xl-Wky" firstAttribute="trailing" secondItem="0cM-6p-7PE" secondAttribute="trailing" constant="30" id="KgD-LO-y09"/>
                             <constraint firstItem="jiE-jV-w1U" firstAttribute="top" secondItem="0cM-6p-7PE" secondAttribute="top" id="NMg-4N-ETr"/>
                             <constraint firstItem="app-gi-VfN" firstAttribute="centerX" secondItem="vx1-dP-Ejv" secondAttribute="centerX" id="Q9p-e4-08x"/>

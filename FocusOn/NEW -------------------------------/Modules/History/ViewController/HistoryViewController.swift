@@ -16,6 +16,19 @@ class HistoryViewController: UIViewController {
     
     var historyVM = HistoryViewModel()
     
+    var shouldAnimateSliding: Bool {
+        get {
+            let isScrolledToTop = tableView != nil ? tableView.contentOffset.y == 0 : true
+            return isScrolledToTop
+        }
+    }
+    var isFirstCellSelected: Bool {
+        get {
+            let isCellSelected = tableView != nil ? tableView.selectedCell == IndexPath(item: 0, section: 0) : false
+            return isCellSelected
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("VDL HISTORY")
@@ -24,7 +37,10 @@ class HistoryViewController: UIViewController {
         tableView.historyVM = historyVM
         tableView.setIndex()
         
+        tableView.parentConnection = self
+        
         tableView.sectionIndexColor = UIColor.Main.rosin
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

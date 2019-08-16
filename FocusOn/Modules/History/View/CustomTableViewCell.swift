@@ -25,6 +25,7 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet var taskBlocks: [TaskBlockView]!
     
     var cellIsSelected: Bool = false
+    var goal: GoalData!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,7 +34,7 @@ class CustomTableViewCell: UITableViewCell {
         selectionStyle = .none
         bottomConstraint.constant = 0
         
-//        gradientView.addHorizontalGradient(of: [UIColor.Main.berkshireLace.withAlphaComponent(0.4), UIColor.Main.berkshireLace])
+        gradientView.addHorizontalGradient(of: [UIColor.Main.berkshireLace.withAlphaComponent(0.4), UIColor.Main.berkshireLace])
         
         let gradient = CAGradientLayer()
         gradient.frame = gradientView.bounds
@@ -42,7 +43,7 @@ class CustomTableViewCell: UITableViewCell {
         gradient.endPoint = CGPoint(x: 0, y: 0)
         gradientView.layer.addSublayer(gradient)
         
-        gradientViewTop.backgroundColor = UIColor.Main.berkshireLace.withAlphaComponent(0.75)
+        gradientViewTop.backgroundColor = UIColor.Main.berkshireLace
         
         gradientViewOverBlock.backgroundColor = UIColor.Main.berkshireLace
         gradientViewOverBlock.addSimpleShadow(color: UIColor.Main.rosin, radius: 4, opacity: 0.3, offset: CGSize(width: -6, height: 0))
@@ -95,7 +96,7 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
-        print("DDD cell alyouts subviews \(cellIsSelected)")
+//        print("DDD cell alyouts subviews \(cellIsSelected)")
         
     }
     
