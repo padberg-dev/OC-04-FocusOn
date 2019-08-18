@@ -175,4 +175,12 @@ class CompletionBlockView: UIView {
         
         parentConnection.changeCompletion()
     }
+    
+    var x = true
+    
+    @IBAction func notYetCompletedTapped(_ button: UIButton) {
+        
+        parentConnection.changeCompletionToNYA()
+//        completionView.toggleNotYetAchieved()
+    }
 }

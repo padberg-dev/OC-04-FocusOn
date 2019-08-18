@@ -24,40 +24,38 @@
             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d65-Dn-cgk">
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d65-Dn-cgk">
                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pfl-oM-aBc">
-                            <rect key="frame" x="2" y="2" width="96" height="96"/>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pfl-oM-aBc">
+                            <rect key="frame" x="1" y="1" width="98" height="98"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xyW-Rz-iHd">
-                                    <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="98" height="98"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c6U-Cy-HZh">
-                                    <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="98" height="98"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstItem="c6U-Cy-HZh" firstAttribute="top" secondItem="Pfl-oM-aBc" secondAttribute="top" id="2A3-F8-yUG"/>
-                                <constraint firstItem="c6U-Cy-HZh" firstAttribute="leading" secondItem="Pfl-oM-aBc" secondAttribute="leading" id="3W3-rd-7sd"/>
-                                <constraint firstItem="xyW-Rz-iHd" firstAttribute="top" secondItem="Pfl-oM-aBc" secondAttribute="top" id="Mfb-Y2-y5E"/>
-                                <constraint firstAttribute="bottom" secondItem="c6U-Cy-HZh" secondAttribute="bottom" id="STa-Bk-BZm"/>
-                                <constraint firstAttribute="trailing" secondItem="c6U-Cy-HZh" secondAttribute="trailing" id="WdL-0l-9XX"/>
-                                <constraint firstAttribute="bottom" secondItem="xyW-Rz-iHd" secondAttribute="bottom" id="czl-Gt-6LO"/>
-                                <constraint firstItem="xyW-Rz-iHd" firstAttribute="leading" secondItem="Pfl-oM-aBc" secondAttribute="leading" id="eBc-YI-7j8"/>
-                                <constraint firstAttribute="trailing" secondItem="xyW-Rz-iHd" secondAttribute="trailing" id="ybt-6x-UQp"/>
-                            </constraints>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="Pfl-oM-aBc" firstAttribute="top" secondItem="d65-Dn-cgk" secondAttribute="top" constant="2" id="6sU-mh-RBM"/>
-                        <constraint firstAttribute="bottom" secondItem="Pfl-oM-aBc" secondAttribute="bottom" constant="2" id="DdE-UX-WGh"/>
-                        <constraint firstItem="Pfl-oM-aBc" firstAttribute="leading" secondItem="d65-Dn-cgk" secondAttribute="leading" constant="2" id="G4s-nR-UUZ"/>
-                        <constraint firstAttribute="trailing" secondItem="Pfl-oM-aBc" secondAttribute="trailing" constant="2" id="Zch-qW-DSB"/>
+                        <constraint firstItem="xyW-Rz-iHd" firstAttribute="leading" secondItem="d65-Dn-cgk" secondAttribute="leading" constant="1" id="6XA-en-8Ye"/>
+                        <constraint firstItem="Pfl-oM-aBc" firstAttribute="top" secondItem="d65-Dn-cgk" secondAttribute="top" constant="1" id="6sU-mh-RBM"/>
+                        <constraint firstAttribute="bottom" secondItem="Pfl-oM-aBc" secondAttribute="bottom" constant="1" id="DdE-UX-WGh"/>
+                        <constraint firstAttribute="trailing" secondItem="c6U-Cy-HZh" secondAttribute="trailing" constant="1" id="EaS-bP-yYh"/>
+                        <constraint firstItem="Pfl-oM-aBc" firstAttribute="leading" secondItem="d65-Dn-cgk" secondAttribute="leading" constant="1" id="G4s-nR-UUZ"/>
+                        <constraint firstItem="c6U-Cy-HZh" firstAttribute="top" secondItem="d65-Dn-cgk" secondAttribute="top" constant="1" id="KsD-RE-d3v"/>
+                        <constraint firstAttribute="bottom" secondItem="c6U-Cy-HZh" secondAttribute="bottom" constant="1" id="VB0-So-rFE"/>
+                        <constraint firstAttribute="trailing" secondItem="Pfl-oM-aBc" secondAttribute="trailing" constant="1" id="Zch-qW-DSB"/>
+                        <constraint firstItem="c6U-Cy-HZh" firstAttribute="leading" secondItem="d65-Dn-cgk" secondAttribute="leading" constant="1" id="dkg-9T-Ilz"/>
+                        <constraint firstAttribute="bottom" secondItem="xyW-Rz-iHd" secondAttribute="bottom" constant="1" id="eSN-cv-70Q"/>
+                        <constraint firstItem="xyW-Rz-iHd" firstAttribute="top" secondItem="d65-Dn-cgk" secondAttribute="top" constant="1" id="mwj-9N-ecJ"/>
+                        <constraint firstAttribute="trailing" secondItem="xyW-Rz-iHd" secondAttribute="trailing" constant="1" id="w1f-0K-Liz"/>
                     </constraints>
                 </view>
             </subviews>
@@ -70,7 +68,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="46.376811594202906" y="99.107142857142847"/>
+            <point key="canvasLocation" x="44.799999999999997" y="98.950524737631198"/>
         </view>
     </objects>
 </document>

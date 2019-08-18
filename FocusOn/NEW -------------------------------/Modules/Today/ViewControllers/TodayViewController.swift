@@ -188,9 +188,10 @@ class TodayViewController: UIViewController {
         }
     }
     
-    
-    
-    
+    func changeCompletionToNYA() {
+        
+        todayVM.changeGoalToNYA()
+    }
     
     
     // -------------------------------------
@@ -358,7 +359,12 @@ extension TodayViewController: TodayBindingDelegate {
             
             taskBlocks[i].changeTask(completion: completions[i])
         }
-    }    
+    }
+    
+    func toggleNotYetAchieved() {
+        
+        completionBlock.completionView.toggleNotYetAchieved()
+    }
     
     // ------------------------------
     
@@ -371,6 +377,7 @@ extension TodayViewController: TodayBindingDelegate {
     }
     
     func updateGoalWith(imageName: String, completion: Goal.CompletionProgress) {
+        
         completionBlock.completionView.changeTo(progress: completion)
         
         if completion == .completed {

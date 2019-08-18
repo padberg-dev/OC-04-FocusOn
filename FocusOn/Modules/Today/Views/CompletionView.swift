@@ -34,8 +34,7 @@ class CompletionView: UIView {
     private var currentRotation: CGFloat = 0
     private var lastRotation: CGFloat = 0
     private var completionSign: CompletionSign = .none
-    
-    var lastFail: Bool = false
+    private var lastCompletionSign: CompletionSign = .none
     
     // MARK:- Initializers
     
@@ -63,7 +62,6 @@ class CompletionView: UIView {
         completionSign = .none
         
         switch progress {
-            
         case .notCompleted:
             currentRotation = 0
         case .oneThird:
@@ -74,10 +72,27 @@ class CompletionView: UIView {
             currentRotation = 360
             completionSign = .success
         case .notYetAchieved:
+            currentRotation = 360
             completionSign = .fail
-            break
         }
         animateSwitchChange()
+    }
+    
+    func toggleNotYetAchieved() {
+        
+        animateRemovingPath()
+        
+        delayContinuation(by: animationDuration * 1.1) {
+            
+            if self.lastCompletionSign == .fail {
+                
+                self.completionSign = .success
+            } else {
+                
+                self.completionSign = .fail
+            }
+            self.addCompletionSign()
+        }
     }
     
     // MARK:- PRIVATE:
@@ -86,16 +101,55 @@ class CompletionView: UIView {
     private func animateSwitchChange() {
         
         let halfRotation = (currentRotation + lastRotation) / 2
+        
         if halfRotation == 0 { return }
         
         let dRotation = abs(currentRotation - lastRotation)
-        if dRotation < 180 {
+        
+        var time: Double = 0
+        if lastRotation == 360 {
             
-            animateChangeInOneStep()
-        } else {
-            
-            animateChangeInTwoSteps(halfRotation: halfRotation)
+            time = animationDuration * 1.1
+            if currentRotation == 360 {
+                
+                if completionSign == lastCompletionSign { return }
+                
+                animateRemovingPath()
+            } else {
+                
+                addCompletionSign()
+            }
         }
+        delayContinuation(by: time) {
+            
+            if dRotation < 180 {
+                
+                self.animateChangeInOneStep()
+            } else {
+                
+                if dRotation == 360 {
+                    
+                    self.animateChangeForFullRotation()
+                } else {
+                    
+                    self.animateChangeInTwoSteps(halfRotation: halfRotation)
+                }
+            }
+        }
+    }
+    
+    private func animateDrawingPath() {
+        
+        let animation = CABasicAnimation.basicWith(keyPath: "strokeEnd", duration: animationDuration)
+        pathLayer.layer.sublayers?.forEach { $0.add(animation, forKey: nil) }
+    }
+    
+    private func animateRemovingPath() {
+        
+        let animation = CABasicAnimation.basicWith(keyPath: "strokeStart", fromValue: 0, toValue: 1, duration: animationDuration)
+        animation.delegate = self
+        
+        pathLayer.layer.sublayers?.forEach { $0.add(animation, forKey: nil) }
     }
     
     private func animateChangeInOneStep() {
@@ -106,13 +160,13 @@ class CompletionView: UIView {
         }) { [weak self] _ in
             
             self?.oneThirdCover.alpha = self!.currentRotation >= 240 ? 0 : 1
-            self?.addSign()
+            self?.addCompletionSign()
         }
     }
     
     private func animateChangeInTwoSteps(halfRotation: CGFloat) {
         
-        let duration = 2 * animationDuration / 3
+        let duration = animationDuration / 2
         let isFullRotation = currentRotation >= 240
         
         UIView.animate(withDuration: duration, animations: {
@@ -126,46 +180,33 @@ class CompletionView: UIView {
                 
                 self?.transformAllThirdsView()
             }, completion: { _ in
-                
-                self?.oneThirdCover.alpha = isFullRotation ? 0 : 1
-                self?.addSign()
+
+                self?.animateChangeInOneStep()
             })
         }
     }
     
-    // MARK:- Custom Methods
-    
-    private func transformAllThirdsView(toResembleRotationOf rotation: CGFloat? = nil) {
+    private func animateChangeForFullRotation() {
         
-        for i in 0 ..< 3 {
-            
-            oneThirds[i].transform = CGAffineTransform(rotationAngle: getRotationOfView(positionsBefore: CGFloat(i), with: rotation ?? currentRotation) * CGFloat.pi / 180)
-        }
-    }
-    
-    private func getRotationOfView(positionsBefore: CGFloat, with rotation: CGFloat) -> CGFloat {
+        let isAnimatingBack = currentRotation == 0
+        let duration = 3 * animationDuration / 6
+        let isFullRotation = currentRotation >= 240
         
-        return rotation.returnInRange(minValue: 0, maxValue: 360 - positionsBefore * 120)
-    }
-    
-    func addSign() {
-        
-        pathLayer.layer.sublayers?.last?.removeFromSuperlayer()
-        
-        if lastFail {
+        UIView.animate(withDuration: duration, animations: {
             
-            pathLayer.layer.sublayers?.last?.removeFromSuperlayer()
-            pathLayer.layer.sublayers?.last?.removeFromSuperlayer()
-            lastFail = false
-        }
-        if completionSign == .success {
+            self.transformAllThirdsView(toResembleRotationOf: isAnimatingBack ? 240 : 120)
+        }) { [weak self] _ in
             
-            drawCheckPath()
-        }
-        if completionSign == .fail {
+            self?.oneThirdCover.alpha = isFullRotation ? 0 : 1
             
-            drawFailPath()
-            lastFail = true
+            UIView.animate(withDuration: duration, delay: 0.1, animations: {
+                
+                self?.transformAllThirdsView(toResembleRotationOf: isAnimatingBack ? 120 : 240)
+            }, completion: { _ in
+                
+                self?.oneThirdCover.alpha = isFullRotation ? 0 : 1
+                self?.animateChangeInOneStep()
+            })
         }
     }
     
@@ -173,29 +214,50 @@ class CompletionView: UIView {
     
     private func maskToOneThirdFraction(_ view: UIView, isInitialThird: Bool = false) {
         
-        view.layer.cornerRadius = view.bounds.height / 2
-        
-        let pathLayer = CAShapeLayer()
-        let path = UIBezierPath()
-        
         let halfWidth = view.bounds.width / 2
         
+        let path = UIBezierPath()
         path.move(to: CGPoint(x: halfWidth, y: 0))
         path.addLine(to: CGPoint(x: halfWidth, y: halfWidth))
         
-        // (tan(30 degree) + 1) * halfWidth == halfWidth * ((3 + sqrt(3.0)) / 3)
-        let y = (tan(CGFloat.pi / 6) + (isInitialThird ? 1.05 : 1.0)) * halfWidth
+        var y: CGFloat!
+        
+        if isInitialThird {
+            // (tan(30 degree) + 1) * halfWidth == halfWidth * ((3 + sqrt(3.0)) / 3)
+            y = (tan(CGFloat.pi / 6) + 1) * halfWidth
+        } else {
+            
+            y = halfWidth
+        }
         
         path.addLine(to: CGPoint(x: 0, y: y))
         path.addLine(to: CGPoint(x: 0, y: 0))
         path.move(to: CGPoint(x: halfWidth, y: 0))
         path.close()
         
+        let pathLayer = CAShapeLayer()
         pathLayer.path = path.cgPath
+        
         view.layer.mask = pathLayer
     }
     
-    private func drawCheckPath() {
+    private func addCompletionSign() {
+        
+        switch completionSign {
+        case .success:
+            
+            drawSuccessPath()
+        case .fail:
+            
+            drawFailPath()
+        default:
+            
+            animateRemovingPath()
+        }
+        lastCompletionSign = completionSign
+    }
+    
+    private func drawSuccessPath() {
         
         let width = insideView.bounds.width
         
@@ -204,71 +266,63 @@ class CompletionView: UIView {
         path.addLine(to: CGPoint(x: 0.46 * width, y: 0.69 * width))
         path.addLine(to: CGPoint(x: 0.77 * width, y: 0.32 * width))
         
-        let checkLayer = CAShapeLayer()
-        checkLayer.path = path.cgPath
-        checkLayer.strokeColor = UIColor.black.cgColor
-        checkLayer.fillColor = nil
-        checkLayer.lineWidth = 4.0
-        checkLayer.strokeEnd = 1
+        pathLayer.layer.addSublayer(CAShapeLayer.basicWith(path: path.cgPath))
         
-        let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.fromValue = 0
-        animation.toValue = 1
-        animation.duration = animationDuration
-        animation.autoreverses = false
-        animation.repeatCount = 1
-        checkLayer.add(animation, forKey: "line2")
-        
-        pathLayer.layer.addSublayer(checkLayer)
+        animateDrawingPath()
     }
     
     private func drawFailPath() {
+        
         let width = insideView.bounds.width
         
         let path = UIBezierPath()
+        path.move(to: CGPoint(x: 0.3 * width, y: 0.3 * width))
+        path.addLine(to: CGPoint(x: 0.7 * width, y: 0.7 * width))
+        
         let path2 = UIBezierPath()
-        let path3 = UIBezierPath()
-        path.move(to: CGPoint(x: 0.35 * width, y: 0.35 * width))
-        path.addLine(to: CGPoint(x: 0.65 * width, y: 0.65 * width))
-        path2.move(to: CGPoint(x: 0.35 * width, y: 0.35 * width))
+        path2.move(to: CGPoint(x: 0.3 * width, y: 0.3 * width))
         path2.addLine(to: CGPoint(x: 0.5 * width, y: 0.5 * width))
-        path2.addLine(to: CGPoint(x: 0.65 * width, y: 0.35 * width))
-        path3.move(to: CGPoint(x: 0.35 * width, y: 0.35 * width))
+        path2.addLine(to: CGPoint(x: 0.7 * width, y: 0.3 * width))
+        
+        let path3 = UIBezierPath()
+        path3.move(to: CGPoint(x: 0.3 * width, y: 0.3 * width))
         path3.addLine(to: CGPoint(x: 0.5 * width, y: 0.5 * width))
-        path3.addLine(to: CGPoint(x: 0.35 * width, y: 0.65 * width))
+        path3.addLine(to: CGPoint(x: 0.3 * width, y: 0.7 * width))
         
         let pathArray = [path, path2, path3]
-        var failLayers: [CAShapeLayer] = []
-        
-        let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.fromValue = 0
-        animation.toValue = 1
-        animation.duration = animationDuration
-        animation.autoreverses = false
-        animation.repeatCount = 1
         
         for i in 0 ..< 3 {
-            let layer = CAShapeLayer()
-            layer.path = pathArray[i].cgPath
-            layer.strokeColor = UIColor.black.cgColor
-            layer.fillColor = nil
-            layer.lineWidth = 4.0
-            failLayers.append(layer)
-            layer.add(animation, forKey: "failAnimation")
-            pathLayer.layer.addSublayer(layer)
+            
+            pathLayer.layer.addSublayer(CAShapeLayer.basicWith(path: pathArray[i].cgPath))
+        }
+        animateDrawingPath()
+    }
+    
+    // MARK:- Custom Methods
+    
+    private func delayContinuation(by time: Double, completion: @escaping (() -> Void)) {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + time) {
+            
+            completion()
         }
     }
     
-    private func animateCheck(isSelected: Bool) {
+    private func transformAllThirdsView(toResembleRotationOf rotation: CGFloat? = nil) {
         
+        for i in 0 ..< 5 {
+            
+            oneThirds[i].transform = CGAffineTransform(rotationAngle: getRotationOfView(positionsBefore: CGFloat(i), with: rotation ?? currentRotation) * CGFloat.pi / 180)
+        }
     }
     
-    private func animateFail() {
+    private func getRotationOfView(positionsBefore: CGFloat, with rotation: CGFloat) -> CGFloat {
         
+        if positionsBefore == 4 {
+            return rotation.returnInRange(minValue: 0, maxValue: 90)
+        }
+        return rotation.returnInRange(minValue: 0, maxValue: 360 - positionsBefore * 60)
     }
-    
-    // MARK:- PRIVATE
-    // MARK:- Custom Methods
     
     private func setupUI() {
         
@@ -279,9 +333,12 @@ class CompletionView: UIView {
         insideView.layer.cornerRadius = insideView.bounds.height / 2
         topView.layer.cornerRadius = topView.bounds.height / 2
         
-        for _ in 0 ..< 3 {
+        
+//        let colors: [UIColor] = [.red, .green, .blue, .yellow, .magenta]
+        for _ in 0 ..< 5 {
             
             let view = UIView(frame: insideView.bounds)
+//            view.backgroundColor = colors[i]
             view.backgroundColor = UIColor.Main.atlanticDeep
             
             insideView.insertSubview(view, at: 0)
@@ -299,5 +356,15 @@ class CompletionView: UIView {
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         backgroundColor = .clear
         addSubview(contentView)
+    }
+}
+
+// MARK:- CAAnimationDelegate Methods
+
+extension CompletionView: CAAnimationDelegate {
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        
+        pathLayer.layer.sublayers?.last?.removeFromSuperlayer()
     }
 }

@@ -19,4 +19,5 @@ protocol TodayBindingDelegate: class {
     func updateWholeUI(with goal: Goal, animationType: InitialAnimationType)
     func changeTask(completion: Task.CompletionProgress, forTaskId taskId: Int)
     func changeAllTask(completions: [Task.CompletionProgress])
+    func toggleNotYetAchieved()
 }

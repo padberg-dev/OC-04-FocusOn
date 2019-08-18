@@ -39,6 +39,11 @@ class TodayViewModel {
     }
     
     func changeTaskCompletion(withId index: Int) {
+        
+        if goal.completion == .notYetAchieved {
+            goal.completion = .completed
+        }
+        
         let newCompletion: Task.CompletionProgress = goal.tasks[index].completion == .notCompleted ? .completed : .notCompleted
         goal.tasks[index].completion = newCompletion
         
@@ -48,6 +53,12 @@ class TodayViewModel {
     }
     
     func changeGoalCompletion() {
+        if goal.completion == .notYetAchieved {
+            
+            changeGoalToNYA()
+            return
+        }
+        
         let isCompleted = goal.completion == .completed ? true : false
         
         let from: Task.CompletionProgress = isCompleted ? .overridden : .notCompleted
@@ -59,14 +70,15 @@ class TodayViewModel {
             }
         }
         updateGoalImage()
-        
         bindingDelegate?.changeAllTask(completions: getTasksCompletions())
     }
     
     func changeGoalToNYA() {
-        let progress: Goal.CompletionProgress = .notYetAchieved
         
-        bindingDelegate?.updateGoalWith(imageName: "cancel", completion: progress)
+        let progress: Goal.CompletionProgress = goal.completion == .notYetAchieved ? .completed : .notYetAchieved
+        goal.completion = progress
+        
+        bindingDelegate?.toggleNotYetAchieved()
     }
     
     private func cleanOverriddenTasks() {

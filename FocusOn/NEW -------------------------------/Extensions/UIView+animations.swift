@@ -17,6 +17,13 @@ extension UIView {
         }
     }
     
+    func animateDisappearing(duration: Double = Settings.AnimationDurations.viewAppearing) {
+        
+        UIView.animate(withDuration: duration) {
+            self.alpha = 0
+        }
+    }
+    
     func rotate(duration: CFTimeInterval = 1.0, fromValue: CGFloat = 0.0, toValue: CGFloat = 0.0) {
         let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
         rotateAnimation.fromValue = fromValue

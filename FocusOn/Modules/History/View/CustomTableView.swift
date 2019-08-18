@@ -223,13 +223,12 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         
         UIView.animate(withDuration: 0.6, delay: 0.2, options: .curveEaseInOut, animations: {
             
-            
             let transform = CGAffineTransform(translationX: 26, y: 0)
             cell.goalBlockView.transform = transform
             cell.gradientView.transform = transform
             cell.gradientViewTop.transform = transform
             cell.gradientViewOverBlock.transform = transform
-            cell.gearImageView.transform = CGAffineTransform(rotationAngle: 0.9 * CGFloat.pi)
+            cell.gearImageView.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
             cell.goalBlockView.completionImageView.transform = CGAffineTransform(translationX: -26, y: 0)
             cell.layoutIfNeeded()
         }, completion: nil)

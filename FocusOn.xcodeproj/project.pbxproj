@@ -59,6 +59,7 @@
 		01A7435A22C3E08800E1126C /* GoalBlockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01A7435922C3E08800E1126C /* GoalBlockView.xib */; };
 		01A8F9582271E19B0050C992 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A8F9572271E19B0050C992 /* SectionHeaderView.swift */; };
 		01A8F95A2271E1A80050C992 /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01A8F9592271E1A80050C992 /* SectionHeaderView.xib */; };
+		01AA19D0230801AF0033735D /* CAShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AA19CF230801AF0033735D /* CAShapeLayer.swift */; };
 		01AAAC9822BBAA4500A5E07E /* CGFloat+Calculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AAAC9722BBAA4500A5E07E /* CGFloat+Calculations.swift */; };
 		01AAAC9A22BBC24200A5E07E /* TaskCheckButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AAAC9922BBC24200A5E07E /* TaskCheckButtonView.swift */; };
 		01AAAC9C22BBC24D00A5E07E /* TaskCheckButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01AAAC9B22BBC24D00A5E07E /* TaskCheckButtonView.xib */; };
@@ -156,6 +157,7 @@
 		01A7435922C3E08800E1126C /* GoalBlockView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoalBlockView.xib; sourceTree = "<group>"; };
 		01A8F9572271E19B0050C992 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		01A8F9592271E1A80050C992 /* SectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeaderView.xib; sourceTree = "<group>"; };
+		01AA19CF230801AF0033735D /* CAShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAShapeLayer.swift; sourceTree = "<group>"; };
 		01AAAC9722BBAA4500A5E07E /* CGFloat+Calculations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Calculations.swift"; sourceTree = "<group>"; };
 		01AAAC9922BBC24200A5E07E /* TaskCheckButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCheckButtonView.swift; sourceTree = "<group>"; };
 		01AAAC9B22BBC24D00A5E07E /* TaskCheckButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCheckButtonView.xib; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				011F8B3322932370005CDB82 /* UIView+effects.swift */,
 				01D90BC322EA455800094533 /* CGRect.swift */,
 				01D11F1C2306F38C000F0E1E /* CABasicAnimation+Creators.swift */,
+				01AA19CF230801AF0033735D /* CAShapeLayer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -849,6 +852,7 @@
 				01AAAC9822BBAA4500A5E07E /* CGFloat+Calculations.swift in Sources */,
 				013F367222E4D02A00E12927 /* AnimatedMaskView.swift in Sources */,
 				0132CDF6222C9A8500457CD5 /* CustomTabBarController.swift in Sources */,
+				01AA19D0230801AF0033735D /* CAShapeLayer.swift in Sources */,
 				011F8B322293198D005CDB82 /* UIColor.swift in Sources */,
 				011F8B3A22933C44005CDB82 /* CompletionView.swift in Sources */,
 				015F661E2271FC480030E88D /* AAChartModel.swift in Sources */,
