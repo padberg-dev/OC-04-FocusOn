@@ -117,6 +117,11 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
         rightButton.tintColor = UIColor.Main.berkshireLace
         
         self.tabBarController?.navigationItem.rightBarButtonItem  = rightButton
+        
+        
+        print("!!!!!")
+        monthsCollectionView.contentOffset = .zero
+        print(monthsCollectionView.contentOffset)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

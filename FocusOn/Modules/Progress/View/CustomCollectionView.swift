@@ -30,10 +30,18 @@ class CustomCollectionView: UICollectionView, UICollectionViewDataSource, UIColl
         
         register(UINib(nibName: "CustomCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CustomCell")
         
-        let layout = collectionViewLayout as? UICollectionViewFlowLayout
-        layout?.itemSize = CGSize(width: 56, height: 20)
-        layout?.minimumLineSpacing = 10
-        layout?.sectionInset = UIEdgeInsets(top: 10, left: 1, bottom: 10, right: 1)
+        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
+
+            layout.itemSize = CGSize(width: 56, height: 20)
+            layout.sectionInset = UIEdgeInsets(top: 10, left: 1, bottom: 10, right: 1)
+            layout.minimumLineSpacing = 10
+        }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        setContentOffset(.zero, animated: false)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

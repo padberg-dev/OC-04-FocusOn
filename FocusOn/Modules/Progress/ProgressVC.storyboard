@@ -113,7 +113,6 @@
                             <constraint firstItem="QKU-iP-vVe" firstAttribute="top" secondItem="0cM-6p-7PE" secondAttribute="top" constant="5" id="EoX-Vw-xHn"/>
                             <constraint firstItem="QKU-iP-vVe" firstAttribute="height" secondItem="vx1-dP-Ejv" secondAttribute="height" multiplier="0.73" id="Has-so-uN4"/>
                             <constraint firstItem="f0a-Xl-Wky" firstAttribute="trailing" secondItem="0cM-6p-7PE" secondAttribute="trailing" constant="30" id="KgD-LO-y09"/>
-                            <constraint firstItem="jiE-jV-w1U" firstAttribute="top" secondItem="0cM-6p-7PE" secondAttribute="top" id="NMg-4N-ETr"/>
                             <constraint firstItem="app-gi-VfN" firstAttribute="centerX" secondItem="vx1-dP-Ejv" secondAttribute="centerX" id="Q9p-e4-08x"/>
                             <constraint firstItem="QKU-iP-vVe" firstAttribute="leading" secondItem="0cM-6p-7PE" secondAttribute="leading" constant="10" id="RY0-g4-Ea8"/>
                             <constraint firstAttribute="leading" secondItem="jiE-jV-w1U" secondAttribute="leading" constant="30" id="Spe-dD-dO1"/>
@@ -121,6 +120,7 @@
                             <constraint firstItem="0cM-6p-7PE" firstAttribute="bottom" secondItem="jiE-jV-w1U" secondAttribute="bottom" id="X07-hO-hzz"/>
                             <constraint firstItem="Jr4-tk-Rj0" firstAttribute="leading" secondItem="0cM-6p-7PE" secondAttribute="leading" constant="70" id="X14-Yv-LCI"/>
                             <constraint firstItem="f0a-Xl-Wky" firstAttribute="top" secondItem="0cM-6p-7PE" secondAttribute="top" id="bKF-Ak-9Oi"/>
+                            <constraint firstItem="jiE-jV-w1U" firstAttribute="top" secondItem="0cM-6p-7PE" secondAttribute="top" id="fVa-7P-Bgg"/>
                             <constraint firstItem="0cM-6p-7PE" firstAttribute="trailing" secondItem="QKU-iP-vVe" secondAttribute="trailing" constant="10" id="kMV-12-dLu"/>
                             <constraint firstItem="Jr4-tk-Rj0" firstAttribute="centerX" secondItem="vx1-dP-Ejv" secondAttribute="centerX" id="l8G-Q3-VkA"/>
                             <constraint firstItem="0cM-6p-7PE" firstAttribute="trailing" secondItem="Jr4-tk-Rj0" secondAttribute="trailing" constant="70" id="xBl-E2-bOL"/>
