@@ -23,6 +23,7 @@ extension UIColor {
         static let lagoon = UIColor.rgbColor(R: 79, G: 164, B: 154)
         static let treetop = UIColor.rgbColor(R: 147, G: 187, B: 173)
         static let berkshireLace = UIColor.rgbColor(R: 241, G: 227, B: 208)
+        static let hypothalamusGrey = UIColor.rgbColor(R: 64, G: 95, B: 104)
     }
     
     struct Gradients {

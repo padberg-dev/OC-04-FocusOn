@@ -12,7 +12,7 @@ import CoreData
 class HistoryViewModel {
     
     func loadData() -> [[GoalData]] {
-        print("LLL Load data")
+        
         var match: [GoalData] = []
         let context = AppDelegate.context
         
@@ -36,6 +36,7 @@ class HistoryViewModel {
     }
     
     func loadNextData(fromMonth: Int, toMonth: Int) -> [GoalData] {
+        
         var match: [GoalData] = []
         let context = AppDelegate.context
         

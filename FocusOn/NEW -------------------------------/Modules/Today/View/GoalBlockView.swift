@@ -100,6 +100,26 @@ class GoalBlockView: UIView {
         }
     }
     
+    func setCompletion(to completionProgress: Goal.CompletionProgress) {
+        
+        self.completionProgress = completionProgress
+        var imageName = "0"
+        
+        switch completionProgress {
+        case .notCompleted:
+            imageName = "0"
+        case .oneThird:
+            imageName = "120"
+        case .twoThirds:
+            imageName = "240"
+        case .completed:
+            imageName = "done"
+        case .notYetAchieved:
+            imageName = "cancel"
+        }
+        completionImageView.image = UIImage(named: imageName)
+    }
+    
     // MARK:- Initializers
     
     override init(frame: CGRect) {
@@ -141,26 +161,6 @@ class GoalBlockView: UIView {
             
             addSimpleShadow(color: UIColor.Main.rosin, radius: 8, opacity: 0.4, offset: CGSize(width: 0, height: 3))
         }
-    }
-    
-    private func setCompletion(to completionProgress: Goal.CompletionProgress) {
-        
-        self.completionProgress = completionProgress
-        var imageName = "0"
-        
-        switch completionProgress {
-        case .notCompleted:
-            imageName = "0"
-        case .oneThird:
-            imageName = "120"
-        case .twoThirds:
-            imageName = "240"
-        case .completed:
-            imageName = "done"
-        case .notYetAchieved:
-            imageName = "cancel"
-        }
-        completionImageView.image = UIImage(named: imageName)
     }
     
     private func loadFromNib() {

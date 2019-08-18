@@ -127,6 +127,7 @@ class TodayViewController: UIViewController {
     private func updateGoal(completion: Goal.CompletionProgress) {
         
         completionBlock.updateProgress(to: completion)
+        goalBlock.setCompletion(to: completion)
         
         if completion == .completed {
             fireAnimation()
@@ -369,8 +370,9 @@ extension TodayViewController: TodayBindingDelegate {
         }
     }
     
-    func toggleNotYetAchieved() {
+    func toggleNotYetAchieved(with goal: Goal.CompletionProgress) {
         
+        goalBlock.setCompletion(to: goal)
         completionBlock.completionView.toggleNotYetAchieved()
     }
     
@@ -382,7 +384,7 @@ extension TodayViewController: TodayBindingDelegate {
         goalBlock.goalTextField.text = text
     }
     
-    func updateGoalWith(imageName: String, completion: Goal.CompletionProgress) {
+    func updateGoalWith(completion: Goal.CompletionProgress) {
         
         updateGoal(completion: completion)
     }

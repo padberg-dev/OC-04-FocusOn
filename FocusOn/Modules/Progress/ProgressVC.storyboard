@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QKU-iP-vVe">
+                            <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QKU-iP-vVe">
                                 <rect key="frame" x="10" y="25" width="300" height="414.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -33,7 +33,7 @@
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="app-gi-VfN">
-                                <rect key="frame" x="139" y="32" width="42" height="21"/>
+                                <rect key="frame" x="139" y="27" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -117,7 +117,7 @@
                             <constraint firstItem="app-gi-VfN" firstAttribute="centerX" secondItem="vx1-dP-Ejv" secondAttribute="centerX" id="Q9p-e4-08x"/>
                             <constraint firstItem="QKU-iP-vVe" firstAttribute="leading" secondItem="0cM-6p-7PE" secondAttribute="leading" constant="10" id="RY0-g4-Ea8"/>
                             <constraint firstAttribute="leading" secondItem="jiE-jV-w1U" secondAttribute="leading" constant="30" id="Spe-dD-dO1"/>
-                            <constraint firstItem="app-gi-VfN" firstAttribute="top" secondItem="0cM-6p-7PE" secondAttribute="top" constant="12" id="VHg-up-RdV"/>
+                            <constraint firstItem="app-gi-VfN" firstAttribute="top" secondItem="0cM-6p-7PE" secondAttribute="top" constant="7" id="VHg-up-RdV"/>
                             <constraint firstItem="0cM-6p-7PE" firstAttribute="bottom" secondItem="jiE-jV-w1U" secondAttribute="bottom" id="X07-hO-hzz"/>
                             <constraint firstItem="Jr4-tk-Rj0" firstAttribute="leading" secondItem="0cM-6p-7PE" secondAttribute="leading" constant="70" id="X14-Yv-LCI"/>
                             <constraint firstItem="f0a-Xl-Wky" firstAttribute="top" secondItem="0cM-6p-7PE" secondAttribute="top" id="bKF-Ak-9Oi"/>
@@ -134,6 +134,7 @@
                         <outlet property="leftView" destination="jiE-jV-w1U" id="WHN-2S-AHt"/>
                         <outlet property="monthsCollectionView" destination="2or-GK-p71" id="dBM-ON-zHJ"/>
                         <outlet property="rightView" destination="f0a-Xl-Wky" id="OCn-pS-Fbx"/>
+                        <outlet property="segmentedControl" destination="Jr4-tk-Rj0" id="9HB-tD-b30"/>
                         <outlet property="titleLabel" destination="app-gi-VfN" id="E63-pe-naz"/>
                         <outlet property="yearsCollectionView" destination="t9a-K4-H0P" id="Rs1-2p-MKS"/>
                     </connections>

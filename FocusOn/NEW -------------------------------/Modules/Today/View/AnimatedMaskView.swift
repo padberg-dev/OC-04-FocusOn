@@ -91,7 +91,7 @@ class AnimatedMaskView: UIView, CAAnimationDelegate {
         let y: CGFloat = random == 1 ? 1 : random == 3 ? -1 : 0
         
         let rect = CGRect(origin: .zero, size: bounds.size).extendBy(xFactor: 1.1, yFactor: 1.1).moveBy(width: x, height: y)
-        print(rect)
+        
         maskLayer.path = CGPath(rect: rect, transform: nil)
         return maskLayer
     }

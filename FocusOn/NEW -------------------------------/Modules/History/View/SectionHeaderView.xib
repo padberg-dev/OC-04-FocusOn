@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SectionHeaderView" customModule="FocusOn" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="WEl-rN-Rnm"/>
+                <outlet property="insideView" destination="Aj7-uc-60D" id="I8l-xr-Ak4"/>
                 <outlet property="numberAllLabel" destination="LZB-lC-DPS" id="KER-MU-p57"/>
                 <outlet property="numberDoneLabel" destination="4kL-3y-w2p" id="eaw-np-Iqr"/>
                 <outlet property="sectionTitleLabel" destination="Dyi-ET-vYG" id="Dgg-x2-n2V"/>

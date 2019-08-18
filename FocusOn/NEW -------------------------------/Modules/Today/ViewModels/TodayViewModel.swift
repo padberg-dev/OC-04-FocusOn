@@ -11,15 +11,90 @@ import CoreData
 
 class TodayViewModel {
     
-    var blockSaving = false
-    var coreDataLoaded: Bool = false {
+    // MARK:- Public Properties
+    
+    weak var bindingDelegate: TodayBindingDelegate?
+    
+    // MARK:- Private Properties
+    
+    private var didCheckLastGoal: Bool = false
+    private var blockSaving = false
+    private var coreDataLoaded: Bool = false {
         didSet {
         }
     }
-    var goal: Goal! {
+    private var goal: Goal! {
         didSet {
             saveChanges()
         }
+    }
+    
+    // MARK:- Initializers
+    
+    init(currentGoal: GoalData? = nil) {
+        blockSaving = true
+        if currentGoal == nil {
+            self.goal = Goal()
+        } else {
+            
+            var strings: [String] = []
+            strings.append(currentGoal!.taskText1!)
+            strings.append(currentGoal!.taskText2!)
+            strings.append(currentGoal!.taskText3!)
+            var completions: [Bool] = []
+            completions.append(currentGoal!.taskCompletion1)
+            completions.append(currentGoal!.taskCompletion2)
+            completions.append(currentGoal!.taskCompletion3)
+            
+            self.goal = Goal(text: currentGoal?.goalText, completion: Int(currentGoal!.goalCompletion), date: currentGoal?.date, completions: completions, strings: strings)
+            coreDataLoaded = true
+        }
+        blockSaving = false
+    }
+    
+    // MARK:- Public Methods
+    
+    func checkLastGoalStatus() {
+        if didCheckLastGoal { return }
+        
+        let context = AppDelegate.context
+        
+        if let lastGoal = GoalData.findLast(in: context) {
+            let differenceOfDays = lastGoal.date?.getDifferenceOfDays(to: Date())//.addingTimeInterval(1 * 24 * 3600))
+            
+            switch differenceOfDays {
+            case 0:
+                // lastGoal is from today -> Update UI
+                startNewGoal(Goal(goalData: lastGoal))
+            case -1:
+                // lastGoal is from yesterday -> Check if yesterday's goal is .completed
+                if lastGoal.goalCompletion == 3 {
+                    // lastGoal is .completed -> Start with a new goal
+                    startNewGoal()
+                } else {
+                    // Ask User if he wants to continue with not completed goal from yesterday
+                    bindingDelegate?.shouldContinueWithLastGoal(completion: { [weak self] shouldContinue in
+                        
+                        if shouldContinue {
+                            // User wants to continue with lastGoal -> Copy last goal
+                            var goal = Goal(goalData: lastGoal)
+                            goal.date = Date()
+                            self?.startNewGoal(goal)
+                        } else {
+                            // User Wants start with new goal
+                            self?.startNewGoal()
+                        }
+                    })
+                }
+            default:
+                // lastGoal is older than yesterday -> Start with a new goal
+                startNewGoal()
+            }
+        } else {
+            // There is no lastGoal -> Start with a new goal
+            startNewGoal()
+        }
+        didCheckLastGoal = true
     }
     
     func changeTaskText(_ text: String, withId index: Int) {
@@ -78,7 +153,19 @@ class TodayViewModel {
         let progress: Goal.CompletionProgress = goal.completion == .notYetAchieved ? .completed : .notYetAchieved
         goal.completion = progress
         
-        bindingDelegate?.toggleNotYetAchieved()
+        bindingDelegate?.toggleNotYetAchieved(with: goal.completion)
+    }
+    
+    // MARK:- PRIVATE
+    // MARK:- Custom Methods
+    
+    private func startNewGoal(_ goal: Goal? = nil) {
+        self.goal = goal ?? Goal()
+        updateWholeUI(animationType: (goal != nil) ? .continueWithOldGoal : .createNewGoal)
+    }
+    
+    private func updateWholeUI(animationType: InitialAnimationType) {
+        bindingDelegate?.updateWholeUI(with: self.goal, animationType: animationType)
     }
     
     private func cleanOverriddenTasks() {
@@ -89,8 +176,8 @@ class TodayViewModel {
         }
     }
     
-    private func updateGoalImage(isSwitching: Bool = false) {
-        bindingDelegate?.updateGoalWith(imageName: getGoalImageName(), completion: getGoalCompletion())
+    private func updateGoalImage(isSwitchingNYA: Bool = false) {
+        bindingDelegate?.updateGoalWith(completion: getGoalCompletion())
     }
     
     private func getGoalImageName() -> String {
@@ -114,112 +201,17 @@ class TodayViewModel {
     }
     
     private func saveChanges() {
+        
         if blockSaving { return }
+        
         let context = AppDelegate.context
         let result = GoalData.findGoalData(matchingFromDate: Date(), in: context)
-        let editedGoal = self.goal.updateOrCreateGoalData(currentData: result, in: context)
-        print("SAVE....")
+        _ = self.goal.updateOrCreateGoalData(currentData: result, in: context)
+        
         do {
             try context.save()
         } catch {
             print("SAVING ERROR")
         }
-    }
-    
-    init(currentGoal: GoalData? = nil) {
-        blockSaving = true
-        if currentGoal == nil {
-            self.goal = Goal()
-        } else {
-            
-            var strings: [String] = []
-            strings.append(currentGoal!.taskText1!)
-            strings.append(currentGoal!.taskText2!)
-            strings.append(currentGoal!.taskText3!)
-            var completions: [Bool] = []
-            completions.append(currentGoal!.taskCompletion1)
-            completions.append(currentGoal!.taskCompletion2)
-            completions.append(currentGoal!.taskCompletion3)
-            
-            self.goal = Goal(text: currentGoal?.goalText, completion: Int(currentGoal!.goalCompletion), date: currentGoal?.date, completions: completions, strings: strings)
-            coreDataLoaded = true
-        }
-        blockSaving = false
-    }
-    
-    
-    
-    // ---------------
-    
-    // MARK:- Public Properties
-    
-    weak var bindingDelegate: TodayBindingDelegate?
-    
-    // MARK:- Public Properties
-    
-    private var didCheckLastGoal: Bool = false
-    
-    // MARK:- Public Methods
-    
-    func checkLastGoalStatus() {
-        if didCheckLastGoal { return }
-        
-        let context = AppDelegate.context
-        
-        if let lastGoal = GoalData.findLast(in: context) {
-            let differenceOfDays = lastGoal.date?.getDifferenceOfDays(to: Date())//.addingTimeInterval(1 * 24 * 3600))
-            
-            switch differenceOfDays {
-            case 0:
-                // lastGoal is from today -> Update UI
-                startNewGoal(Goal(goalData: lastGoal))
-            case -1:
-                // lastGoal is from yesterday -> Check if yesterday's goal is .completed
-                print("YESTERDAY GOAL -> CHECK IF COMPLETED")
-                if lastGoal.goalCompletion == 3 {
-                    // lastGoal is .completed -> Start with a new goal
-                    print("GOAL COMPLETED -> START ANEW")
-                    startNewGoal()
-                } else {
-                    // Ask User if he wants to continue with not completed goal from yesterday
-                    print("ASK USER")
-                    bindingDelegate?.shouldContinueWithLastGoal(completion: { [weak self] shouldContinue in
-                        print("Should continue: \(shouldContinue)")
-                        if shouldContinue {
-                            // User wants to continue with lastGoal -> Copy last goal
-                            print("COPY OLD GOAL -> UPDATE UI")
-                            var goal = Goal(goalData: lastGoal)
-                            goal.date = Date()
-                            self?.startNewGoal(goal)
-                        } else {
-                            // User Wants start with new goal
-                            print("USER DENIED -> START ANEW")
-                            self?.startNewGoal()
-                        }
-                    })
-                }
-            default:
-                // lastGoal is older than yesterday -> Start with a new goal
-                print("NO GOAL YESTERDAY -> START ANEW")
-                startNewGoal()
-            }
-        } else {
-            // There is no lastGoal -> Start with a new goal
-            print("NO LAST GOAL -> START ANEW")
-            startNewGoal()
-        }
-        didCheckLastGoal = true
-    }
-    
-    // MARK:- PRIVATE
-    // MARK:- Custom Methods
-    
-    private func startNewGoal(_ goal: Goal? = nil) {
-        self.goal = goal ?? Goal()
-        updateWholeUI(animationType: (goal != nil) ? .continueWithOldGoal : .createNewGoal)
-    }
-    
-    private func updateWholeUI(animationType: InitialAnimationType) {
-        bindingDelegate?.updateWholeUI(with: self.goal, animationType: animationType)
     }
 }

@@ -23,14 +23,26 @@ class CustomCollectionViewCell: UICollectionViewCell {
     }
     
     func highlightCell() {
-        customView.backgroundColor = .white
+        
+        customView.alpha = 1
+        backgroundColor = UIColor.Main.berkshireLace
+        customView.backgroundColor = UIColor.Main.berkshireLace
+        customLabel.textColor = UIColor.Main.rosin
     }
     
     func setUnavailable() {
-        self.customView.backgroundColor = UIColor.white.withAlphaComponent(0.4)
+        
+        customView.alpha = 0.5
+        backgroundColor = UIColor.Main.hypothalamusGrey
+        customView.backgroundColor = UIColor.Main.treetop
+        customLabel.textColor = UIColor.Main.atlanticDeep
     }
     
     func  clearCell() {
-        self.customView.backgroundColor = UIColor(red: 136/255, green: 212/255, blue: 152/255, alpha: 1.0)
+        
+        customView.alpha = 1
+        backgroundColor = UIColor.Main.hypothalamusGrey
+        customView.backgroundColor = UIColor.Main.treetop
+        customLabel.textColor = UIColor.Main.blackSafflower
     }
 }

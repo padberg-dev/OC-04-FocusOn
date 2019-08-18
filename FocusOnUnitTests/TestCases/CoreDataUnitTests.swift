@@ -29,8 +29,6 @@ class CoreDataUnitTests: XCTestCase {
     func findingARecord() {
         
         let result = GoalData.findLast(in: managedObjectContext)
-        print("**** find")
-        print(result)
     }
     
     
@@ -40,8 +38,7 @@ class CoreDataUnitTests: XCTestCase {
     
         let goal = Goal(text: "test", completion: 0, date: Date(), completions: [true, false, false], strings: ["test1", "Test2", "Test3"])
         let result = goal.updateOrCreateGoalData(currentData: nil, in: managedObjectContext)
-        print("**** save")
-        print(result)
+        
         try? managedObjectContext.save()
         
         findingARecord()

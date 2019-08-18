@@ -212,21 +212,6 @@
 			path = FocusOnUnitTests;
 			sourceTree = "<group>";
 		};
-		011F8B352293274C005CDB82 /* Ressources */ = {
-			isa = PBXGroup;
-			children = (
-				011F8B3622932752005CDB82 /* Font */,
-			);
-			path = Ressources;
-			sourceTree = "<group>";
-		};
-		011F8B3622932752005CDB82 /* Font */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Font;
-			sourceTree = "<group>";
-		};
 		0132CDD5222C8FBE00457CD5 = {
 			isa = PBXGroup;
 			children = (
@@ -250,11 +235,15 @@
 		0132CDE0222C8FBE00457CD5 /* FocusOn */ = {
 			isa = PBXGroup;
 			children = (
-				01BB9FDB22DF9F4C00AE1DE7 /* NEW ------------------------------- */,
-				014B0C6D22E0C6D700EDDB0D /* --------------------------------- */,
 				015F660E2271FC480030E88D /* AAInfographics */,
-				011F8B352293274C005CDB82 /* Ressources */,
-				0193C70A225FD1230068BA4B /* Extension */,
+				013F367922E4F6F000E12927 /* Enums */,
+				014B0C6F22E0E55A00EDDB0D /* Extensions */,
+				014B0C6622E099E600EDDB0D /* Globals */,
+				01E41086223567D800C74766 /* Model */,
+				014B0C6A22E0C3E600EDDB0D /* Modules */,
+				01BB9FDA22DF9BC900AE1DE7 /* NavigationFlow */,
+				014B0C6922E0C28C00EDDB0D /* Protocols */,
+				014B0C6D22E0C6D700EDDB0D /* --------------------------------- */,
 				0132CDE1222C8FBE00457CD5 /* AppDelegate.swift */,
 				011F8B3722933489005CDB82 /* Assets.xcassets */,
 				0132CDED222C8FC000457CD5 /* Info.plist */,
@@ -314,11 +303,11 @@
 			isa = PBXGroup;
 			children = (
 				01BD8BAA2305B12E0085C700 /* History */,
-				01BD8BAB2305B1350085C700 /* Progress */,
 				014B0C6B22E0C3ED00EDDB0D /* Today */,
-				01E410822235451B00C74766 /* TodayVC.storyboard */,
+				01BD8BAB2305B1350085C700 /* Progress */,
 			);
-			path = Modules;
+			name = Modules;
+			path = "NEW -------------------------------/Modules";
 			sourceTree = "<group>";
 		};
 		014B0C6B22E0C3ED00EDDB0D /* Today */ = {
@@ -327,6 +316,7 @@
 				013F367022E4D00800E12927 /* View */,
 				014B0C6C22E0C40600EDDB0D /* ViewControllers */,
 				01FFB5B8222E84D600EAEB59 /* ViewModels */,
+				01E410822235451B00C74766 /* TodayVC.storyboard */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -355,6 +345,9 @@
 				01D90BC322EA455800094533 /* CGRect.swift */,
 				01D11F1C2306F38C000F0E1E /* CABasicAnimation+Creators.swift */,
 				01AA19CF230801AF0033735D /* CAShapeLayer.swift */,
+				0193C70B225FD1300068BA4B /* Date+Extension.swift */,
+				011F8B312293198D005CDB82 /* UIColor.swift */,
+				01AAAC9722BBAA4500A5E07E /* CGFloat+Calculations.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -427,35 +420,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		017E551E223A6F3800F7E9F6 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		0188CC612269E4620035E8BB /* View */ = {
-			isa = PBXGroup;
-			children = (
-				0188CC622269E47D0035E8BB /* CustomTableView.swift */,
-				0188CC642269E4AD0035E8BB /* CustomTableViewCell.swift */,
-				011823D622C2BF18001C83B4 /* CustomTableViewCell.xib */,
-				01A8F9572271E19B0050C992 /* SectionHeaderView.swift */,
-				01A8F9592271E1A80050C992 /* SectionHeaderView.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		0193C70A225FD1230068BA4B /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				0193C70B225FD1300068BA4B /* Date+Extension.swift */,
-				011F8B312293198D005CDB82 /* UIColor.swift */,
-				01AAAC9722BBAA4500A5E07E /* CGFloat+Calculations.swift */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
 		019B6B5A227B495B00716EBE /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -493,26 +457,13 @@
 			path = NavigationFlow;
 			sourceTree = "<group>";
 		};
-		01BB9FDB22DF9F4C00AE1DE7 /* NEW ------------------------------- */ = {
-			isa = PBXGroup;
-			children = (
-				013F367922E4F6F000E12927 /* Enums */,
-				014B0C6F22E0E55A00EDDB0D /* Extensions */,
-				014B0C6622E099E600EDDB0D /* Globals */,
-				01E41086223567D800C74766 /* Model */,
-				014B0C6A22E0C3E600EDDB0D /* Modules */,
-				01BB9FDA22DF9BC900AE1DE7 /* NavigationFlow */,
-				014B0C6922E0C28C00EDDB0D /* Protocols */,
-			);
-			path = "NEW -------------------------------";
-			sourceTree = "<group>";
-		};
 		01BD8BAA2305B12E0085C700 /* History */ = {
 			isa = PBXGroup;
 			children = (
 				01BD8BAC2305B16F0085C700 /* View */,
 				01BD8BAD2305B1740085C700 /* ViewController */,
 				01BD8BAE2305B17D0085C700 /* ViewModel */,
+				01E41080223543BD00C74766 /* HistoryVC.storyboard */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -527,6 +478,11 @@
 		01BD8BAC2305B16F0085C700 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0188CC622269E47D0035E8BB /* CustomTableView.swift */,
+				0188CC642269E4AD0035E8BB /* CustomTableViewCell.swift */,
+				011823D622C2BF18001C83B4 /* CustomTableViewCell.xib */,
+				01A8F9572271E19B0050C992 /* SectionHeaderView.swift */,
+				01A8F9592271E1A80050C992 /* SectionHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -542,6 +498,7 @@
 		01BD8BAE2305B17D0085C700 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				01FFB5C0222E89A000EAEB59 /* HistoryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -565,25 +522,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		01FFB5AA222E7E6300EAEB59 /* Today */ = {
-			isa = PBXGroup;
-			children = (
-				017E551E223A6F3800F7E9F6 /* Views */,
-			);
-			path = Today;
-			sourceTree = "<group>";
-		};
-		01FFB5AB222E7E7600EAEB59 /* History */ = {
-			isa = PBXGroup;
-			children = (
-				0188CC612269E4620035E8BB /* View */,
-				01FFB5B4222E849900EAEB59 /* ViewController */,
-				01FFB5B7222E84C400EAEB59 /* ViewModel */,
-				01E41080223543BD00C74766 /* HistoryVC.storyboard */,
-			);
-			path = History;
-			sourceTree = "<group>";
-		};
 		01FFB5AC222E7E8000EAEB59 /* Progress */ = {
 			isa = PBXGroup;
 			children = (
@@ -599,18 +537,9 @@
 		01FFB5AD222E7E8D00EAEB59 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				01FFB5AB222E7E7600EAEB59 /* History */,
-				01FFB5AA222E7E6300EAEB59 /* Today */,
 				01FFB5AC222E7E8000EAEB59 /* Progress */,
 			);
 			path = Modules;
-			sourceTree = "<group>";
-		};
-		01FFB5B4222E849900EAEB59 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		01FFB5B6222E84B200EAEB59 /* ViewController */ = {
@@ -619,14 +548,6 @@
 				012D2368222DD94D0073FA57 /* ProgressViewController.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		01FFB5B7222E84C400EAEB59 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				01FFB5C0222E89A000EAEB59 /* HistoryViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		01FFB5B8222E84D600EAEB59 /* ViewModels */ = {

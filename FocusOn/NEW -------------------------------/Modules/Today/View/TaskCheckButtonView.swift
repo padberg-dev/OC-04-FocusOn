@@ -22,6 +22,7 @@ class TaskCheckButtonView: UIView {
     private var pathRadius: CGFloat = 8.0
     private var lineWidth: CGFloat = 1.0
     private var animationDuration: Double = 0.4
+    private var strokeColor: UIColor = UIColor.white
     
     private var borderLayer: CAShapeLayer = CAShapeLayer()
     private var checkLayer: CAShapeLayer = CAShapeLayer()
@@ -57,6 +58,20 @@ class TaskCheckButtonView: UIView {
         }
     }
     
+    func setAlternative(selected: Bool) {
+        
+        insideView.layer.sublayers?.last?.removeFromSuperlayer()
+        strokeColor = UIColor.Main.atlanticDeep
+        lineWidth = 2
+        
+        if selected {
+            drawCheckPath()
+        } else {
+            drawFailPath()
+        }
+        checkLayer.strokeEnd = 1
+    }
+    
     func set(selected: Bool, immediately: Bool = false) {
         
         if !immediately && isSelected == selected { return }
@@ -65,6 +80,7 @@ class TaskCheckButtonView: UIView {
         if immediately {
             checkLayer.strokeEnd = isSelected ? 1 : 0
             parentConnection?.activateTextField(isSelected: isSelected, immediately: immediately)
+            
             if isSelected || parentConnection?.taskTextField.text != "" {
                 pathView.layer.addSublayer(borderLayer)
                 isBorderOn = true
@@ -76,40 +92,6 @@ class TaskCheckButtonView: UIView {
         parentConnection?.changeImage(toFilled: isSelected, immediate: immediately)
     }
     
-//    func hide() {
-//
-//        let view = UIView(frame: CGRect(x: distanceFromEdge - lineWidth / 2, y: distanceFromEdge - lineWidth / 2, width: width - 2 * distanceFromEdge + lineWidth, height: width - 2 * distanceFromEdge + lineWidth))
-//        view.alpha = 1
-//        view.backgroundColor = .clear
-//        view.layer.cornerRadius = pathRadius
-//        insideView.insertSubview(view, at: 0)
-//
-//        let newWidth = view.bounds.width
-//
-//        let view2 = UIView(frame: CGRect(x: lineWidth, y: lineWidth, width: newWidth - 2 * lineWidth, height: newWidth - 2 * lineWidth))
-//        view2.alpha = 1
-//        view2.backgroundColor = UIColor.Main.berkshireLace//UIColor.Main.lagoon
-//        view2.layer.cornerRadius = 0
-//        view2.transform = CGAffineTransform(scaleX: 0, y: 0)
-//        view.addSubview(view2)
-//
-//
-//        UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseInOut, animations: {
-//
-//            view2.layer.cornerRadius = self.pathRadius * 0.8
-//            view2.transform = .identity
-//            if !self.isSelected { self.animateFail() }
-//            if self.isSelected { self.animateCheck(isSelected: true) }
-//        }) { [weak self] _ in
-//            view.backgroundColor = .white
-//            self?.pathView.alpha = 0
-//            UIView.animate(withDuration: self!.animationDuration) {
-//                view.layer.cornerRadius = view.bounds.width / 2
-//                view2.layer.cornerRadius = view2.bounds.width / 2
-//            }
-//        }
-//    }
-    
     // MARK:- PRIVATE
     // MARK:- Custom Methods
     
@@ -119,7 +101,6 @@ class TaskCheckButtonView: UIView {
         
         drawBorderPath()
         drawCheckPath()
-        drawFailPath()
     }
     
     private func loadFromNib() {
@@ -192,7 +173,7 @@ class TaskCheckButtonView: UIView {
         path.addLine(to: CGPoint(x: 0.46 * width, y: 0.69 * width))
         path.addLine(to: CGPoint(x: 0.77 * width, y: 0.32 * width))
         
-        checkLayer = CAShapeLayer.basicWith(path: path.cgPath, strokeColor: UIColor.white.cgColor, lineWidth: lineWidth)
+        checkLayer = CAShapeLayer.basicWith(path: path.cgPath, strokeColor: strokeColor.cgColor, lineWidth: lineWidth)
         checkLayer.strokeEnd = 0
         
         insideView.layer.addSublayer(checkLayer)
@@ -202,21 +183,17 @@ class TaskCheckButtonView: UIView {
         
         let path = UIBezierPath()
         let path2 = UIBezierPath()
-        let path3 = UIBezierPath()
-        path.move(to: CGPoint(x: 0.35 * width, y: 0.35 * width))
-        path.addLine(to: CGPoint(x: 0.65 * width, y: 0.65 * width))
-        path2.move(to: CGPoint(x: 0.35 * width, y: 0.35 * width))
-        path2.addLine(to: CGPoint(x: 0.5 * width, y: 0.5 * width))
-        path2.addLine(to: CGPoint(x: 0.65 * width, y: 0.35 * width))
-        path3.move(to: CGPoint(x: 0.35 * width, y: 0.35 * width))
-        path3.addLine(to: CGPoint(x: 0.5 * width, y: 0.5 * width))
-        path3.addLine(to: CGPoint(x: 0.35 * width, y: 0.65 * width))
+        path.move(to: CGPoint(x: 0.3 * width, y: 0.3 * width))
+        path.addLine(to: CGPoint(x: 0.7 * width, y: 0.7 * width))
+        path2.move(to: CGPoint(x: 0.3 * width, y: 0.7 * width))
+        path2.addLine(to: CGPoint(x: 0.7 * width, y: 0.3 * width))
         
-        let pathArray = [path, path2, path3]
+        let pathArray = [path, path2]
         
-        for i in 0 ..< 3 {
+        for i in 0 ..< 2 {
             
-            failLayers.append(CAShapeLayer.basicWith(path: pathArray[i].cgPath, strokeColor: UIColor.white.cgColor, lineWidth: lineWidth))
+            failLayers.append(CAShapeLayer.basicWith(path: pathArray[i].cgPath, strokeColor: strokeColor.cgColor, lineWidth: lineWidth))
+            insideView.layer.addSublayer(failLayers[i])
         }
     }
     

@@ -12,6 +12,7 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
     
     @IBOutlet weak var graphView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     @IBOutlet weak var leftView: UIView!
     @IBOutlet weak var monthsCollectionView: CustomCollectionView!
@@ -39,6 +40,8 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
     
     var progressGraph: AAChartView = AAChartView()
     
+    private var attributes: [NSAttributedString.Key : Any] = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,6 +50,7 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
         
         data = progressVM.loadData()
         
+        setupUI()
         prepareData()
         setupSideViews()
         
@@ -54,6 +58,25 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
         setMonthsCollectionView()
         
         setUpGraphs2(firstTime: true)
+    }
+    
+    private func setupUI() {
+        
+        segmentedControl.tintColor = UIColor.Main.deepPeacoockBlue
+        let font = UIFont(name: "AvenirNextCondensed-Bold", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .bold)
+        attributes = [
+            NSAttributedString.Key.font : font,
+            NSAttributedString.Key.kern : -0.2,
+            NSAttributedString.Key.foregroundColor : UIColor.Main.rosin
+        ]
+        monthsCollectionView.backgroundColor = UIColor.Main.deepPeacoockBlue
+        yearsCollectionView.backgroundColor = UIColor.Main.deepPeacoockBlue
+    }
+    
+    private func setText(_ text: String) {
+        
+        print(view.frame)
+        titleLabel.attributedText = NSAttributedString(string: text, attributes: attributes)
     }
     
     private func setYearsCollectionView() {
@@ -103,6 +126,7 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
     }
     
     @objc func showCalendar() {
+        
         toggleCalendar()
     }
     
@@ -125,7 +149,7 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
         data.forEach { goalData in
             
             let array = formatter.string(from: goalData.date!).split(separator: "-").map { String($0) }
-            print(array)
+            
             if workingYear != String(array[0]) {
                 if workingYear != "" {
                     
@@ -167,37 +191,20 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
         yearFormatter.dateFormat = "YYYY"
         let monthFormatter = DateFormatter()
         monthFormatter.dateFormat = "MM"
-        
-//        print("************************")
-//        print("DATA COUNT \(data.count)")
-//        print("************************")
-//        print("YEARS COUNT \(years.count)")
-//        print("************************")
-//        print("MONTHS YEAR COUNT: \(months.count)")
-//
-//        months.forEach { key, value in
-//            print("YEAR - \(key)")
-//            value.forEach{ goalData in
-//                print("ITEMS COUNT \(goalData.count)")
-//                if !goalData.isEmpty {
-//                    print("MONTH \(monthFormatter.string(from: goalData[0].date!))")
-//                }
-//            }
-//        }
     }
     
-    func showTasksGraph() {
-        graphView.subviews.last?.removeFromSuperview()
-        monthsModel = AAChartModel()
-        setUpGraphs()
-    }
+//    func showTasksGraph() {
+//        graphView.subviews.last?.removeFromSuperview()
+//        monthsModel = AAChartModel()
+//        setUpGraphs()
+//    }
     
     
-    func showYearGraph() {
-        graphView.subviews.last?.removeFromSuperview()
-        yearsModel = AAChartModel()
-        setUpGraphs()
-    }
+//    func showYearGraph() {
+//        graphView.subviews.last?.removeFromSuperview()
+//        yearsModel = AAChartModel()
+//        setUpGraphs()
+//    }
     
     func setUpGraphs2(firstTime: Bool = false) {
         
@@ -208,49 +215,6 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
         }
         let graphModel = createGraphModel()
         progressGraph.aa_drawChartWithChartModel(graphModel)
-        
-        
-        
-        //months
-//        if first {
-//
-//            monthsModel
-//                .series([
-//                    AASeriesElement()
-//                        .name(activeTask ? "Tasks" : "Goals")
-//                        .allowPointSelect(false)
-//                        .data(activeTask ? data : createDict(data: data))
-//                        .toDic()!
-//                    ])
-//            print("FIRST")
-//        } else {
-//            self.monthsGraph.aa_onlyRefreshTheChartDataWithChartModelSeries([
-//                AASeriesElement()
-//                    .name(activeTask ? "Tasks" : "Goals")
-//                    .allowPointSelect(false)
-//                    .data(activeTask ? data : createDict(data: data))
-//                    .toDic()!
-//                ])
-//        }
-        // YEAR
-//        if first {
-//            yearsModel
-//                .series([
-//                    AASeriesElement()
-//                        .name(activeTask ? "Tasks" : "Goals")
-//                        .allowPointSelect(false)
-//                        .data(data)
-//                        .toDic()!
-//                    ])
-//        } else {
-//            self.yearsGraph.aa_onlyRefreshTheChartDataWithChartModelSeries([
-//                AASeriesElement()
-//                    .name(activeTask ? "Tasks" : "Goals")
-//                    .allowPointSelect(false)
-//                    .data(data)
-//                    .toDic()!
-//                ])
-//        }
     }
     
     func createGraphModel() -> AAChartModel {
@@ -269,8 +233,6 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
             categories = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
         }
         
-        print(categories)
-        
         let model = AAChartModel()
             .chartType(activeTask ? .bar : activeMonth != 0 ? .pie : .area)
             .stacking(.none)
@@ -278,7 +240,7 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
             .dataLabelEnabled(false)
             .title("")
             .inverted(activeMonth == 0 && !activeTask ? true : false)
-            .colorsTheme(["#fe117c", "#a188b1", "#12rtc7", "#1f4ab1", "#aaaaaa", "#8f6cc1"])
+            .colorsTheme(["#008481", "#4FA49A", "#93BBAD", "#F1E3D0", "#294D57"])
             .categories(categories)
         
         model
@@ -295,10 +257,9 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
     
     func createYearGraphData() -> [Int] {
         
-        print("ACTIVE YEAR \(activeYear) - \(activeMonth)")
         let year = months[String(activeYear)]!
         
-        titleLabel.text = String(activeYear)
+        setText(String(activeYear))
         
         var array: [Int] = []
         
@@ -330,7 +291,7 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM YYYY"
         let dateString = formatter.string(from: firstDate)
-        titleLabel.text = dateString
+        setText(dateString)
         
         var array: [Int]!
         
@@ -352,49 +313,46 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
         return array
     }
     
-    func setUpGraphs() {
-        monthsGraph.frame = graphView.bounds
-        monthsGraph.scrollEnabled = false
-        yearsGraph.frame = graphView.bounds
-        yearsGraph.scrollEnabled = false
-
-        monthsModel
-            .chartType(activeTask ? .bar : .pie)
-            .stacking(.none)
-            .animationType(.easeInBack)
-            .dataLabelEnabled(false)
-            .title("")
-            .colorsTheme(["#fe117c", "#a188b1", "#12rtc7", "#1f4ab1", "#aaaaaa", "#8f6cc1"])
-            .categories(activeTask ? [
-                "1", "2", "3", "4", "5", "6","7", "8", "9", "10",
-                "11", "12", "13", "14", "15", "16","17", "18", "19", "20",
-                "21", "22", "23", "24", "25", "26","27", "28", "29", "30",
-                "31"
-                ] : [])
-
-        yearsModel = AAChartModel()
-        yearsModel
-            .chartType(activeTask ? .bar : .area)
-            .inverted(activeTask ? false : true)
-            .stacking(.none)
-            .animationType(.easeInBack)
-            .dataLabelEnabled(false)
-            .title("")
-            .colorsTheme(["#fe117c"])
-            .categories([
-                "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct",
-                "Nov", "Dec"
-                ])
-
-        if activeMonth != 0 {
-            feedDataToMonthsGraph(withIndex: activeMonth, first: true)
-            monthsGraph.aa_drawChartWithChartModel(monthsModel)
-        } else {
-//            feedDataToYearsGraph(withIndex: activeCVIndex, first: true)
-//            yearsGraph.aa_drawChartWithChartModel(yearsModel)
-        }
-        graphView.addSubview(activeMonth != 0 ? monthsGraph : yearsGraph)
-    }
+//    func setUpGraphs() {
+//        monthsGraph.frame = graphView.bounds
+//        monthsGraph.scrollEnabled = false
+//        yearsGraph.frame = graphView.bounds
+//        yearsGraph.scrollEnabled = false
+//
+//        monthsModel
+//            .chartType(activeTask ? .bar : .pie)
+//            .stacking(.none)
+//            .animationType(.easeInBack)
+//            .dataLabelEnabled(false)
+//            .title("")
+//            .colorsTheme(["#008481", "#a188b1", "#12rtc7", "#1f4ab1", "#aaaaaa", "#8f6cc1"])
+//            .categories(activeTask ? [
+//                "1", "2", "3", "4", "5", "6","7", "8", "9", "10",
+//                "11", "12", "13", "14", "15", "16","17", "18", "19", "20",
+//                "21", "22", "23", "24", "25", "26","27", "28", "29", "30",
+//                "31"
+//                ] : [])
+//
+//        yearsModel = AAChartModel()
+//        yearsModel
+//            .chartType(activeTask ? .bar : .area)
+//            .inverted(activeTask ? false : true)
+//            .stacking(.none)
+//            .animationType(.easeInBack)
+//            .dataLabelEnabled(false)
+//            .title("")
+//            .colorsTheme(["#008481"])
+//            .categories([
+//                "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct",
+//                "Nov", "Dec"
+//                ])
+//
+//        if activeMonth != 0 {
+//            feedDataToMonthsGraph(withIndex: activeMonth, first: true)
+//            monthsGraph.aa_drawChartWithChartModel(monthsModel)
+//        }
+//        graphView.addSubview(activeMonth != 0 ? monthsGraph : yearsGraph)
+//    }
     
     func feedDataToMonthsGraph(withIndex index: Int, first: Bool = false) {
         
@@ -402,47 +360,12 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM YYYY"
         let dateString = formatter.string(from: (section.first?.date!)!)
-
-        titleLabel.text = dateString
+        
+        setText(dateString)
 
         let data = createMonthData(from: section)
         updateMonthGraph(data: data, first: first)
     }
-    
-//    func feedDataToYearsGraph(withIndex index: Int, first: Bool = false) {
-//        let section = years[index]
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "YYYY"
-//        let dateString = formatter.string(from: (section.first?.date!)!)
-//
-//        titleLabel.text = dateString
-//
-//        let data = createYearData(from: section)
-//        updateYearGraph(data: data, first: first)
-//    }
-    
-//    func createYearData(from years: [GoalData]) -> [Int] {
-//        var array: [Int] = Array(repeating: 0, count: 12)
-//        var monthSum: Int = 0
-//
-//        var workingMonth = ""
-//
-//        years.forEach { (day) in
-//            let formatter = DateFormatter()
-//            formatter.dateFormat = "MM"
-//            let month = String(formatter.string(from: day.date!))
-//
-//            if workingMonth != month {
-//                if monthSum != 0 {
-//                    array[Int(workingMonth)! - 1] = monthSum
-//                    monthSum = 0
-//                }
-//                workingMonth = month
-//            }
-//            monthSum += activeTask ? day.getNumberOfTaskCompletions() : Int(day.goalCompletion) == 3 ? 1 : 0
-//        }
-//        return array
-//    }
     
     func createMonthData(from months: [GoalData]) -> [Int] {
         var array: [Int] = []
@@ -477,11 +400,12 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
     
     func createDict(data: [Int]) -> [[Any]] {
         let dictOfAny = [
-            ["NotCompleted", data[4]],
-            ["OneThird", data[3]],
-            ["TwoTHirds", data[2]],
             ["Completed", data[1]],
-            ["NotYetAchieved", data[0]]
+            ["TwoTHirds", data[2]],
+            ["OneThird", data[3]],
+            ["NotCompleted", data[0]],
+            ["NotYetAchieved", data[4]
+            ]
         ]
         return dictOfAny
     }
@@ -497,7 +421,6 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
                     .data(activeTask ? data : createDict(data: data))
                     .toDic()!
                 ])
-            print("FIRST")
         } else {
             self.monthsGraph.aa_onlyRefreshTheChartDataWithChartModelSeries([
                 AASeriesElement()
@@ -509,48 +432,25 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
         }
     }
     
-//    func updateYearGraph(data: [Int], first: Bool = false) {
-//        if first {
-//            yearsModel
-//                .series([
-//                    AASeriesElement()
-//                        .name(activeTask ? "Tasks" : "Goals")
-//                        .allowPointSelect(false)
-//                        .data(data)
-//                        .toDic()!
-//                    ])
-//        } else {
-//            self.yearsGraph.aa_onlyRefreshTheChartDataWithChartModelSeries([
-//                AASeriesElement()
-//                    .name(activeTask ? "Tasks" : "Goals")
-//                    .allowPointSelect(false)
-//                    .data(data)
-//                    .toDic()!
-//                ])
-//        }
-//    }
-    
     var isCalendarToggled: Bool = false
 
     func toggleCalendar(immediately: Bool = false) {
         isCalendarToggled = !isCalendarToggled
-
+        
         let transform = transformForFraction(isCalendarToggled ? 1 : 0, ofWidth: 30)
         let transform2 = transformForFraction(isCalendarToggled ? -1 : 0, ofWidth: 30)
         let scale = (view.frame.width - 120) / view.frame.width
         let grapghTransform = isCalendarToggled ? .identity : CGAffineTransform(scaleX: scale, y: scale)
-
+        
         if immediately {
             self.leftView.layer.transform = transform
             self.rightView.layer.transform = transform2
         } else {
-        UIView.animate(withDuration: 0.6, animations: {
-            self.graphView.transform = grapghTransform
-            self.leftView.layer.transform = transform
-            self.rightView.layer.transform = transform2
-        }, completion: { [weak self] _ in
-
-        })
+            UIView.animate(withDuration: 0.6, animations: {
+                self.graphView.transform = grapghTransform
+                self.leftView.layer.transform = transform
+                self.rightView.layer.transform = transform2
+            }, completion: nil)
         }
     }
     
@@ -561,34 +461,34 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
         toggleCalendar(immediately: true)
     }
     
-    private func transformForFraction(_ fraction: CGFloat, ofWidth width: CGFloat)
-        -> CATransform3D {
-            //1
-            var identity = CATransform3DIdentity
-            identity.m34 = -1.0 / 1000.0
-
-            //2
-            let angle = -fraction * .pi/2.0
-
-            //3
-            let rotateTransform = CATransform3DRotate(identity, angle, 0.0, 1.0, 0.0)
-            return rotateTransform
+    private func transformForFraction(_ fraction: CGFloat, ofWidth width: CGFloat) -> CATransform3D {
+        //1
+        var identity = CATransform3DIdentity
+        identity.m34 = -1.0 / 1000.0
+        
+        //2
+        let angle = -fraction * .pi/2.0
+        
+        //3
+        let rotateTransform = CATransform3DRotate(identity, angle, 0.0, 1.0, 0.0)
+        return rotateTransform
     }
 
     func cellWasSelected(withIndex index: Int, cellType: CellType) {
+        
         if cellType == .yearsCell {
             activeYear = index
-            print("SELECTED YEAR \(index)")
             setMonthsCollectionView()
         } else {
             activeMonth = index
-            print("SELECTED MONTH \(index)")
         }
         setUpGraphs2()
     }
-//
+    
     override func viewWillAppear(_ animated: Bool) {
         parent?.navigationItem.title = "FocusOn Progress"
+        
+        view.addVerticalGradient(of: UIColor.Gradients.greenYellowishLight)
     }
     
     @IBAction func taskGoalSegmentedControl(_ sender: UISegmentedControl) {
@@ -596,11 +496,9 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
         case 1:
             activeTask = false
             setUpGraphs2()
-//            showTasksGraph()
         default:
             activeTask = true
             setUpGraphs2()
-//            showTasksGraph()
         }
     }
 }

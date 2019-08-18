@@ -41,6 +41,11 @@ class TaskBlockView: UIView {
     
     // MARK:- Public Methods
     
+    func changeTaskLabel(_ title: String) {
+        
+        taskLabel.text = title
+    }
+    
     func changeTask(title: String? = nil, completion: Task.CompletionProgress, immediately: Bool = true) {
         
         let isSelected = completion != .notCompleted

@@ -14,11 +14,12 @@ class SectionHeaderView: UIView {
     
     @IBOutlet weak var numberDoneLabel: UILabel!
     @IBOutlet weak var numberAllLabel: UILabel!
+    @IBOutlet weak var insideView: UIView!
     
     @IBOutlet weak var sectionTitleLabel: UILabel!
     
     override func awakeFromNib() {
-        print("LOL")
+        
         loadFromNib()
     }
     
@@ -35,6 +36,7 @@ class SectionHeaderView: UIView {
     }
     
     func configureHeader(sectionText: String, completedGoals: Int, allGoals: Int) {
+        
         sectionTitleLabel.text = sectionText
         numberDoneLabel.text = String(completedGoals)
         numberAllLabel.text = String(allGoals)
@@ -42,9 +44,12 @@ class SectionHeaderView: UIView {
     
     private func loadFromNib() {
         Bundle.main.loadNibNamed("SectionHeaderView", owner: self, options: nil)
-        addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         contentView.isUserInteractionEnabled = false
+        contentView.backgroundColor = UIColor.Main.deepPeacoockBlue
+        insideView.backgroundColor = UIColor.Main.treetop
+        self.addSimpleShadow(color: UIColor.Main.rosin, radius: 6, opacity: 0.6, offset: .zero)
+        addSubview(contentView)
     }
 }

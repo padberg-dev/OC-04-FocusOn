@@ -16,7 +16,9 @@ extension UINavigationController {
         navigationBar.barTintColor = UIColor.Main.atlanticDeep
         
         let font = UIFont(name: "AvenirNextCondensed-Bold", size: 20) ?? UIFont.systemFont(ofSize: 20, weight: .bold)
-        navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.Main.berkshireLace, NSAttributedString.Key.font : font]
+        navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.Main.berkshireLace,
+            NSAttributedString.Key.font : font]
         
         navigationBar.addSimpleShadow(color: UIColor.Main.rosin, radius: 6.0, opacity: 0.3, offset: .zero)
     }

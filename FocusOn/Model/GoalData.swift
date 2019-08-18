@@ -14,6 +14,7 @@ class GoalData: NSManagedObject {
     // MARK:- Static Methods
     
     static func findLast(in context: NSManagedObjectContext) -> GoalData? {
+        
         let request: NSFetchRequest<GoalData> = GoalData.fetchRequest()
         let latest = NSSortDescriptor(key: "date", ascending: false)
         request.sortDescriptors = [latest]
@@ -29,8 +30,6 @@ class GoalData: NSManagedObject {
         }
         return nil
     }
-    
-    // --------------------------------------
     
     static func findGoalData(matchingFromDate date: Date, in context: NSManagedObjectContext) -> GoalData? {
         let dateFrom = Calendar(identifier: .gregorian).startOfDay(for: date)
@@ -97,14 +96,13 @@ class GoalData: NSManagedObject {
             }
             
             goal.date = Date().addingTimeInterval(Double(numberOfDays - i) * -24*3600)
-            print(goal.date)
             goal.goalText = GoalData.generateGoalName()
             goal.goalCompletion = Int32(completionsSum)
-            goal.taskText1 = "First Task"
+            goal.taskText1 = GoalData.generateTask()
             goal.taskCompletion1 = completions[0] == 1 ? true : false
-            goal.taskText2 = "Second Task"
+            goal.taskText2 = GoalData.generateTask()
             goal.taskCompletion2 = completions[1] == 1 ? true : false
-            goal.taskText3 = "Third Task"
+            goal.taskText3 = GoalData.generateTask()
             goal.taskCompletion3 = completions[2] == 1 ? true : false
         }
         
@@ -182,8 +180,6 @@ class GoalData: NSManagedObject {
         var match: [GoalData] = []
         let context = AppDelegate.context
         
-        let firstOfMonth = Date.firstOfMonth()
-        
         let request: NSFetchRequest<GoalData> = GoalData.fetchRequest()
         let sorting = NSSortDescriptor(key: "date", ascending: true)
         request.sortDescriptors = [sorting]
@@ -194,5 +190,12 @@ class GoalData: NSManagedObject {
             print("DATABASE ERROR")
         }
         return match
+    }
+    
+    static func generateTask() -> String {
+        let tasks = [
+            "Order a cake", "Sweep the house", "Get ice cream", "Clean out the fridge", "Buy milk", "Buy coffee", "Buy bananas", "Continue with article", "Purchase new computer", "Read book", "Listen to music", "Write some sentences", "Buy presents", "Get oil changed", "Take photos", "Task1", "Task2", "Taks3", "Do a review", "Write a post", "Email John", "Reasearch Wordpress", "Plan a new project", "Finish knitting", "Brainstorm blog posts", "Plan trip to Rome", "Get mac fixed", "Book tickets to concert", "Find a hotel in London", "Buy a gift", "Book a dentist appointment", "Get a projector", "Take Henry to the airport", "Play chess", "Meet with Samantha", "Go for a run", "Water the plants", "Make dinner reservation", "Order cake", "Buy plane tickets", "Book a hotel", "Pay bills", "Discuss the issues", "Take taekwondo class", "Buy ketchup", "New table", "Yard work", "Clean garage",
+        ]
+        return tasks.randomElement() ?? "Random task"
     }
 }

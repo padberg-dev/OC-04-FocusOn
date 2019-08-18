@@ -17,9 +17,6 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var gradientViewTop: UIView!
     @IBOutlet weak var gradientViewOverBlock: UIView!
     
-    @IBOutlet weak var topLeftView: UIView!
-    @IBOutlet weak var bottomLeftView: UIView!
-    
     @IBOutlet weak var gearImageView: UIImageView!
     
     @IBOutlet var taskBlocks: [TaskBlockView]!
@@ -33,15 +30,6 @@ class CustomTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         bottomConstraint.constant = 0
-        
-        gradientView.addHorizontalGradient(of: [UIColor.Main.berkshireLace.withAlphaComponent(0.4), UIColor.Main.berkshireLace])
-        
-        let gradient = CAGradientLayer()
-        gradient.frame = gradientView.bounds
-        gradient.colors = [UIColor.Main.berkshireLace.cgColor, UIColor.Main.berkshireLace.withAlphaComponent(0).cgColor]
-        gradient.startPoint = CGPoint(x: 1, y: 0)
-        gradient.endPoint = CGPoint(x: 0, y: 0)
-        gradientView.layer.addSublayer(gradient)
         
         gradientViewTop.backgroundColor = UIColor.Main.berkshireLace
         
@@ -63,20 +51,6 @@ class CustomTableViewCell: UITableViewCell {
         let view4 = UIView(frame: CGRect(origin: CGPoint(x: 25, y: 6), size: CGSize(width: 1, height: 27)))
         view4.addVerticalGradient(of: [UIColor.Main.rosin, UIColor.Main.rosin.withAlphaComponent(0)])
         gradientViewOverBlock.addSubview(view4)
-        
-        let gradient3 = CAGradientLayer()
-        gradient3.frame = topLeftView.bounds
-        gradient3.colors = [UIColor.Main.rosin.withAlphaComponent(0).cgColor, UIColor.Main.rosin.withAlphaComponent(0.15).cgColor]
-        gradient3.startPoint = CGPoint(x: 0, y: 0)
-        gradient3.endPoint = CGPoint(x: 1, y: 1)
-        topLeftView.layer.addSublayer(gradient3)
-        
-        let gradient4 = CAGradientLayer()
-        gradient4.frame = bottomLeftView.bounds
-        gradient4.colors = [UIColor.Main.rosin.withAlphaComponent(0).cgColor, UIColor.Main.rosin.withAlphaComponent(0.15).cgColor]
-        gradient4.startPoint = CGPoint(x: 0, y: 1)
-        gradient4.endPoint = CGPoint(x: 0, y: 0)
-        bottomLeftView.layer.addSublayer(gradient4)
     }
     
     func setWidth() {

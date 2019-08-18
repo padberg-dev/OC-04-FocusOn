@@ -20,20 +20,20 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E9C-WN-aXy">
-                        <rect key="frame" x="2" y="2" width="56" height="16"/>
+                        <rect key="frame" x="1" y="1" width="58" height="18"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sep 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mRy-jf-WX0">
-                                <rect key="frame" x="4" y="1" width="48" height="14.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sep 2018" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mRy-jf-WX0">
+                                <rect key="frame" x="2" y="2" width="54" height="14.5"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.53333333329999999" green="0.83137254900000002" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="mRy-jf-WX0" firstAttribute="leading" secondItem="E9C-WN-aXy" secondAttribute="leading" constant="4" id="Gj3-nR-FDG"/>
+                            <constraint firstItem="mRy-jf-WX0" firstAttribute="leading" secondItem="E9C-WN-aXy" secondAttribute="leading" constant="2" id="Gj3-nR-FDG"/>
                             <constraint firstItem="mRy-jf-WX0" firstAttribute="centerX" secondItem="E9C-WN-aXy" secondAttribute="centerX" id="ejO-UZ-Ldj"/>
-                            <constraint firstAttribute="trailing" secondItem="mRy-jf-WX0" secondAttribute="trailing" constant="4" id="frg-b8-xKa"/>
+                            <constraint firstAttribute="trailing" secondItem="mRy-jf-WX0" secondAttribute="trailing" constant="2" id="frg-b8-xKa"/>
                             <constraint firstItem="mRy-jf-WX0" firstAttribute="centerY" secondItem="E9C-WN-aXy" secondAttribute="centerY" id="pE2-cc-8N1"/>
                         </constraints>
                     </view>
@@ -41,10 +41,10 @@
             </view>
             <color key="backgroundColor" red="0.34509803919999998" green="0.18823529410000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="E9C-WN-aXy" secondAttribute="bottom" constant="2" id="8aS-ai-OXq"/>
-                <constraint firstItem="E9C-WN-aXy" firstAttribute="leading" secondItem="ag5-x7-iCk" secondAttribute="leading" constant="2" id="Opm-Sf-Poa"/>
-                <constraint firstItem="E9C-WN-aXy" firstAttribute="top" secondItem="ag5-x7-iCk" secondAttribute="top" constant="2" id="qct-OF-QLw"/>
-                <constraint firstAttribute="trailing" secondItem="E9C-WN-aXy" secondAttribute="trailing" constant="2" id="vHi-wt-zmY"/>
+                <constraint firstAttribute="bottom" secondItem="E9C-WN-aXy" secondAttribute="bottom" constant="1" id="8aS-ai-OXq"/>
+                <constraint firstItem="E9C-WN-aXy" firstAttribute="leading" secondItem="ag5-x7-iCk" secondAttribute="leading" constant="1" id="Opm-Sf-Poa"/>
+                <constraint firstItem="E9C-WN-aXy" firstAttribute="top" secondItem="ag5-x7-iCk" secondAttribute="top" constant="1" id="qct-OF-QLw"/>
+                <constraint firstAttribute="trailing" secondItem="E9C-WN-aXy" secondAttribute="trailing" constant="1" id="vHi-wt-zmY"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="MpJ-kj-nm1"/>
             <size key="customSize" width="307" height="145"/>

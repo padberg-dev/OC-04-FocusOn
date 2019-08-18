@@ -24,15 +24,16 @@ class CustomCollectionView: UICollectionView, UICollectionViewDataSource, UIColl
     var isDataAvailable: [Bool] = []
     
     override func awakeFromNib() {
+        
         delegate = self
         dataSource = self
-        print("REGISTER")
+        
         register(UINib(nibName: "CustomCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CustomCell")
         
         let layout = collectionViewLayout as? UICollectionViewFlowLayout
         layout?.itemSize = CGSize(width: 56, height: 20)
         layout?.minimumLineSpacing = 10
-        layout?.sectionInset = UIEdgeInsets(top: 10, left: 2, bottom: 10, right: 2)
+        layout?.sectionInset = UIEdgeInsets(top: 10, left: 1, bottom: 10, right: 1)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -65,10 +66,8 @@ class CustomCollectionView: UICollectionView, UICollectionViewDataSource, UIColl
     // todo: Case when switching from december 2018 to december 2019 it should be impossible or change to whole year
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let index = indexPath.item
-        print("highlited cell: \(highlightedCell) - \(data[index])")
         if index != highlightedCell && isDataAvailable[index] == true {
-            print("THROUGH")
-            print("*******")
+            
             highlightCell(withIndex: indexPath.item)
             let number = type == .monthsCell ? index : Int(data[index])!
             customDelegate?.cellWasSelected(withIndex: number, cellType: type)

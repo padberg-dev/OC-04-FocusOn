@@ -10,11 +10,11 @@ import UIKit
 
 class HistoryViewController: UIViewController {
     
+    // MARK:- Outlets
+    
     @IBOutlet weak var tableView: CustomTableView!
     
-    var items: [String] = []
-    
-    var historyVM = HistoryViewModel()
+    // MARK:- Public Properties
     
     var shouldAnimateSliding: Bool {
         get {
@@ -29,32 +29,29 @@ class HistoryViewController: UIViewController {
         }
     }
     
+    // MARK:- Private Properties
+    
+    private var historyVM = HistoryViewModel()
+    
+    // MARK:- View Controller Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("VDL HISTORY")
         
         tableView.goals = historyVM.loadData()
         tableView.historyVM = historyVM
         tableView.setIndex()
         
         tableView.parentConnection = self
-        
         tableView.sectionIndexColor = UIColor.Main.rosin
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         parent?.navigationItem.title = "FocusOn History"
         tableView.reloadRows(at: [IndexPath(item: 0, section: 0)], with: .left)
-        
-//        DispatchQueue.main.async {
-            let gradient = CAGradientLayer()
-            gradient.frame = self.view.frame
-            gradient.colors = UIColor.Gradients.greenYellowish
-            gradient.startPoint = CGPoint(x: 1, y: 0)
-            gradient.endPoint = CGPoint(x: 0, y: 1)
-            self.view.layer.insertSublayer(gradient, at: 0)
-//        }
         
         view.addDiagonalGradient(of: UIColor.Gradients.greenYellowish)
     }
