@@ -11,14 +11,13 @@ import UIKit
 class AnimatedMaskView: UIView, CAAnimationDelegate {
     
     enum MessageType {
+        
         case notAllTasksDefined
         case formNotComplete
         case goalIsEmpty
     }
     
     @IBOutlet var contentView: UIView!
-    
-    
     
     @IBOutlet weak var insideView: UIView!
     @IBOutlet weak var messageLabel: UILabel!

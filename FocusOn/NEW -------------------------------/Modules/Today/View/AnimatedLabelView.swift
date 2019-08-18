@@ -24,8 +24,8 @@ class AnimatedLabelView: UIView {
     private var characterLabels: [UILabel] = []
     private var fontAttributes: [NSAttributedString.Key : NSObject] = [:]
     
-    private let animationDuration: Double = 0.3
-    private let animationDelay: Double = 0.02
+    private let animationDuration: Double = 0.6
+    private let animationDelay: Double = 0.04
 
     // MARK:- Initializers
     
@@ -63,7 +63,7 @@ class AnimatedLabelView: UIView {
                 label.transform = CGAffineTransform(translationX: 0, y: (i % 2) == 0 ? -10 : 10)
                 let duration = animationDuration
                 
-                UIView.animate(withDuration: duration / 18, delay: Double(i) * animationDelay, options: .curveEaseInOut, animations: {
+                UIView.animate(withDuration: duration / 18, delay: Double(i) * animationDelay, options: .curveEaseIn, animations: {
 
                     label.alpha = 1
                     label.transform = .identity

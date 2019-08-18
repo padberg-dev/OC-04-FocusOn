@@ -10,13 +10,13 @@ import UIKit
 
 extension CAShapeLayer {
     
-    static func basicWith(path: CGPath, strokeColor: CGColor = UIColor.Main.berkshireLace.cgColor, fillColor: CGColor? = nil, lineWidth: CGFloat? = 4.0) -> CAShapeLayer {
+    static func basicWith(path: CGPath, strokeColor: CGColor = UIColor.Main.berkshireLace.cgColor, fillColor: CGColor? = nil, lineWidth: CGFloat = 4.0) -> CAShapeLayer {
         
         let layer = CAShapeLayer()
         layer.path = path
         layer.strokeColor = strokeColor
         layer.fillColor = fillColor
-        layer.lineWidth = 4.0
+        layer.lineWidth = lineWidth
         
         return layer
     }

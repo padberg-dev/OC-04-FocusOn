@@ -214,12 +214,12 @@ class TodayViewModel {
     // MARK:- PRIVATE
     // MARK:- Custom Methods
     
-    private func updateWholeUI(animationType: InitialAnimationType) {
-        bindingDelegate?.updateWholeUI(with: self.goal, animationType: animationType)
-    }
-    
     private func startNewGoal(_ goal: Goal? = nil) {
         self.goal = goal ?? Goal()
         updateWholeUI(animationType: (goal != nil) ? .continueWithOldGoal : .createNewGoal)
+    }
+    
+    private func updateWholeUI(animationType: InitialAnimationType) {
+        bindingDelegate?.updateWholeUI(with: self.goal, animationType: animationType)
     }
 }

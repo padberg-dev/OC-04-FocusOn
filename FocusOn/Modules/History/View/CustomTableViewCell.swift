@@ -79,27 +79,6 @@ class CustomTableViewCell: UITableViewCell {
         bottomLeftView.layer.addSublayer(gradient4)
     }
     
-    func animateTasks() {
-        taskBlocks.forEach {
-            $0.transform = CGAffineTransform(translationX: 0, y: CGFloat(($0.tag + 1) * -30))
-        }
-        
-        UIView.animate(withDuration: 0.8, animations: {
-            self.taskBlocks.forEach { $0.transform = .identity }
-        }) { [weak self] _ in
-            self?.taskBlocks.forEach { $0.checkBox.hide() }
-        }
-    }
-    
-    func resetTasks() {
-        taskBlocks.forEach { $0.checkBox.unHide() }
-    }
-    
-    override func layoutSubviews() {
-//        print("DDD cell alyouts subviews \(cellIsSelected)")
-        
-    }
-    
     func setWidth() {
         self.transform = CGAffineTransform(translationX: 20, y: 0)
     }

@@ -12,14 +12,30 @@ class TodayViewController: UIViewController {
     
     // MARK:- Outlets
     
+    @IBOutlet weak var topTaskSpaceConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomTaskSpaceConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var messageView: AnimatedMaskView!
     @IBOutlet weak var goalLabelView: AnimatedLabelView!
     @IBOutlet weak var goalBlock: GoalBlockView!
     @IBOutlet weak var completionBlock: CompletionBlockView!
     @IBOutlet weak var tasksLabelView: AnimatedLabelView!
+    @IBOutlet weak var todayView: UIView!
     
     @IBOutlet var taskBlocks: [TaskBlockView]!
+    
+    // MARK:- Public Properties
+    
+    var isTodayVCFilledOutCompletely: Bool {
+        get {
+            let validation = validateGoal() && validateTasks()
+            if !validation {
+                messageView.show(with: .formNotComplete)
+            }
+            return validation
+        }
+    }
     
     // MARK:- Private Properties
     
@@ -45,6 +61,24 @@ class TodayViewController: UIViewController {
         }
     }
     
+    func changeCompletion() {
+        
+        if validateTasks() {
+            todayVM.changeGoalCompletion()
+        } else {
+            self.messageView.show(with: .notAllTasksDefined)
+        }
+    }
+    
+    func changeCompletionToNYA() {
+        
+        todayVM.changeGoalToNYA()
+    }
+    
+    func taskButtonTapped(buttonTag: Int) {
+        todayVM.changeTaskCompletion(withId: buttonTag)
+    }
+    
     // MARK:- View Controller Life Cycle
     
     override func viewDidLoad() {
@@ -61,6 +95,7 @@ class TodayViewController: UIViewController {
         parent?.navigationItem.title = "FocusOn Today"
         
         view.addVerticalGradient(of: UIColor.Gradients.greenLight)
+        completionBlock.addPulsatingAnimation()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -87,7 +122,17 @@ class TodayViewController: UIViewController {
         
         goalLabelView.assign(text: "Goal for the day to focus on:")
         tasksLabelView.assign(text: "3 tasks to achieve that goal:", font: .light)
-//        messageView.initialSetup()
+    }
+    
+    private func updateGoal(completion: Goal.CompletionProgress) {
+        
+        completionBlock.updateProgress(to: completion)
+        
+        if completion == .completed {
+            fireAnimation()
+        } else {
+            fireBackAnimation()
+        }
     }
     
     // MARK:- Keyboard Handling Methods
@@ -172,50 +217,32 @@ class TodayViewController: UIViewController {
     
     private func animateUIAppearing() {
         
-        goalLabelView.animateAppearing()
+        goalLabelView.show(animated: true)
         goalBlock.animateAppearing()
         completionBlock.setNYAButton()
         
-        tasksLabelView.animateAppearing()
+        tasksLabelView.show(animated: true)
         taskBlocks.forEach { $0.animateAppearing() }
     }
     
-    func changeCompletion() {
-        
-        if validateTasks() {
-            todayVM.changeGoalCompletion()
-        } else {
-            self.messageView.show(with: .notAllTasksDefined)
+    private func fireAnimation() {
+        self.topTaskSpaceConstraint.constant = -1
+        self.bottomTaskSpaceConstraint.constant = -1
+        UIView.animate(withDuration: 0.6) {
+            self.view.layoutIfNeeded()
         }
     }
     
-    func changeCompletionToNYA() {
-        
-        todayVM.changeGoalToNYA()
-    }
-    
-    
-    // -------------------------------------
-    
-    @IBOutlet weak var topTaskSpaceConstraint: NSLayoutConstraint!
-    @IBOutlet weak var bottomTaskSpaceConstraint: NSLayoutConstraint!
-    
-    
-    @IBOutlet weak var todayView: UIView!
-    
-    
-    var checkedAlready = false
-    var isTodayVCFilledOutCompletely: Bool {
-        get {
-            let validation = validateGoal() && validateTasks()
-            if !validation {
-                messageView.show(with: .formNotComplete)
-            }
-            return validation
+    private func fireBackAnimation() {
+        self.topTaskSpaceConstraint.constant = 20
+        self.bottomTaskSpaceConstraint.constant = 20
+        UIView.animate(withDuration: 0.6) {
+            
+            self.view.layoutIfNeeded()
         }
     }
     
-    // MARK:- Private Attributes
+    // MARK:- Validation Methods
     
     private func validateGoal() -> Bool {
         return goalBlock.goalTextField.text != ""
@@ -229,6 +256,8 @@ class TodayViewController: UIViewController {
         }
     }
     
+    // MARK:- Action Methods
+    
     @IBAction func goalButtonTapped(_ sender: UIButton) {
         if validateTasks() {
             if validateGoal() {
@@ -238,27 +267,6 @@ class TodayViewController: UIViewController {
             }
         } else {
             print("No text in at least one of the Task-TextField")
-        }
-    }
-    
-    func taskButtonTapped(buttonTag: Int) {
-        todayVM.changeTaskCompletion(withId: buttonTag)
-    }
-    
-    func fireAnimation() {
-        self.topTaskSpaceConstraint.constant = -1
-        self.bottomTaskSpaceConstraint.constant = -1
-        UIView.animate(withDuration: 0.6) {
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    func fireBackAnimation() {
-        self.topTaskSpaceConstraint.constant = 20
-        self.bottomTaskSpaceConstraint.constant = 20
-        UIView.animate(withDuration: 0.6) {
-            
-            self.view.layoutIfNeeded()
         }
     }
 }
@@ -277,7 +285,6 @@ extension TodayViewController: UITextFieldDelegate {
         
         activeTaskBlock = nil
         if let text = textField.text {
-            
             if textField.tag < 3 {
                 todayVM.changeTaskText(text, withId: textField.tag)
                 if text != "" {
@@ -290,7 +297,11 @@ extension TodayViewController: UITextFieldDelegate {
                         animateInitialGoal(animationStage: .second)
                     }
                 } else {
-                    messageView.show(with: .goalIsEmpty)
+                    if currentInitialAnimationStage != .first {
+                        todayVM.changeGoalText(text)
+                    } else {
+                        messageView.show(with: .goalIsEmpty)
+                    }
                 }
             }
         }
@@ -313,27 +324,23 @@ extension TodayViewController: TodayBindingDelegate {
         
         let alertController = UIAlertController(title: "Continue", message: "Do you want to continue", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "YES", style: .default) { action in
-            print(action)
-                        completion(true)
+            
+            completion(true)
         }
         let noAction = UIAlertAction(title: "NO", style: .cancel) { action in
-            print(action)
             
-                        completion(false)
+            completion(false)
         }
         alertController.addAction(yesAction)
         alertController.addAction(noAction)
         
-        present(alertController, animated: true) {
-            print("completed alert")
-        }
-        print("HAHAHAHAH")
+        present(alertController, animated: true)
     }
     
     func updateWholeUI(with goal: Goal, animationType: InitialAnimationType) {
         
         goalBlock.update(with: goal)
-        completionBlock.updateProgress(to: goal.completion)
+        updateGoal(completion: goal.completion)
         
         for i in 0 ..< 3 {
             
@@ -367,8 +374,6 @@ extension TodayViewController: TodayBindingDelegate {
         completionBlock.completionView.toggleNotYetAchieved()
     }
     
-    // ------------------------------
-    
     func undoTaskTextChange(text: String, index: Int) {
         taskBlocks[index].taskTextField.text = text
     }
@@ -379,12 +384,6 @@ extension TodayViewController: TodayBindingDelegate {
     
     func updateGoalWith(imageName: String, completion: Goal.CompletionProgress) {
         
-        completionBlock.completionView.changeTo(progress: completion)
-        
-        if completion == .completed {
-            fireAnimation()
-        } else {
-            fireBackAnimation()
-        }
+        updateGoal(completion: completion)
     }
 }

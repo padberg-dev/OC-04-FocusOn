@@ -79,6 +79,13 @@ class CompletionBlockView: UIView {
         }
     }
     
+    func addPulsatingAnimation() {
+        
+        if pulsatingLayer != nil {
+            animatePulsatingLayer()
+        }
+    }
+    
     // MARK:- PRIVATE
     // MARK:- Animation Methods
     

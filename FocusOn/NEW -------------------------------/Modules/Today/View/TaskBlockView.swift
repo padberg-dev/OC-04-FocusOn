@@ -39,13 +39,6 @@ class TaskBlockView: UIView {
         loadFromNib()
     }
     
-    // MARK:- View Life Cycle Methods
-    
-    override func layoutSubviews() {
-        
-        setupUI()
-    }
-    
     // MARK:- Public Methods
     
     func changeTask(title: String? = nil, completion: Task.CompletionProgress, immediately: Bool = true) {
@@ -57,7 +50,8 @@ class TaskBlockView: UIView {
     }
     
     func turn() {
-        let transform3 = transformForFraction(2, ofWidth: 30)
+        
+        let transform3 = transformForFraction(2)
         
         self.insideView.subviews.forEach { $0.alpha = 0 }
         self.insideView.layer.cornerRadius = 12
@@ -67,8 +61,9 @@ class TaskBlockView: UIView {
     }
     
     func turnBack(delayBy: Int) {
-        let transform = transformForFraction(1, ofWidth: 30)
-        let transform2 = transformForFraction(0, ofWidth: 30)
+        
+        let transform = transformForFraction(1)
+        let transform2 = transformForFraction(0)
         
         UIView.animate(withDuration: self.animationDuration * 2, delay: Double(delayBy) * 0.2, options: .curveEaseInOut, animations: {
             self.insideView.layer.transform = transform
@@ -85,6 +80,7 @@ class TaskBlockView: UIView {
     }
     
     func activateTextField(isSelected: Bool, immediately: Bool = false) {
+        
         if immediately {
             taskTextField.backgroundColor = UIColor.white.withAlphaComponent(isSelected ?  0.1 : 1)
             insideBGView.backgroundColor = UIColor.Main.berkshireLace.withAlphaComponent(isSelected ? 0.15 : 0.5)
@@ -97,28 +93,37 @@ class TaskBlockView: UIView {
     }
     
     func config(parent: TodayViewController?) {
+        
+        // No parent will be in historyVC
         if parent != nil {
+            
             parentConnection = parent
             taskTextField.delegate = parent
             checkBox.parentConnection = self
             alpha = 0
+            
+            completeConfig(hasParent: true)
         }
+    }
+    
+    func completeConfig(hasParent: Bool) {
         
         var index = self.tag
         
         taskTextField.tag = index
-        taskTextField.isHidden = parent == nil
-        taskLabel.isHidden = parent != nil
+        taskTextField.isHidden = !hasParent
+        taskLabel.isHidden = hasParent
         checkBox.checkButton.tag = index
         
         topLine.backgroundColor = UIColor.Main.rosin
         bottomLine.backgroundColor = UIColor.Main.rosin
         
-        insideView.addSimpleShadow(color: UIColor.Main.atlanticDeep, radius: 8.0, opacity: parent == nil ? 0.1 :0.4, offset: CGSize(width: 0, height: -2))
-        insideBGView.backgroundColor = UIColor.Main.berkshireLace.withAlphaComponent(parent == nil ? 0.9 : 0.5)
+        insideView.addSimpleShadow(color: UIColor.Main.atlanticDeep, radius: 8.0, opacity: !hasParent ? 0.1 :0.4, offset: CGSize(width: 0, height: -2))
+        insideBGView.backgroundColor = UIColor.Main.berkshireLace.withAlphaComponent(!hasParent ? 1 : 0.5)
+        
         numberImageView.image = UIImage(named: "\(index + 1)")
         
-        index += index == 0 && parent == nil ? 1 : 0
+        index += index == 0 && !hasParent ? 1 : 0
         
         DispatchQueue.main.async {
             self.assignCornerRadius(for: index)
@@ -126,6 +131,7 @@ class TaskBlockView: UIView {
     }
     
     func changeImage(toFilled: Bool, immediate: Bool) {
+        
         if immediate {
             UIView.animate(withDuration: 2.0) {
                 self.numberImageView.image = UIImage(named: "\(self.tag + 1)\(toFilled ? "filled" : "")")
@@ -134,6 +140,7 @@ class TaskBlockView: UIView {
             let newImageView = UIImageView(frame: numberImageView.frame)
             newImageView.image = UIImage(named: "\(self.tag + 1)\(toFilled ? "filled" : "")")
             newImageView.alpha = 0
+            
             insideView.addSubview(newImageView)
             UIView.animate(withDuration: animationDuration, animations: {
                 newImageView.alpha = 1
@@ -147,7 +154,7 @@ class TaskBlockView: UIView {
     }
     
     func validateTask() -> Bool {
-        print(taskTextField.text)
+        
         return taskTextField.text != ""
     }
     
@@ -155,6 +162,7 @@ class TaskBlockView: UIView {
     // MARK:- Custom Methods
     
     private func assignCornerRadius(for index: Int) {
+        
         var corners: UIRectCorner = []
         
         if index == 0 {
@@ -168,23 +176,17 @@ class TaskBlockView: UIView {
         insideBGView.roundCorners(corners: corners, radius: 12)
     }
     
-    private func transformForFraction(_ fraction: CGFloat, ofWidth width: CGFloat)
-        -> CATransform3D {
+    private func transformForFraction(_ fraction: CGFloat) -> CATransform3D {
             //1
             var identity = CATransform3DIdentity
             identity.m34 = -1.0 / 1000.0
             
-            //2
+            // .pi / 2.0 == 90 degree
             let angle = -fraction * .pi/2.0
             
             //3
             let rotateTransform = CATransform3DRotate(identity, angle, 1.0, 0.0, 0.0)
             return rotateTransform
-    }
-    
-    private func setupUI() {
-        
-        self.backgroundColor = .clear
     }
     
     private func loadFromNib() {
@@ -193,6 +195,7 @@ class TaskBlockView: UIView {
         
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.backgroundColor = .clear
         addSubview(contentView)
     }
 }

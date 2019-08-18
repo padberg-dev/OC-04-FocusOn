@@ -216,6 +216,8 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     private func activateCell(_ cell: CustomTableViewCell) {
         
+        cell.taskBlocks.forEach { $0.completeConfig(hasParent: false) }
+        
         cell.taskBlocks.forEach { $0.config(parent: nil) }
         cell.taskBlocks[0].checkBox.set(selected: cell.goal.taskCompletion1, immediately: true)
         cell.taskBlocks[1].checkBox.set(selected: cell.goal.taskCompletion2, immediately: true)
