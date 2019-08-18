@@ -243,11 +243,9 @@
 				014B0C6A22E0C3E600EDDB0D /* Modules */,
 				01BB9FDA22DF9BC900AE1DE7 /* NavigationFlow */,
 				014B0C6922E0C28C00EDDB0D /* Protocols */,
-				014B0C6D22E0C6D700EDDB0D /* --------------------------------- */,
 				0132CDE1222C8FBE00457CD5 /* AppDelegate.swift */,
 				011F8B3722933489005CDB82 /* Assets.xcassets */,
 				0132CDED222C8FC000457CD5 /* Info.plist */,
-				01FFB5AD222E7E8D00EAEB59 /* Modules */,
 			);
 			path = FocusOn;
 			sourceTree = "<group>";
@@ -327,13 +325,6 @@
 				012D2366222DD9440073FA57 /* TodayViewController.swift */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		014B0C6D22E0C6D700EDDB0D /* --------------------------------- */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "---------------------------------";
 			sourceTree = "<group>";
 		};
 		014B0C6F22E0E55A00EDDB0D /* Extensions */ = {
@@ -471,6 +462,11 @@
 		01BD8BAB2305B1350085C700 /* Progress */ = {
 			isa = PBXGroup;
 			children = (
+				019B6B61227B664D00716EBE /* Protocol */,
+				019B6B5A227B495B00716EBE /* View */,
+				01FFB5B6222E84B200EAEB59 /* ViewController */,
+				01FFB5B9222E84DF00EAEB59 /* ViewModel */,
+				01E4108422354B0400C74766 /* ProgressVC.storyboard */,
 			);
 			path = Progress;
 			sourceTree = "<group>";
@@ -520,26 +516,6 @@
 				0111C605224D7E2F005E8AF7 /* FocusOn.xcdatamodeld */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		01FFB5AC222E7E8000EAEB59 /* Progress */ = {
-			isa = PBXGroup;
-			children = (
-				019B6B61227B664D00716EBE /* Protocol */,
-				019B6B5A227B495B00716EBE /* View */,
-				01FFB5B6222E84B200EAEB59 /* ViewController */,
-				01FFB5B9222E84DF00EAEB59 /* ViewModel */,
-				01E4108422354B0400C74766 /* ProgressVC.storyboard */,
-			);
-			path = Progress;
-			sourceTree = "<group>";
-		};
-		01FFB5AD222E7E8D00EAEB59 /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				01FFB5AC222E7E8000EAEB59 /* Progress */,
-			);
-			path = Modules;
 			sourceTree = "<group>";
 		};
 		01FFB5B6222E84B200EAEB59 /* ViewController */ = {
