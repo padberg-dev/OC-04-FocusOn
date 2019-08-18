@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="completionView" destination="Je1-fi-g7h" id="xgy-yN-HDZ"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="6Ad-8Z-SDy"/>
+                <outlet property="nYAButton" destination="AP1-68-X7w" id="eE3-QH-sKA"/>
                 <outlet property="pathView" destination="Hz8-4J-2CK" id="HDg-sx-f2v"/>
                 <outlet property="pulsatingShadowView" destination="NkV-h2-gM4" id="3VC-e5-fIj"/>
             </connections>
@@ -47,8 +48,8 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AP1-68-X7w">
-                    <rect key="frame" x="20" y="20" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
+                    <rect key="frame" x="374" y="-12" width="30" height="30"/>
+                    <state key="normal" title="nYA"/>
                     <connections>
                         <action selector="notYetCompletedTapped:" destination="-1" eventType="touchUpInside" id="fp9-CD-ZrP"/>
                     </connections>
@@ -56,8 +57,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="AP1-68-X7w" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="1nk-cR-ILN"/>
-                <constraint firstItem="AP1-68-X7w" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="3tr-mR-lu4"/>
+                <constraint firstItem="AP1-68-X7w" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="-12" id="3tr-mR-lu4"/>
                 <constraint firstItem="NkV-h2-gM4" firstAttribute="width" secondItem="Je1-fi-g7h" secondAttribute="width" id="4Eu-z2-xE9"/>
                 <constraint firstItem="NkV-h2-gM4" firstAttribute="centerX" secondItem="Je1-fi-g7h" secondAttribute="centerX" id="8fe-fj-6IZ"/>
                 <constraint firstItem="NkV-h2-gM4" firstAttribute="centerY" secondItem="Je1-fi-g7h" secondAttribute="centerY" id="Ax6-Qc-gg7"/>
@@ -70,6 +70,7 @@
                 <constraint firstItem="EO1-7T-N9P" firstAttribute="centerX" secondItem="Je1-fi-g7h" secondAttribute="centerX" id="bfd-Fk-Pjd"/>
                 <constraint firstItem="Je1-fi-g7h" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="een-1K-cYv"/>
                 <constraint firstItem="EO1-7T-N9P" firstAttribute="height" secondItem="Je1-fi-g7h" secondAttribute="height" id="kE2-nV-QNz"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="AP1-68-X7w" secondAttribute="trailing" constant="10" id="qEB-4p-Mw1"/>
                 <constraint firstItem="NkV-h2-gM4" firstAttribute="height" secondItem="Je1-fi-g7h" secondAttribute="height" id="rty-2a-z8E"/>
                 <constraint firstItem="EO1-7T-N9P" firstAttribute="width" secondItem="Je1-fi-g7h" secondAttribute="width" id="zTF-jC-GKx"/>
             </constraints>

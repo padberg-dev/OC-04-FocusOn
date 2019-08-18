@@ -174,6 +174,7 @@ class TodayViewController: UIViewController {
         
         goalLabelView.animateAppearing()
         goalBlock.animateAppearing()
+        completionBlock.setNYAButton()
         
         tasksLabelView.animateAppearing()
         taskBlocks.forEach { $0.animateAppearing() }
@@ -332,7 +333,7 @@ extension TodayViewController: TodayBindingDelegate {
     func updateWholeUI(with goal: Goal, animationType: InitialAnimationType) {
         
         goalBlock.update(with: goal)
-        completionBlock.completionView.changeTo(progress: goal.completion)
+        completionBlock.updateProgress(to: goal.completion)
         
         for i in 0 ..< 3 {
             

@@ -12,6 +12,7 @@ class CompletionView: UIView {
     
     enum CompletionSign {
         
+        case notDefined
         case none
         case success
         case fail
@@ -26,6 +27,10 @@ class CompletionView: UIView {
     @IBOutlet weak var oneThirdCover: UIView!
     @IBOutlet weak var pathLayer: UIView!
     
+    // MARK:- Public Properties
+    
+    var parentConnection: CompletionBlockView?
+    
     // MARK:- Private Properties
     
     private var oneThirds: [UIView] = []
@@ -34,7 +39,7 @@ class CompletionView: UIView {
     private var currentRotation: CGFloat = 0
     private var lastRotation: CGFloat = 0
     private var completionSign: CompletionSign = .none
-    private var lastCompletionSign: CompletionSign = .none
+    private var lastCompletionSign: CompletionSign = .notDefined
     
     // MARK:- Initializers
     
@@ -93,6 +98,11 @@ class CompletionView: UIView {
             }
             self.addCompletionSign()
         }
+    }
+    
+    func getCompletionSign() -> CompletionSign {
+        
+        return completionSign
     }
     
     // MARK:- PRIVATE:
@@ -254,6 +264,7 @@ class CompletionView: UIView {
             
             animateRemovingPath()
         }
+        if lastCompletionSign != .notDefined { parentConnection?.setNYAButton() }
         lastCompletionSign = completionSign
     }
     

@@ -16,6 +16,7 @@ class CompletionBlockView: UIView {
     @IBOutlet var completionView: CompletionView!
     @IBOutlet var pulsatingShadowView: UIView!
     @IBOutlet var pathView: UIView!
+    @IBOutlet var nYAButton: UIButton!
     
     // MARK:- Private Properties
     
@@ -29,6 +30,8 @@ class CompletionBlockView: UIView {
     private var pathRadius: CGFloat = 8.0
     private var lineWidth: CGFloat = 2.0
     private var animationDuration: Double = 0.4
+    
+    private var fontAttributes: [NSAttributedString.Key : Any] = [:]
     
     // MARK:- Initializers
     
@@ -49,11 +52,31 @@ class CompletionBlockView: UIView {
     func config(parent: TodayViewController) {
         
         parentConnection = parent
+        completionView.parentConnection = self
     }
     
     func animateStart() {
         
         drawInitialPath()
+    }
+    
+    func updateProgress(to progress: Goal.CompletionProgress) {
+        
+        completionView.changeTo(progress: progress)
+    }
+    
+    func setNYAButton() {
+        
+        let progress = completionView.getCompletionSign()
+        let text = progress == .fail ? "Achieved?" : "Not Yet Achieved?"
+        let attributetTitle = NSAttributedString(string: text, attributes: fontAttributes)
+        
+        nYAButton.setAttributedTitle(attributetTitle, for: .normal)
+        
+        UIView.animate(withDuration: 0.6) {
+            
+            self.nYAButton.alpha = progress == .none ? 0 : 1
+        }
     }
     
     // MARK:- PRIVATE
@@ -157,6 +180,14 @@ class CompletionBlockView: UIView {
     private func setupUI() {
         
         completionView.alpha = 0
+        nYAButton.alpha = 0
+        
+        let font = UIFont(name: "AvenirNextCondensed", size: 10) ?? UIFont.systemFont(ofSize: 10, weight: .bold)
+        fontAttributes = [
+            NSAttributedString.Key.foregroundColor : UIColor.Main.berkshireLace,
+            NSAttributedString.Key.font : font,
+            NSAttributedString.Key.kern : -0.2
+            ]
     }
     
     private func loadFromNib() {
@@ -180,7 +211,10 @@ class CompletionBlockView: UIView {
     
     @IBAction func notYetCompletedTapped(_ button: UIButton) {
         
+        UIView.animate(withDuration: 0.4) {
+            
+            self.nYAButton.alpha = 0
+        }
         parentConnection.changeCompletionToNYA()
-//        completionView.toggleNotYetAchieved()
     }
 }
