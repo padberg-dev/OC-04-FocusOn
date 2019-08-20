@@ -53,8 +53,8 @@ class SlideInTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning
             
             let goalData = goalView.getGoalData()
             let copiedGoal = GoalBlockView(frame: CGRect(origin: CGPoint(x: width, y: 0), size: CGSize(width: width, height: goalView.frame.height)))
-            copiedGoal.transform = CGAffineTransform(translationX: 0, y: dY)
             copiedGoal.update(title: goalData.title, dateString: goalData.dateString, completion: goalData.completion)
+            copiedGoal.transform = CGAffineTransform(translationX: 0, y: dY)
             copiedGoal.animateTransition()
             
             historyInsertionView.addSubview(copiedGoal)
