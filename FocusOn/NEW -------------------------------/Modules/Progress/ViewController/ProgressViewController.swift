@@ -198,19 +198,6 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
         monthFormatter.dateFormat = "MM"
     }
     
-//    func showTasksGraph() {
-//        graphView.subviews.last?.removeFromSuperview()
-//        monthsModel = AAChartModel()
-//        setUpGraphs()
-//    }
-    
-    
-//    func showYearGraph() {
-//        graphView.subviews.last?.removeFromSuperview()
-//        yearsModel = AAChartModel()
-//        setUpGraphs()
-//    }
-    
     func setUpGraphs2(firstTime: Bool = false) {
         
         if firstTime {
@@ -317,47 +304,6 @@ class ProgressViewController: UIViewController, CustomCollectionViewDelegate {
         }
         return array
     }
-    
-//    func setUpGraphs() {
-//        monthsGraph.frame = graphView.bounds
-//        monthsGraph.scrollEnabled = false
-//        yearsGraph.frame = graphView.bounds
-//        yearsGraph.scrollEnabled = false
-//
-//        monthsModel
-//            .chartType(activeTask ? .bar : .pie)
-//            .stacking(.none)
-//            .animationType(.easeInBack)
-//            .dataLabelEnabled(false)
-//            .title("")
-//            .colorsTheme(["#008481", "#a188b1", "#12rtc7", "#1f4ab1", "#aaaaaa", "#8f6cc1"])
-//            .categories(activeTask ? [
-//                "1", "2", "3", "4", "5", "6","7", "8", "9", "10",
-//                "11", "12", "13", "14", "15", "16","17", "18", "19", "20",
-//                "21", "22", "23", "24", "25", "26","27", "28", "29", "30",
-//                "31"
-//                ] : [])
-//
-//        yearsModel = AAChartModel()
-//        yearsModel
-//            .chartType(activeTask ? .bar : .area)
-//            .inverted(activeTask ? false : true)
-//            .stacking(.none)
-//            .animationType(.easeInBack)
-//            .dataLabelEnabled(false)
-//            .title("")
-//            .colorsTheme(["#008481"])
-//            .categories([
-//                "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct",
-//                "Nov", "Dec"
-//                ])
-//
-//        if activeMonth != 0 {
-//            feedDataToMonthsGraph(withIndex: activeMonth, first: true)
-//            monthsGraph.aa_drawChartWithChartModel(monthsModel)
-//        }
-//        graphView.addSubview(activeMonth != 0 ? monthsGraph : yearsGraph)
-//    }
     
     func feedDataToMonthsGraph(withIndex index: Int, first: Bool = false) {
         

@@ -14,6 +14,11 @@ class TodayViewModel {
     // MARK:- Public Properties
     
     weak var bindingDelegate: TodayBindingDelegate?
+    var goal: Goal! {
+        didSet {
+            saveChanges()
+        }
+    }
     
     // MARK:- Private Properties
     
@@ -23,11 +28,7 @@ class TodayViewModel {
         didSet {
         }
     }
-    private var goal: Goal! {
-        didSet {
-            saveChanges()
-        }
-    }
+    
     
     // MARK:- Initializers
     

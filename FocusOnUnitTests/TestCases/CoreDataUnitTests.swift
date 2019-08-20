@@ -24,26 +24,72 @@ class CoreDataUnitTests: XCTestCase {
         managedObjectContext = nil
     }
     
-    // Test app related functions of GoalData class
-    
-    func findingARecord() {
-        
-        let result = GoalData.findLast(in: managedObjectContext)
-    }
-    
+    // Test functions of GoalData class
     
     func testAddingOneRecord() {
         
-        findingARecord()
+        // There should be no record
+        let noRecordResult = findingLastRecord()
+        XCTAssertNil(noRecordResult, "There should be no GoalData record in the memory")
     
         let goal = Goal(text: "test", completion: 0, date: Date(), completions: [true, false, false], strings: ["test1", "Test2", "Test3"])
-        let result = goal.updateOrCreateGoalData(currentData: nil, in: managedObjectContext)
+        _ = goal.updateOrCreateGoalData(currentData: nil, in: managedObjectContext)
         
         try? managedObjectContext.save()
         
-        findingARecord()
+        let firstRecordResult = findingLastRecord()
+        XCTAssert(firstRecordResult != nil, "There should be one GoalData record in the memory")
     }
     
-    // Test more complex cases
+    func testAddingMultipleRecords() {
+        
+        // There should be no record
+        let noRecordResult = findingLastRecord()
+        XCTAssertNil(noRecordResult, "There should be no GoalData record in the memory")
+        
+        let completions = [
+            [true, false, true],
+            [false, false, true],
+            [true, true, false],
+            [false, false, false],
+            [true, true, true]
+        ]
+        var dates: [Date] = []
+        // Add 5 Goals in reverse date order (oldest first)
+        for i in 0 ..< 5 {
+            
+            let date = Date().addingTimeInterval(-Double(i) * 24 * 3600)
+            dates.append(date)
+            let completion = completions[i].filter { $0 }.count
+            
+            let goal = Goal(text: "test-\(i)", completion: completion, date: date, completions: completions[i], strings: ["test1", "Test2", "Test3"])
+            _ = goal.updateOrCreateGoalData(currentData: nil, in: managedObjectContext)
+            
+            try? managedObjectContext.save()
+        }
+        // Get all data in chronological order
+        let allGoals = findAllRecords()
+        XCTAssert(allGoals.count == 5, "There should be 5 stored Goals")
+        
+        for i in 0 ..< 5 {
+            let oldI = 4  - i
+            
+            XCTAssert(allGoals[i].date == dates[oldI], "The dates are not the same")
+            XCTAssert(allGoals[i].goalText == "test-\(oldI)", "The text of the goal is not the same")
+            let oldCompletion = completions[oldI].filter { $0 }.count
+            XCTAssert(allGoals[i].goalCompletion == oldCompletion, "Completions should be the same")
+        }
+    }
     
+    // Helper function
+    
+    func findingLastRecord() -> GoalData? {
+        
+        return GoalData.findLast(in: managedObjectContext)
+    }
+    
+    func findAllRecords() -> [GoalData] {
+        
+        return GoalData.loadAllData(inContext: managedObjectContext)
+    }
 }

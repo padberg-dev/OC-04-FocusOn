@@ -66,6 +66,7 @@
 		01AAACA022BBEF6800A5E07E /* TaskBlockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01AAAC9F22BBEF6800A5E07E /* TaskBlockView.xib */; };
 		01BD8BB02305BFC30085C700 /* ViewControllerNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD8BAF2305BFC30085C700 /* ViewControllerNames.swift */; };
 		01D11F1D2306F38C000F0E1E /* CABasicAnimation+Creators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D11F1C2306F38C000F0E1E /* CABasicAnimation+Creators.swift */; };
+		01D36705230BB62D002B0CB7 /* ExtensionUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D36704230BB62D002B0CB7 /* ExtensionUnitTests.swift */; };
 		01D90BC222EA433B00094533 /* AnimatedMaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D90BC122EA433B00094533 /* AnimatedMaskView.xib */; };
 		01D90BC422EA455800094533 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D90BC322EA455800094533 /* CGRect.swift */; };
 		01E4107F22353F2E00C74766 /* StartFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4107E22353F2E00C74766 /* StartFactory.swift */; };
@@ -163,6 +164,7 @@
 		01AAAC9F22BBEF6800A5E07E /* TaskBlockView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskBlockView.xib; sourceTree = "<group>"; };
 		01BD8BAF2305BFC30085C700 /* ViewControllerNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerNames.swift; sourceTree = "<group>"; };
 		01D11F1C2306F38C000F0E1E /* CABasicAnimation+Creators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CABasicAnimation+Creators.swift"; sourceTree = "<group>"; };
+		01D36704230BB62D002B0CB7 /* ExtensionUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUnitTests.swift; sourceTree = "<group>"; };
 		01D90BC122EA433B00094533 /* AnimatedMaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnimatedMaskView.xib; sourceTree = "<group>"; };
 		01D90BC322EA455800094533 /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
 		01E4107E22353F2E00C74766 /* StartFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartFactory.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 			children = (
 				015D3C042303498100B5B2CE /* CoreDataUnitTests.swift */,
 				0111C603224D7636005E8AF7 /* TodayViewModelUnitTest.swift */,
+				01D36704230BB62D002B0CB7 /* ExtensionUnitTests.swift */,
 			);
 			path = TestCases;
 			sourceTree = "<group>";
@@ -688,6 +691,7 @@
 				015D3C052303498100B5B2CE /* CoreDataUnitTests.swift in Sources */,
 				015D3C08230349FA00B5B2CE /* XCTestCase.swift in Sources */,
 				0111C604224D7636005E8AF7 /* TodayViewModelUnitTest.swift in Sources */,
+				01D36705230BB62D002B0CB7 /* ExtensionUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

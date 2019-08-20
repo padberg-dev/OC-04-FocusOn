@@ -12,6 +12,7 @@ import CoreData
 struct ProgressViewModel {
     
     func loadData() -> [GoalData] {
+        
         var match: [GoalData] = []
         let context = AppDelegate.context
         
