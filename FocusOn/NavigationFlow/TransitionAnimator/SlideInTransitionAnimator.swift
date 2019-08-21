@@ -11,7 +11,7 @@ import UIKit
 class SlideInTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate {
     
     private let rightEdgeOffset: CGFloat = 26
-    private var duration: Double = 2
+    private var duration: Double = 0.8
     
     var isSlidingToTheLeft: Bool = false
     var shouldSlideToSelectedCell: Bool = false
@@ -44,8 +44,8 @@ class SlideInTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning
         if shouldAnimateSliding {
 
             guard let goalView = fromView.subviews[0].subviews[0].subviews.last as? GoalBlockView else { return }
-            guard let historyInsertionView = toView.subviews.last else { return }
-            guard let startPositionView = toView.subviews.first else { return }
+            guard let historyInsertionView = toView.subviews[0].subviews.last else { return }
+            guard let startPositionView = toView.subviews[0].subviews.first else { return }
             
             goalView.alpha = 0
             let width = UIScreen.main.bounds.width
@@ -94,7 +94,7 @@ class SlideInTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning
         else {
             
             // Basic Transition
-            UIView.animate(withDuration: duration / 2, animations: {
+            UIView.animate(withDuration: duration, animations: {
                 
                 fromView.subviews[0].transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
                 toView.transform = CGAffineTransform.identity

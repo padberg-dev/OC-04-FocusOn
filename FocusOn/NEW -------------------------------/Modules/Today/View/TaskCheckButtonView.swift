@@ -21,7 +21,7 @@ class TaskCheckButtonView: UIView {
     private var distanceFromEdge: CGFloat = 2.0
     private var pathRadius: CGFloat = 8.0
     private var lineWidth: CGFloat = 1.0
-    private var animationDuration: Double = 0.4
+    private var animationDuration: Double = 0.6
     private var strokeColor: UIColor = UIColor.white
     
     private var borderLayer: CAShapeLayer = CAShapeLayer()
