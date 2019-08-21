@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0111C5F4224D602E005E8AF7 /* TodayBindingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0111C5F3224D602E005E8AF7 /* TodayBindingDelegate.swift */; };
-		0111C604224D7636005E8AF7 /* TodayViewModelUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0111C603224D7636005E8AF7 /* TodayViewModelUnitTest.swift */; };
+		0111C604224D7636005E8AF7 /* TodayViewModelUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0111C603224D7636005E8AF7 /* TodayViewModelUnitTests.swift */; };
 		0111C607224D7E2F005E8AF7 /* FocusOn.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0111C605224D7E2F005E8AF7 /* FocusOn.xcdatamodeld */; };
 		011823D722C2BF18001C83B4 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 011823D622C2BF18001C83B4 /* CustomTableViewCell.xib */; };
 		011F8B322293198D005CDB82 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011F8B312293198D005CDB82 /* UIColor.swift */; };
@@ -21,6 +21,9 @@
 		012D2369222DD94D0073FA57 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D2368222DD94D0073FA57 /* ProgressViewController.swift */; };
 		0132CDE2222C8FBE00457CD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0132CDE1222C8FBE00457CD5 /* AppDelegate.swift */; };
 		0132CDF6222C9A8500457CD5 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0132CDF5222C9A8500457CD5 /* CustomTabBarController.swift */; };
+		013A1214230D5B0B0055BC45 /* CATransform3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013A1213230D5B0B0055BC45 /* CATransform3D.swift */; };
+		013A1216230D87DB0055BC45 /* CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013A1215230D87DB0055BC45 /* CellType.swift */; };
+		013A1218230D984A0055BC45 /* ProgressViewModelUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013A1217230D984A0055BC45 /* ProgressViewModelUnitTests.swift */; };
 		013F367222E4D02A00E12927 /* AnimatedMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F367122E4D02A00E12927 /* AnimatedMaskView.swift */; };
 		013F367422E4D77D00E12927 /* AnimatedLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F367322E4D77D00E12927 /* AnimatedLabelView.swift */; };
 		013F367622E4D78900E12927 /* AnimatedLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 013F367522E4D78900E12927 /* AnimatedLabelView.xib */; };
@@ -102,7 +105,7 @@
 		0111C5F3224D602E005E8AF7 /* TodayBindingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayBindingDelegate.swift; sourceTree = "<group>"; };
 		0111C5F9224D7317005E8AF7 /* FocusOnUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FocusOnUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0111C5FD224D7317005E8AF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0111C603224D7636005E8AF7 /* TodayViewModelUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModelUnitTest.swift; sourceTree = "<group>"; };
+		0111C603224D7636005E8AF7 /* TodayViewModelUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModelUnitTests.swift; sourceTree = "<group>"; };
 		0111C606224D7E2F005E8AF7 /* FocusOn.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FocusOn.xcdatamodel; sourceTree = "<group>"; };
 		011823D622C2BF18001C83B4 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		011F8B312293198D005CDB82 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -117,6 +120,9 @@
 		0132CDE1222C8FBE00457CD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0132CDED222C8FC000457CD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0132CDF5222C9A8500457CD5 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		013A1213230D5B0B0055BC45 /* CATransform3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CATransform3D.swift; sourceTree = "<group>"; };
+		013A1215230D87DB0055BC45 /* CellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellType.swift; sourceTree = "<group>"; };
+		013A1217230D984A0055BC45 /* ProgressViewModelUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModelUnitTests.swift; sourceTree = "<group>"; };
 		013F367122E4D02A00E12927 /* AnimatedMaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedMaskView.swift; sourceTree = "<group>"; };
 		013F367322E4D77D00E12927 /* AnimatedLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedLabelView.swift; sourceTree = "<group>"; };
 		013F367522E4D78900E12927 /* AnimatedLabelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnimatedLabelView.xib; sourceTree = "<group>"; };
@@ -279,6 +285,7 @@
 				013F367722E4F6EA00E12927 /* InitialAnimationType.swift */,
 				013F367A22E4FBB600E12927 /* InitialAnimationStage.swift */,
 				01BD8BAF2305BFC30085C700 /* ViewControllerNames.swift */,
+				013A1215230D87DB0055BC45 /* CellType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -294,6 +301,7 @@
 		014B0C6922E0C28C00EDDB0D /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				019B6B62227B684200716EBE /* CustomCollectionViewDelegate.swift */,
 				0111C5F3224D602E005E8AF7 /* TodayBindingDelegate.swift */,
 			);
 			path = Protocols;
@@ -341,6 +349,7 @@
 				0193C70B225FD1300068BA4B /* Date+Extension.swift */,
 				011F8B312293198D005CDB82 /* UIColor.swift */,
 				01AAAC9722BBAA4500A5E07E /* CGFloat+Calculations.swift */,
+				013A1213230D5B0B0055BC45 /* CATransform3D.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -357,8 +366,9 @@
 			isa = PBXGroup;
 			children = (
 				015D3C042303498100B5B2CE /* CoreDataUnitTests.swift */,
-				0111C603224D7636005E8AF7 /* TodayViewModelUnitTest.swift */,
 				01D36704230BB62D002B0CB7 /* ExtensionUnitTests.swift */,
+				013A1217230D984A0055BC45 /* ProgressViewModelUnitTests.swift */,
+				0111C603224D7636005E8AF7 /* TodayViewModelUnitTests.swift */,
 			);
 			path = TestCases;
 			sourceTree = "<group>";
@@ -427,7 +437,6 @@
 		019B6B61227B664D00716EBE /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				019B6B62227B684200716EBE /* CustomCollectionViewDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -690,7 +699,8 @@
 			files = (
 				015D3C052303498100B5B2CE /* CoreDataUnitTests.swift in Sources */,
 				015D3C08230349FA00B5B2CE /* XCTestCase.swift in Sources */,
-				0111C604224D7636005E8AF7 /* TodayViewModelUnitTest.swift in Sources */,
+				013A1218230D984A0055BC45 /* ProgressViewModelUnitTests.swift in Sources */,
+				0111C604224D7636005E8AF7 /* TodayViewModelUnitTests.swift in Sources */,
 				01D36705230BB62D002B0CB7 /* ExtensionUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -712,6 +722,7 @@
 				01FFB5BB222E852000EAEB59 /* TodayViewModel.swift in Sources */,
 				013F367822E4F6EA00E12927 /* InitialAnimationType.swift in Sources */,
 				017E551D223A6BCA00F7E9F6 /* CustomTabBarItemView.swift in Sources */,
+				013A1216230D87DB0055BC45 /* CellType.swift in Sources */,
 				0188CC652269E4AD0035E8BB /* CustomTableViewCell.swift in Sources */,
 				015F66212271FC480030E88D /* AAColor.swift in Sources */,
 				01A8F9582271E19B0050C992 /* SectionHeaderView.swift in Sources */,
@@ -735,6 +746,7 @@
 				013F367222E4D02A00E12927 /* AnimatedMaskView.swift in Sources */,
 				0132CDF6222C9A8500457CD5 /* CustomTabBarController.swift in Sources */,
 				01AA19D0230801AF0033735D /* CAShapeLayer.swift in Sources */,
+				013A1214230D5B0B0055BC45 /* CATransform3D.swift in Sources */,
 				011F8B322293198D005CDB82 /* UIColor.swift in Sources */,
 				011F8B3A22933C44005CDB82 /* CompletionView.swift in Sources */,
 				015F661E2271FC480030E88D /* AAChartModel.swift in Sources */,

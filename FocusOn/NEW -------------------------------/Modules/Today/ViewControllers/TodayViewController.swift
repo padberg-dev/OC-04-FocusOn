@@ -94,7 +94,6 @@ class TodayViewController: UIViewController {
         
         parent?.navigationItem.title = "FocusOn Today"
         
-        view.addVerticalGradient(of: UIColor.Gradients.greenLight)
         completionBlock.addPulsatingAnimation()
     }
     
@@ -122,6 +121,8 @@ class TodayViewController: UIViewController {
         
         goalLabelView.assign(text: "Goal for the day to focus on:")
         tasksLabelView.assign(text: "3 tasks to achieve that goal:", font: .light)
+        
+        view.addVerticalGradient(of: UIColor.Gradients.greenLight)
     }
     
     private func updateGoal(completion: Goal.CompletionProgress) {
@@ -257,18 +258,10 @@ class TodayViewController: UIViewController {
         }
     }
     
-    // MARK:- Action Methods
+    private func changeGoalText(to text: String) {
     
-    @IBAction func goalButtonTapped(_ sender: UIButton) {
-        if validateTasks() {
-            if validateGoal() {
-                todayVM.changeGoalCompletion()
-            } else {
-                print("No text in Goal-TextField")
-            }
-        } else {
-            print("No text in at least one of the Task-TextField")
-        }
+        todayVM.changeGoalText(text)
+        goalBlock.goalLabel.text = text
     }
 }
 
@@ -293,13 +286,13 @@ extension TodayViewController: UITextFieldDelegate {
                 }
             } else {
                 if text != "" {
-                    todayVM.changeGoalText(text)
+                    changeGoalText(to: text)
                     if currentInitialAnimationStage == .first {
                         animateInitialGoal(animationStage: .second)
                     }
                 } else {
                     if currentInitialAnimationStage != .first {
-                        todayVM.changeGoalText(text)
+                        changeGoalText(to: text)
                     } else {
                         messageView.show(with: .goalIsEmpty)
                     }
@@ -323,7 +316,7 @@ extension TodayViewController: TodayBindingDelegate {
     
     func shouldContinueWithLastGoal(completion: @escaping ((Bool) -> Void)) {
         
-        let alertController = UIAlertController(title: "Continue", message: "Do you want to continue", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Continue with last Task?", message: "Do you want to continue with yesterday's not finished Task?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "YES", style: .default) { action in
             
             completion(true)

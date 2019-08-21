@@ -8,22 +8,53 @@
 
 import UIKit
 
-enum CellType {
-    case yearsCell
-    case monthsCell
-}
-
-class CustomCollectionView: UICollectionView, UICollectionViewDataSource, UICollectionViewDelegate {
+class CustomCollectionView: UICollectionView {
+    
+    // MARK:- Public Properties
     
     var customDelegate: CustomCollectionViewDelegate?
     
-    var highlightedCell = 0
-    var type: CellType!
+    // MARK:- Private Properties
+    
+    private var highlightedCell = 0
+    private var type: CellType!
 
-    var data: [String] = []
-    var isDataAvailable: [Bool] = []
+    private var data: [String] = []
+    private var isDataAvailable: [Bool] = []
+    
+    // MARK:- Initializers
     
     override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        setUp()
+    }
+    
+    // MARK:- View Layout Methods
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        setContentOffset(.zero, animated: false)
+    }
+    
+    // MARK:- Public Methods
+    
+    func config(type: CellType) {
+        
+        self.type = type
+    }
+    
+    func insertData(data: [String], isDataAvailable: [Bool]) {
+        
+        self.data = data
+        self.isDataAvailable = isDataAvailable
+        reloadData()
+    }
+    
+    // MARK:- Private Methods
+    
+    private func setUp() {
         
         delegate = self
         dataSource = self
@@ -31,18 +62,39 @@ class CustomCollectionView: UICollectionView, UICollectionViewDataSource, UIColl
         register(UINib(nibName: "CustomCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CustomCell")
         
         if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
-
+            
             layout.itemSize = CGSize(width: 56, height: 20)
             layout.sectionInset = UIEdgeInsets(top: 10, left: 1, bottom: 10, right: 1)
             layout.minimumLineSpacing = 10
         }
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    private func highlightCell(withIndex index: Int) {
         
-        setContentOffset(.zero, animated: false)
+        highlightedCell = index
+        reloadData()
     }
+}
+
+// MARK:- UICollectionViewDelegate Methods
+
+extension CustomCollectionView: UICollectionViewDelegate {
+    
+    // todo: Case when switching from december 2018 to december 2019 it should be impossible or change to whole year
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let index = indexPath.item
+        if index != highlightedCell && isDataAvailable[index] == true {
+            
+            highlightCell(withIndex: indexPath.item)
+            let number = type == .monthsCell ? index : Int(data[index])!
+            customDelegate?.cellWasSelected(withIndex: number, cellType: type)
+        }
+    }
+}
+
+// MARK:- UICollectionViewDataSource Methods
+
+extension CustomCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return data.count
@@ -69,21 +121,5 @@ class CustomCollectionView: UICollectionView, UICollectionViewDataSource, UIColl
             }
         }
         return cell
-    }
-    
-    // todo: Case when switching from december 2018 to december 2019 it should be impossible or change to whole year
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let index = indexPath.item
-        if index != highlightedCell && isDataAvailable[index] == true {
-            
-            highlightCell(withIndex: indexPath.item)
-            let number = type == .monthsCell ? index : Int(data[index])!
-            customDelegate?.cellWasSelected(withIndex: number, cellType: type)
-        }
-    }
-    
-    func highlightCell(withIndex index: Int) {
-        highlightedCell = index
-        reloadData()
     }
 }

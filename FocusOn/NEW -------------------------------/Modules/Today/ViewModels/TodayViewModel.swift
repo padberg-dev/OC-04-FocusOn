@@ -6,7 +6,7 @@
 //  Copyright © 2019 Rafal Padberg. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import CoreData
 
 class TodayViewModel {
@@ -107,6 +107,7 @@ class TodayViewModel {
     }
     
     func changeGoalText(_ text: String) {
+        
         if text != "" {
             goal.fullDescription = text
         } else {

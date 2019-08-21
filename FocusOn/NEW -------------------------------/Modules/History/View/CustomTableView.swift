@@ -8,138 +8,113 @@
 
 import UIKit
 
-class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
+class CustomTableView: UITableView {
     
-    var goals: [[GoalData]] = []
+    // MARK:- Public Properties
     
-    var indexes: [String] = []
-    var indexesSections: [Int] = []
-    var rowId = 0
+    var shouldAnimateSliding: Bool { get { return contentOffset.y == 0 } }
+    var isFirstCellSelected: Bool { get { return selectedCell?.item == 0 } }
     
-    var parentConnection: HistoryViewController!
+    // MARK:- Private Properties
     
-    var lastYear: String?
-    var stopUpdating = false
-    var historyVM: HistoryViewModel!
-    var selectedCell: IndexPath?
+    private var historyVM: HistoryViewModel!
+    
+    private var data: [[GoalData]] = []
+    
+    private var sectionIndexes: [Int] = []
+    private var sectionIndexNames: [String] = []
+    private var currentSectionIndex = 0
+    
+    private var currentYear: String?
+    private var shouldBlockMultipleDataLoad = false
+    
+    private var selectedCell: IndexPath?
+    
+    // MARK:- Initializers
     
     override func awakeFromNib() {
+        
         delegate = self
         dataSource = self
         
         register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         
-        sectionIndexColor = UIColor.darkGray
+        sectionIndexColor = UIColor.Main.rosin
         
         rowHeight = UITableView.automaticDimension
         estimatedRowHeight = 60
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if stopUpdating { return }
+    // MARK:- Public Methods
+    
+    func config(viewModel: HistoryViewModel) {
         
-        let contentHeight = scrollView.contentSize.height
-        let contentOffset = scrollView.contentOffset.y
-        if contentOffset > contentHeight - UIScreen.main.bounds.height * 1.3 {
-            loadNextPart()
-        }
+        historyVM = viewModel
+        data = historyVM.loadData()
+        
+        setSectionIndexes()
     }
     
-    func loadNextPart() {
-        stopUpdating = true
-        
-        let count = goals.count
-        let newGoals = historyVM.loadNextData(fromMonth: count - 1, toMonth: count)
-        if newGoals.count > 0 {
-            goals.append(newGoals)
-            setIndex()
-            self.insertSections([goals.count - 1], with: .none)
-            stopUpdating = false
-        }
-    }
+    // MARK:- PRIVATE
+    // MARK:- Data Related Methods
     
-    func setIndex() {
+    private func setSectionIndexes() {
         
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY-MM"
-        let indx = formatter.string(from: (goals.last?.last!.date)!)
+        
+        let indx = formatter.string(from: (data.last?.last!.date)!)
         
         let array = indx.split(separator: "-")
-
-        if lastYear == nil || "\(array[0])" != lastYear {
-            indexes.append("[\(array[0].suffix(2))]")
-            indexesSections.append(rowId)
-            lastYear = "\(array[0])"
+        
+        if currentYear == nil || "\(array[0])" != currentYear {
+            sectionIndexNames.append("[\(array[0].suffix(2))]")
+            sectionIndexes.append(currentSectionIndex)
+            currentYear = "\(array[0])"
         }
-        indexes.append("\(array[1])")
-        indexesSections.append(rowId)
-        rowId += 1
+        sectionIndexNames.append("\(array[1])")
+        sectionIndexes.append(currentSectionIndex)
+        currentSectionIndex += 1
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return goals.count
+    private func loadNextDataPart() {
+        shouldBlockMultipleDataLoad = true
+        
+        let count = data.count
+        let newGoals = historyVM.loadNextData(fromMonth: count - 1, toMonth: count)
+        if newGoals.count > 0 {
+            data.append(newGoals)
+            setSectionIndexes()
+            self.insertSections([data.count - 1], with: .none)
+            shouldBlockMultipleDataLoad = false
+        }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return goals[section].count
-    }
+    // MARK:- Cell Selection Methods
     
-    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        return indexesSections[index]
-    }
-    
-    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return indexes
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = SectionHeaderView()
-        let sectionGoals = goals[section]
-        let done = sectionGoals.filter { $0.goalCompletion == 3 }
+    private func activateCell(_ cell: CustomTableViewCell) {
         
-        let date = sectionGoals.first?.date
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM YYYY"
+        cell.taskBlocks.forEach { $0.completeConfig(hasParent: false) }
+        cell.taskBlocks[0].checkBox.setAlternative(selected: cell.goal.taskCompletion1)
+        cell.taskBlocks[1].checkBox.setAlternative(selected: cell.goal.taskCompletion2)
+        cell.taskBlocks[2].checkBox.setAlternative(selected: cell.goal.taskCompletion3)
         
-        headerView.configureHeader(sectionText: formatter.string(from: date!), completedGoals: done.count, allGoals: sectionGoals.count)
-        
-        return headerView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell") as? CustomTableViewCell else { return UITableViewCell() }
-        
-        let goal = goals[indexPath.section][indexPath.row]
-        cell.goal = goal
-        
-        cell.goalBlockView.setTo(title: goal.goalText!, dateString: goal.date!.getDateString(), completion: decodeCompletion(num: goal.goalCompletion))
-        
-        cell.taskBlocks[0].changeTaskLabel(goal.taskText1 ?? "")
-        cell.taskBlocks[1].changeTaskLabel(goal.taskText2 ?? "")
-        cell.taskBlocks[2].changeTaskLabel(goal.taskText3 ?? "")
-        
-        if selectedCell == indexPath {
-            
-            cell.taskBlocks.forEach { $0.completeConfig(hasParent: false) }
-            cell.taskBlocks[0].checkBox.setAlternative(selected: cell.goal.taskCompletion1)
-            cell.taskBlocks[1].checkBox.setAlternative(selected: cell.goal.taskCompletion2)
-            cell.taskBlocks[2].checkBox.setAlternative(selected: cell.goal.taskCompletion3)
-            
+        UIView.animate(withDuration: 0.6, delay: 0.2, options: .curveEaseInOut, animations: {
             
             let transform = CGAffineTransform(translationX: 26, y: 0)
             cell.goalBlockView.transform = transform
             cell.gradientView.transform = transform
             cell.gradientViewTop.transform = transform
             cell.gradientViewOverBlock.transform = transform
-            cell.gearImageView.transform = CGAffineTransform(rotationAngle: 0.9 * CGFloat.pi)
+            cell.gearImageView.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
             cell.goalBlockView.completionImageView.transform = CGAffineTransform(translationX: -26, y: 0)
-            cell.bottomConstraint.constant = 100
-        } else {
+            cell.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
+    private func deactivateCell(_ cell: CustomTableViewCell, completion: (() -> Void)? = nil) {
+        
+        UIView.animate(withDuration: 0.6, animations: {
             
             cell.goalBlockView.transform = .identity
             cell.gradientView.transform = .identity
@@ -147,14 +122,69 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
             cell.gradientViewOverBlock.transform = .identity
             cell.gearImageView.transform = .identity
             cell.goalBlockView.completionImageView.transform = .identity
-            cell.bottomConstraint.constant = 0
+            cell.layoutIfNeeded()
+        }) { _ in
+            completion?()
         }
-        return cell
+    }
+    
+    // MARK:- Helper Methods
+
+    private func decodeCompletion(num: Int32) -> Goal.CompletionProgress {
+        
+        switch num {
+        case 1:
+            return .oneThird
+        case 2:
+            return .twoThirds
+        case 3:
+            return .completed
+        case 4:
+            return .notYetAchieved
+        default:
+            return .notCompleted
+        }
+    }
+    
+    // MARK:- UIScrollViewDelegate Methods
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if shouldBlockMultipleDataLoad { return }
+        
+        let contentHeight = scrollView.contentSize.height
+        let contentOffset = scrollView.contentOffset.y
+        if contentOffset > contentHeight - UIScreen.main.bounds.height * 1.3 {
+            loadNextDataPart()
+        }
+    }
+}
+
+// MARK:- UITableViewDelegate Methods
+
+extension CustomTableView: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = SectionHeaderView()
+        let sectionGoals = data[section]
+        let numberOfGoalsCompleted = sectionGoals.filter { $0.goalCompletion == 3 }.count
+        
+        let date = sectionGoals.first?.date
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM YYYY"
+        
+        headerView.configureHeader(sectionText: formatter.string(from: date!), completedGoals: numberOfGoalsCompleted, allGoals: sectionGoals.count)
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let thisCell = cellForRow(at: indexPath) as? CustomTableViewCell else { fatalError() }
         
+        guard let thisCell = cellForRow(at: indexPath) as? CustomTableViewCell else { fatalError() }
         beginUpdates()
         
         if selectedCell == nil {
@@ -194,10 +224,58 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         }
         selectedCell = selectedCell == indexPath ? nil : indexPath
     }
+}
+
+// MARK:- UITableViewDataSource Methods
+
+extension CustomTableView: UITableViewDataSource {
     
-    private func deactivateCell(_ cell: CustomTableViewCell, completion: (() -> Void)? = nil) {
+    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        return sectionIndexes[index]
+    }
+    
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return sectionIndexNames
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return data.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data[section].count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        UIView.animate(withDuration: 0.6, animations: {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell") as? CustomTableViewCell else { return UITableViewCell() }
+        
+        let goal = data[indexPath.section][indexPath.row]
+        cell.goal = goal
+        
+        cell.goalBlockView.setTo(title: goal.goalText!, dateString: goal.date!.getDateString(), completion: decodeCompletion(num: goal.goalCompletion))
+        
+        cell.taskBlocks[0].changeTaskLabel(goal.taskText1 ?? "")
+        cell.taskBlocks[1].changeTaskLabel(goal.taskText2 ?? "")
+        cell.taskBlocks[2].changeTaskLabel(goal.taskText3 ?? "")
+        
+        if selectedCell == indexPath {
+            
+            cell.taskBlocks.forEach { $0.completeConfig(hasParent: false) }
+            cell.taskBlocks[0].checkBox.setAlternative(selected: cell.goal.taskCompletion1)
+            cell.taskBlocks[1].checkBox.setAlternative(selected: cell.goal.taskCompletion2)
+            cell.taskBlocks[2].checkBox.setAlternative(selected: cell.goal.taskCompletion3)
+            
+            
+            let transform = CGAffineTransform(translationX: 26, y: 0)
+            cell.goalBlockView.transform = transform
+            cell.gradientView.transform = transform
+            cell.gradientViewTop.transform = transform
+            cell.gradientViewOverBlock.transform = transform
+            cell.gearImageView.transform = CGAffineTransform(rotationAngle: 0.9 * CGFloat.pi)
+            cell.goalBlockView.completionImageView.transform = CGAffineTransform(translationX: -26, y: 0)
+            cell.bottomConstraint.constant = 100
+        } else {
             
             cell.goalBlockView.transform = .identity
             cell.gradientView.transform = .identity
@@ -205,44 +283,8 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
             cell.gradientViewOverBlock.transform = .identity
             cell.gearImageView.transform = .identity
             cell.goalBlockView.completionImageView.transform = .identity
-            cell.layoutIfNeeded()
-        }) { _ in
-            completion?()
+            cell.bottomConstraint.constant = 0
         }
-    }
-    
-    private func activateCell(_ cell: CustomTableViewCell) {
-        
-        cell.taskBlocks.forEach { $0.completeConfig(hasParent: false) }
-        cell.taskBlocks[0].checkBox.setAlternative(selected: cell.goal.taskCompletion1)
-        cell.taskBlocks[1].checkBox.setAlternative(selected: cell.goal.taskCompletion2)
-        cell.taskBlocks[2].checkBox.setAlternative(selected: cell.goal.taskCompletion3)
-        
-        UIView.animate(withDuration: 0.6, delay: 0.2, options: .curveEaseInOut, animations: {
-            
-            let transform = CGAffineTransform(translationX: 26, y: 0)
-            cell.goalBlockView.transform = transform
-            cell.gradientView.transform = transform
-            cell.gradientViewTop.transform = transform
-            cell.gradientViewOverBlock.transform = transform
-            cell.gearImageView.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-            cell.goalBlockView.completionImageView.transform = CGAffineTransform(translationX: -26, y: 0)
-            cell.layoutIfNeeded()
-        }, completion: nil)
-    }
-
-    private func decodeCompletion(num: Int32) -> Goal.CompletionProgress {
-        switch num {
-        case 1:
-            return .oneThird
-        case 2:
-            return .twoThirds
-        case 3:
-            return .completed
-        case 4:
-            return .notYetAchieved
-        default:
-            return .notCompleted
-        }
+        return cell
     }
 }

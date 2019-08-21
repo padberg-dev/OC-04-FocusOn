@@ -29,7 +29,7 @@
                                     <segment title="Goals"/>
                                 </segments>
                                 <connections>
-                                    <action selector="taskGoalSegmentedControl:" destination="0dy-d7-b7S" eventType="valueChanged" id="8mN-AY-BV7"/>
+                                    <action selector="taskGoalSegmentedControlTapped:" destination="0dy-d7-b7S" eventType="valueChanged" id="8mN-AY-BV7"/>
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="app-gi-VfN">

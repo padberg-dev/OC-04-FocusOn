@@ -18,14 +18,12 @@ class HistoryViewController: UIViewController {
     
     var shouldAnimateSliding: Bool {
         get {
-            let isScrolledToTop = tableView != nil ? tableView.contentOffset.y == 0 : true
-            return isScrolledToTop
+            return tableView != nil ? tableView.shouldAnimateSliding : true
         }
     }
     var isFirstCellSelected: Bool {
         get {
-            let isCellSelected = tableView != nil ? tableView.selectedCell == IndexPath(item: 0, section: 0) : false
-            return isCellSelected
+            return tableView != nil ? tableView.isFirstCellSelected : false
         }
     }
     
@@ -38,13 +36,8 @@ class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.goals = historyVM.loadData()
-        tableView.historyVM = historyVM
-        tableView.setIndex()
-        
-        tableView.parentConnection = self
-        tableView.sectionIndexColor = UIColor.Main.rosin
-        
+        tableView.config(viewModel: historyVM)
+        view.addDiagonalGradient(of: UIColor.Gradients.greenYellowish)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,7 +45,5 @@ class HistoryViewController: UIViewController {
         
         parent?.navigationItem.title = "FocusOn History"
         tableView.reloadRows(at: [IndexPath(item: 0, section: 0)], with: .left)
-        
-        view.addDiagonalGradient(of: UIColor.Gradients.greenYellowish)
     }
 }

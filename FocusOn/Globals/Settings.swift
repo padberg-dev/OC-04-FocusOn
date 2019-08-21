@@ -12,7 +12,7 @@ class Settings {
     
     struct AnimationDurations {
         
-        static let tabBar: Double = 0.4
+        static let tabBar: Double = 0.8
         static let viewAppearing: Double = 0.8
     }
 }

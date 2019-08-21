@@ -17,7 +17,7 @@ class StartFactory {
         navigationController.configure()
         
 //        GoalData.createALotOfDataScenario(numberOfDays: 358)
-//        GoalData.deleteAllData()
+//        GoalData.createYesterdayScenario()
         
         navigationController.setViewControllers([tabBarController], animated: false)
         

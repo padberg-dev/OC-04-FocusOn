@@ -56,7 +56,7 @@ class TaskBlockView: UIView {
     
     func turn() {
         
-        let transform3 = transformForFraction(2)
+        let transform3 = CATransform3D.transform(angleInDeggres: 180, xAxis: true)
         
         self.insideView.subviews.forEach { $0.alpha = 0 }
         self.insideView.layer.cornerRadius = 12
@@ -67,8 +67,8 @@ class TaskBlockView: UIView {
     
     func turnBack(delayBy: Int) {
         
-        let transform = transformForFraction(1)
-        let transform2 = transformForFraction(0)
+        let transform = CATransform3D.transform(angleInDeggres: 90, xAxis: true)
+        let transform2 = CATransform3D.transform(angleInDeggres: 0, xAxis: true)
         
         UIView.animate(withDuration: self.animationDuration * 2, delay: Double(delayBy) * 0.2, options: .curveEaseInOut, animations: {
             self.insideView.layer.transform = transform
@@ -179,19 +179,6 @@ class TaskBlockView: UIView {
             bottomLine.isHidden = true
         }
         insideBGView.roundCorners(corners: corners, radius: 12)
-    }
-    
-    private func transformForFraction(_ fraction: CGFloat) -> CATransform3D {
-            //1
-            var identity = CATransform3DIdentity
-            identity.m34 = -1.0 / 1000.0
-            
-            // .pi / 2.0 == 90 degree
-            let angle = -fraction * .pi/2.0
-            
-            //3
-            let rotateTransform = CATransform3DRotate(identity, angle, 1.0, 0.0, 0.0)
-            return rotateTransform
     }
     
     private func loadFromNib() {

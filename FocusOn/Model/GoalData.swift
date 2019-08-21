@@ -114,22 +114,42 @@ class GoalData: NSManagedObject {
         return match
     }
     
+    static func deleteData(last number: Int = 0) {
+        
+        var match: [GoalData] = []
+        let context = AppDelegate.context
+        
+        let request: NSFetchRequest<GoalData> = GoalData.fetchRequest()
+        
+        if number != 0 {
+            let latest = NSSortDescriptor(key: "date", ascending: false)
+            request.sortDescriptors = [latest]
+            request.fetchLimit = number
+        }
+        
+        do {
+            match = try context.fetch(request)
+        } catch {
+            print("DATABASE ERROR")
+        }
+        
+        match.forEach {
+            context.delete($0)
+        }
+        do {
+            try context.save()
+        } catch {
+            
+        }
+    }
+    
     // CREATORS
     
     static func createYesterdayScenario() {
+        
+        deleteData(last: 2)
+        
         let context = AppDelegate.context
-        
-        let today = Calendar(identifier: .gregorian).startOfDay(for: Date())
-        let yesterday = Calendar(identifier: .gregorian).startOfDay(for: Date().addingTimeInterval(-24*3600))
-        
-        let first = findGoalData(matchingFromDate: today, in: context)
-        let second = findGoalData(matchingFromDate: yesterday, in: context)
-        if first != nil {
-            context.delete(first!)
-        }
-        if second != nil {
-            context.delete(second!)
-        }
         
         let goal = GoalData(context: context)
         goal.date = Date().addingTimeInterval(-24*3600)
@@ -217,44 +237,6 @@ class GoalData: NSManagedObject {
         number += taskCompletion2 ? 1 : 0
         number += taskCompletion3 ? 1 : 0
         return number
-    }
-    
-    static func deleteAllData() {
-        
-        var match: [GoalData] = []
-        let context = AppDelegate.context
-        
-        let request: NSFetchRequest<GoalData> = GoalData.fetchRequest()
-        do {
-            match = try context.fetch(request)
-        } catch {
-            print("DATABASE ERROR")
-        }
-        
-        match.forEach {
-            context.delete($0)
-        }
-        do {
-            try context.save()
-        } catch {
-            
-        }
-    }
-    
-    func loadData() -> [GoalData] {
-        var match: [GoalData] = []
-        let context = AppDelegate.context
-        
-        let request: NSFetchRequest<GoalData> = GoalData.fetchRequest()
-        let sorting = NSSortDescriptor(key: "date", ascending: true)
-        request.sortDescriptors = [sorting]
-        
-        do {
-            match = try context.fetch(request)
-        } catch {
-            print("DATABASE ERROR")
-        }
-        return match
     }
     
     static func generateTask() -> String {

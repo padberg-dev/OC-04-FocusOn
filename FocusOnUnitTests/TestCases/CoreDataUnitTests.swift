@@ -83,12 +83,12 @@ class CoreDataUnitTests: XCTestCase {
     
     // Helper function
     
-    func findingLastRecord() -> GoalData? {
+    private func findingLastRecord() -> GoalData? {
         
         return GoalData.findLast(in: managedObjectContext)
     }
     
-    func findAllRecords() -> [GoalData] {
+    private func findAllRecords() -> [GoalData] {
         
         return GoalData.loadAllData(inContext: managedObjectContext)
     }

@@ -9,7 +9,7 @@
 import XCTest
 @testable import FocusOn
 
-class TodayViewModelUnitTest: XCTestCase {
+class TodayViewModelUnitTests: XCTestCase {
     
     var todayVM = TodayViewModel()
 
