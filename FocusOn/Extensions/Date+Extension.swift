@@ -35,7 +35,7 @@ extension Date {
         let month = formatter.string(from: today)
         let monthArray = month.split(separator: "-")
         
-        var minusArray = [0, months % 12 ?? 0, months / 12 ?? 0]
+        var minusArray = [0, months % 12, months / 12]
         var minus: [Int] = [0, 0]
         
         if Int(monthArray[1])! <= minusArray[1] {
