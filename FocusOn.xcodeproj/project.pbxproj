@@ -314,8 +314,7 @@
 				014B0C6B22E0C3ED00EDDB0D /* Today */,
 				01BD8BAB2305B1350085C700 /* Progress */,
 			);
-			name = Modules;
-			path = "NEW -------------------------------/Modules";
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		014B0C6B22E0C3ED00EDDB0D /* Today */ = {
