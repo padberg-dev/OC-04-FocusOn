@@ -153,13 +153,13 @@ class GoalData: NSManagedObject {
         
         let goal = GoalData(context: context)
         goal.date = Date().addingTimeInterval(-24*3600)
-        goal.goalText = "Yesterday's Goal"
+        goal.goalText = GoalData.generateGoalName()
         goal.goalCompletion = Int32(2)
-        goal.taskText1 = "First Task"
+        goal.taskText1 = GoalData.generateTask()
         goal.taskCompletion1 = true
-        goal.taskText2 = "Second Task"
+        goal.taskText2 = GoalData.generateTask()
         goal.taskCompletion2 = false
-        goal.taskText3 = "Third Task"
+        goal.taskText3 = GoalData.generateTask()
         goal.taskCompletion3 = true
         
         try! context.save()
